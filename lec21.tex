@@ -1,0 +1,218 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 21}
+\lecture{21}{November 12}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+
+Now we go into more detail on the Gamma function.
+
+
+\begin{proposition}
+For every $s \in \C$ with $\Re (s) >0$ we have that:
+\begin{align*}
+    \Gamma(s+1) = s\cdot \Gamma(s)
+\end{align*}
+It follows that $ \forall n \in \N $ we have that:
+\begin{align*}
+    \Gamma(n+1) = n!
+\end{align*}
+\end{proposition}
+
+INSERT TIKZ
+
+\begin{proof}
+We apply FTC:
+\begin{align*}
+    e^{-\frac{1}{\varepsilon}} \br{\frac{1}{\varepsilon}}^s - e^{-\varepsilon} \br{\varepsilon}^s = \int_\varepsilon^{\frac{1}{\varepsilon}} \frac{\dif}{\dif t} \br{ e^{-t} t^s } \dif t = - \int_\varepsilon^{\frac{1}{\varepsilon}} e^{-t} t^s \dif t + s \int_\varepsilon^{\frac{1}{\varepsilon}} e^{-t} t^{s-1} \dif t
+\end{align*}
+If $\sigma = \Re(s) > 0$, then we have:
+\begin{align*}
+    \abs{e^{-\frac{1}{\varepsilon}} \br{\frac{1}{\varepsilon}}^s - e^{-\varepsilon} \br{\varepsilon}^s} &\leq \abs{e^{-\frac{1}{\varepsilon}} \br{\frac{1}{\varepsilon}}^s} + \abs{ e^{-\varepsilon} \br{\varepsilon}^s}\\
+    &= e^{-\frac{1}{\varepsilon}} \br{\frac{1}{\varepsilon}}^\sigma + e^{- \varepsilon} \varepsilon^\sigma \xrightarrow[]{\varepsilon \to 0} 0
+\end{align*}
+By taking the limit as $\varepsilon$ goes to $0$, we have that:
+\begin{align*}
+     \Gamma (s+1) =\int_0^\infty e^{-t} t^s \dif t = s \int_0^\infty e^{-t} e^{-t} t^{s-1} \dif t = s \cdot \Gamma (s)
+\end{align*}
+
+To prove the case for $n \in \N$, we note that:
+\begin{align*}
+    \Gamma(1) = \int_0^\infty e^{-t} \dif t = -e^{-t} \Big|_0^\infty = 1 = 0 !
+\end{align*}
+Applying induction we get that:
+\begin{align*}
+    \Gamma(n+1) = n!
+\end{align*}
+\end{proof}
+
+We have so far seen that $\Gamma$ acts nicely on the right complex plane. We will now prove that in fact it can be extended to a nice function on $\C$.
+
+\begin{theorem}
+$\exists!$ a meromorphic function (also denoted $\Gamma$) on $\C$, which extends $\Gamma$ on $\set{ \Re(s) >0}$, whose poles are simple poles at $s \in - \N = \set{0 , -1, -2, -3, \cdots}$ with $\res{-n}{\Gamma} = \frac{(-1)^n}{n!}$.
+\end{theorem}
+
+\begin{proof}
+The uniqueness of the extension follows from the uniqueness of the analytic continuation.
+
+Since the convergence at $\infty$ was very fast (exponential), this suggests the following for $\Re(s) > 0$, we write:
+\begin{align*}
+    \Gamma(s) = \int_0^1e^{-t}t^{s-1} \dif t + \int_1^\infty e^{-t}t^{s-1} \dif t
+\end{align*}
+
+We claim that $\int_1^\infty e^{-t}t^{s-1} \dif t$ defines an entire holomorphic function in $s\in \C$. Indeed, this follows from the same argument that was used to prove proposition (20.10). We write $F_\varepsilon (s) = \int_1^{\frac{1}{\varepsilon}} e^{-t}t^{s-1} \dif t$. Then $F_\varepsilon$ is an entire holomorphic function, since $e^{-t}t^{s-1} = e^{-t} \cdot e^{(s-1)\log(t)}$ is an entire holomorphic function in $s$ (this is true since it's essentially $e^s$). The holomorphicity of $F_\varepsilon$ for all $s \in \C$ follows from lemma (20.11). For $\sigma = \Re(s) < \sigma_0 \in \R$ we have that $\abs{ \int_1^\infty e^{-t}t^{s-1} \dif t -    F_\varepsilon (s) } \leq \abs{\int_{\frac{1}{\varepsilon}}^\infty e^{-t}t^{s-1} \dif t} \leq C_{\sigma_0} e^{-\frac{1}{2 \varepsilon}} \to 0$. Since $\sigma_0$ is arbitrary, it follows that it is holomorphic everywhere.\\
+
+Now we must deal with $\int_0^1e^{-t}t^{s-1} \dif t$. It is not holomorphic, and we thus want to extend it to a meromorphic function on $\C$. First we expand $e^{-t}$ as a Taylor series (with $\Re(s) > 0$, otherwise the integral is divergent):
+\begin{align*}
+    \int_0^1e^{-t}t^{s-1} \dif t &= \sum_{n=0}^\infty \int_0^1 \frac{(-1)^n}{n!}t^{n+s-1} \dif t\\
+    &=\sum_{n=0}^\infty \frac{(-1)^n}{n!} \br{\frac{t^{n+s}}{n+s}} \Bigg|_0^1\\
+    &= \sum_{n=0}^\infty \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)}
+\end{align*}
+We can see that the first term in this sum is just the complex exponential. The second term suggests that there will be some issues when $s$ is a negative integer.\\
+
+We fix some $R>0$, and pick $2R < N \in \N$, and write:
+\begin{align*}
+    \sum_{n=0}^\infty \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)} = \sum_{n=0}^N \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)} + \sum_{n=N+1}^\infty \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)}
+\end{align*}
+We examine these two terms for $s \in D_R(0)$.\\
+
+$\sum_{n=0}^N \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)}$ is obviously a meromorphic function with simple poles at every negative integer in this disk (with the correct residue as well).\\
+
+$\sum_{n=N+1}^\infty \frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)}$ has no poles on this disk, and converges absolutely on $D_R(0)$ since for $n\geq N+1, \, N > 2R$ and $s \in D_R(0)$, noting that:
+\begin{align*}
+    \abs{n+s} \geq n - \abs{s} > N+1 -R > R
+\end{align*}
+we have that:
+\begin{align*}
+    \abs{\frac{(-1)^n}{n!(n+s)}} = \frac{1}{n!\abs{n+s}} < \frac{1}{n!R}
+\end{align*}
+And thus:
+\begin{align*}
+    \sum_{n=N+1}^\infty \abs{\frac{(-1)^n}{n!} \cdot \frac{1}{(n+s)}} < \sum_{n=N+1}^\infty \frac{1}{n! R} < \infty
+\end{align*}
+
+
+Now, letting $R \in \R^+$, for $s \in D_R(0)$ and taking $N> 2R$, we define:
+\begin{align*}
+    \Gamma(s) = \underbrace{\sum_{n=0}^N \frac{(-1)^n}{n!(n+s)}}_{meromorphic} + \underbrace{\sum_{n=N+1}^\infty \frac{(-1)^n}{n!(n+s)} + \int_1^\infty e^{-t} t^{s-1} \dif t}_{holomorphic}
+\end{align*}
+Where the meromorphic part has the desired poles and residues.\\
+
+This defines the meromorphic extension of $\Gamma$ to $D_R(0)$. The choice of $N$ is irrelevant, since for $\Re(s) > 0 $ they all agree with $\Gamma$ (the holomorphic function before), so they are all equal by uniqueness of analytic continuation. That is to say that the choice of $N$ makes no difference, since any choice of $N$ will yield functions that agree on the right half plane. By the uniqueness of analytic continuation, these will be equal.\\
+
+Finally, $R$ is arbitrary, which implies that this will work for any point in $\C$ (extensions with a different value of $R$ will agree based off of the same argument as before).
+
+\end{proof}
+
+We now want to prove that $\Gamma$ does not vanish. We begin with a preparatory lemma.
+
+\begin{lemma}
+For $a \in (0,1)$, we have:
+\begin{align*}
+    \int_0^\infty \frac{x^{a-1}}{1+x}\dif x = \frac{\pi}{\sin(\pi a)}
+\end{align*}
+\end{lemma}
+
+% \begin{note}
+% This lemma already appeared in 
+% \end{note}
+
+\begin{proof}
+We apply a change of variables:
+\begin{align*}
+    x &= e^y \iff y = \log(x)\\
+    \dif x &= e^y \dif y
+\end{align*}
+Then:
+\begin{align*}
+    \int_0^\infty \frac{x^{a-1}}{1+x} \dif x = \int_{- \infty}^\infty \frac{e^{(a-1)y}}{1+e^y}\cdot e^y \dif y &= \int_{-\infty }^\infty \frac{e^{ay}}{1+e^y} \dif y\\
+     \text{(apply example 9.11) } &= \frac{\pi}{\sin(\pi a)}
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+$\forall s \in \C$: 
+\begin{align*}
+\Gamma(s) \cdot \Gamma(1-s) = \frac{\pi}{\sin(\pi s)}
+\end{align*}
+
+\end{theorem}
+
+\begin{note}
+Recall that the complex $\sin$ is defined as:
+\begin{align*}
+    \sin(\pi s) = \frac{e^{\pi i s} - e^{- \pi i s}}{2i}
+\end{align*}
+\end{note}
+
+\begin{proof}
+We will first check that both sides have the same poles with the same order.\\
+
+The poles of the RHS are the zeroes of $\sin(\pi s)$. That is to say that the poles are all $s$ such that $e^{\pi i s} = e^{- \pi i s} \Leftrightarrow e^{2 \pi i s} = 1 \Leftrightarrow s \in \Z$. Thus the RHS has simple poles at all $s \in \Z$.\\
+
+To find the poles of the LHS, note that $\Gamma(s)$ has simple poles at $s \in \set{0,-1,-2,\cdots}$ and that $\Gamma(1-s)$ has simple poles at $s \in \set{1,2, \cdots}$. It follows that $\Gamma(s)\cdot \Gamma(1-s)$ has (at worst) simple poles at $s \in \Z$. That is to say that $\Gamma(s)\cdot \Gamma(1-s)$ has no poles outside of the integers.\\
+
+Thus both the LHS and RHS are holomorphic for $\Re(s) \in (0,1)$. To prove equality, it suffices to prove it for $ s \in (0,1) \subset \R$ (since if they're equal on this segment, they are equal on $\Re(s) \in (0,1)$ by analytic continuation).\\
+
+Now let $s \in (0,1) \subset \R$. Then:
+\begin{align*}
+    \Gamma(1-s) &= \int_0^\infty e^{-u}u^{-s} \dif u\\
+    \text{(let $u = vt, \, t>0$) }&= t \int_0^\infty e^{-vt} (vt)^{-s} \dif v
+\end{align*}
+Then:
+\begin{align*}
+    \Gamma(s) \cdot \Gamma(1-s) &= \int_0^\infty e^{-t} t^{s-1} \Gamma(1-s) \dif t\\
+    &= \int_0^\infty e^{-t} t^{s-1} \br{t \int_0^\infty e^{-vt} (vt)^{-s} \dif v} \dif t\\
+    &= \int_0^\infty \int_0^\infty e^{-t(1+v)} v^{-s} \dif v \dif t\\
+    \text{(convergent, so Fubini applies) } &= \int_0^\infty \br{\int_0^\infty e^{-t(1+v)}  \dif t } v^{-s} \dif v\\
+    &= \int_0^\infty \br{\frac{1}{1+v}} v^{-s} \dif v\\ 
+    &= \int_0^\infty \frac{v^{-s}}{1+v}  \dif v\\
+    \text{(lemma (21.3), with $ a = 1-s \in (0,1)$) }&= \frac{\pi}{\sin(\pi (1-s))}\\
+    &= \frac{\pi}{\sin(\pi s)}\\
+\end{align*}
+
+And we are done.
+\end{proof}
+
+\begin{corollary}
+$\forall s \in \C \setminus \set{0,-1,-2,\cdots}$, we have that $\Gamma(s) \neq 0$.
+\end{corollary}
+
+\begin{proof}
+To prove this we apply the formula proven in the last theorem. For $s \in \C \setminus \set{0,-1,-2,\cdots}$ we have:
+\begin{align*}
+    \frac{1}{\Gamma(s)} = \Gamma(1-s) \cdot \frac{\sin(\pi s)}{\pi}
+\end{align*}
+
+Note that $\Gamma(s) \neq 0 \Leftrightarrow \tfrac{1}{\Gamma(s)}$ has no poles.\\
+
+$\Gamma(1-s)$ has simple poles at $\set{1,2,3, \cdots}$. $\frac{\sin(\pi s)}{\pi}$ has simple zeroes at $\Z$. These two cancel out, so it follows that $\frac{1}{\Gamma(s)}$ has no poles (thus it is entire), and has simple zeroes at $\set{0,-1,-2,\cdots}$.\\
+
+It follows that $\Gamma(s) \neq 0$ for $s \in \C \setminus \set{0,-1,-2,\cdots}$ (and additionally that $\Gamma(s) $ has poles at $\set{0,-1,-2, \cdots}$, which we already know).
+\end{proof}
+
+INCLUDE JUSTIFICATION SKIPPED IN LAST STEP?
+
+
+
+\section{Motivation for Riemann Zeta Function}
+
+Recall that the Gamma function is defined as, for $\Re(s) >0$:
+\begin{align*}
+    \Gamma(s) = \int_0^\infty e^{-t} t^{s-1} \dif t
+\end{align*}
+We now insert an $n \in \N_{>0}$ into the exponent of the exponential:
+\begin{align*}
+    \int_0^\infty e^{-nt} t^{s-1} \dif t &\overset{{\scriptscriptstyle u = nt}}{=} \int_0^\infty e^{-u} \frac{u^{s-1}}{n^{s-1}} \cdot \frac{1}{n} \dif u\\
+    & \, \; = \frac{1}{n^s} \cdot \Gamma(s)
+\end{align*}
+This gives us:
+\begin{align*}
+    \frac{1}{n^s} = \frac{1}{\Gamma(s) } \cdot \int_0^\infty e^{-nt} t^{s-1} \dif t
+\end{align*}
+Note that since $\Gamma$ is entire, this is fine as a denominator. Then Riemann's idea was to sum this over $n$, letting $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s} = \frac{1}{\Gamma(s)} \sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t$.\\
+
+Next lecture we will continue discussing the Riemann Zeta function, and its properties.

@@ -1,0 +1,189 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 25}
+\lecture{25}{November 26}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+\section{Duplication Formula}
+
+We begin by introducing a theorem.
+\begin{theorem}[Legendre Duplication Formula]
+For all $s \in \C$, we have that:
+\begin{align*}
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s)
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Let $a,b \in \C$ with $\Re(a) > 0$ and $\Re(b) > 0$. Let
+\begin{align*}
+    B(a,b) = \int_0^1t^{a-1} (1-t)^{b-1} \dif t
+\end{align*}
+As an aside this is known as the Beta function. This is sometimes an improper integral (when $a$ or $b$ are close to $0$), but this is prevented by the condition on $\Re(a)$ and $\Re(b)$.\\
+
+\begin{lemma}$ \forall x,y \in \C$ with $\Re(x) > 0$ and $\Re(y) > 0$, we have that:
+\begin{align*}
+    \Gamma(x) \cdot \Gamma(y) = \Gamma(x+y) \cdot B(x,y)
+\end{align*}
+\end{lemma}
+\begin{proof}[of lemma]
+Indeed, using change of variables in double integrals, we have:
+\begin{align*}
+    \Gamma(x) \cdot \Gamma(y) &= \int_0^\infty \int_0^\infty t_1^{x-1}t_2^{y-1}  e^{-t_1-t_2} \dif t_1 \dif t_2\\
+\end{align*}
+Now let $t_1 = ut$, $t_2 = u(1-t)$ such that $(t_1, t_2) \leadsto (u,t)$. $t_1, t_2 \in [0,\infty)$, so $u \in [0,\infty), \, t \in [0,1]$. Calculating the determinant of the Jacobian we have:
+\begin{align*}
+\begin{vmatrix} 
+\frac{\partial t_1 }{\partial u} & \frac{\partial t_1 }{\partial t} \\[1ex]
+\frac{\partial t_2}{\partial u} & \frac{\partial t_2}{\partial t}
+\end{vmatrix} = 
+\begin{vmatrix}
+t & u\\
+1-t & -u
+\end{vmatrix} = -u
+\end{align*}
+Then using the fact that $\dif t_1 \dif t_2 = \abs{det(Jac)} \dif u \dif t$ we have that:
+
+\begin{align*}
+    \Gamma(x) \cdot \Gamma(y) &= \int_0^\infty \int_0^1 u^{x-1+y-1} e^{-u} t^{x-1} (1-t)^{y-1} \cdot u \dif u \dif t\\
+    &= \br{\int_0^\infty u^{x+y-1} e^{-u} \dif u } \cdot \br{\int_0^1 t^{x-1} (1-t)^{y-1} \dif t}\\
+    &= \Gamma(x+y) \cdot B(x,y)
+\end{align*}
+\end{proof}
+
+Now let $\Re(s) > 0$. Then:
+\begin{align}
+    \frac{\Gamma(s) \cdot \Gamma(s)}{\Gamma(2s)} &= B(s,s) \nonumber \\
+    &= \int_0^1 u^{s-1} (1-u)^{s-1} \dif u \nonumber \\
+    \text{(sub $u = \tfrac{1}{2}+ \tfrac{x}{2}$) } &= 2^{1-2s} \int_{-1}^1 (1+x)^{s-1} (1-x)^{s-1} \dif x \nonumber \\
+    &= 2^{1-s} \int_{-1}^1 (1-x^2)^{s-1} \dif x \nonumber \\
+    \text{(even function) } &= 2 \cdot 2^{1-s} \int_{0}^1 (1-x^2)^{s-1} \dif x \nonumber \\
+    \text{(sub $t = x^2$) } &= 2^{1-2s} \int_0^1 (1-t)^{s-1} t^{-\frac{1}{2}} \dif t \nonumber \\
+    &= 2^{1-2s} \cdot B \br{\tfrac{1}{2}, s} \nonumber \\
+    &= 2^{1-2s} \cdot \frac{\Gamma\br{\tfrac{1}{2}} \cdot \Gamma(s)}{\Gamma\br{s+\tfrac{1}{2}}} \nonumber \\
+    &\Downarrow \nonumber \\
+    \Gamma(s) \cdot \Gamma\br{s+\tfrac{1}{2}} {} &= 2^{1-2s} \cdot \Gamma\br{\tfrac{1}{2}} \cdot  \Gamma(2s)
+\end{align}
+Using the fact that $\Gamma(s) \cdot \Gamma(1-s) = \tfrac{\pi}{ \sin(\pi s)}$ (this is theorem (21.4)), we have that, by letting $s = \tfrac{1}{2}$, $(\Gamma(\tfrac{1}{2}))^2 = \pi \implies \Gamma(\tfrac{1}{2}) = \sqrt{\pi}$. Thus, letting $s= \frac{s}{2}$ in (25.1), we have that:
+\begin{align*}
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s)
+\end{align*}
+Recalling that $\Re(s) > 0$, and thus that $\Re(\tfrac{s}{2}) > 0$, then the claim is proven.
+\end{proof}\\\\
+
+
+
+
+
+\section{Functional Equation part 2}
+Recall the functional equation for the Riemann Zeta Function:
+\begin{align*}
+    \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s)
+\end{align*}
+
+We will find a second formulation of this. First we define the Riemann Xi Function.
+
+
+
+
+\begin{definition}
+We define the Riemann Xi Function $\xi(s)$ as
+\begin{align*}
+    \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+\end{align*}
+This is clearly meromorphic in $\C$.
+\end{definition}
+
+\begin{theorem}
+$\xi$ only has simple poles at $s= 0$ and $s=1$, and the functional equation for $\zeta$ is equivalent to:
+\begin{align*}
+    \xi(s) = \xi(1-s) \;\;\;\; \forall s \in \C
+\end{align*}
+\end{theorem}
+
+To prove this we apply the Duplication Formula.
+
+\begin{proof}
+Note that:
+\begin{align*}
+    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+\end{align*}
+and that
+\begin{align*}
+    \xi(1-s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s)
+\end{align*}
+Then we want to see if equality of these two statements is equivalent to the Functional Equation. Thus we let $\xi(s) = \xi(1-s)$. Noting that:
+\begin{align*}
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{1- \frac{s}{2}} &= \frac{\pi}{ \sin\br{\frac{\pi s}{2}} }\\
+    &\Downarrow\\
+    \frac{1}{\Gamma\br{\frac{s}{2}}} &= \frac{\Gamma\br{1- \frac{s}{2}} \cdot \sin\br{\frac{\pi s}{2}} }{\pi}
+\end{align*}
+And that, letting $s = 1-s$ in the Duplication Formula, we have:
+\begin{align*}
+     \Gamma\br{\frac{1-s}{2}} \cdot \Gamma\br{1-\frac{s}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{s} \cdot \Gamma(1-s)
+\end{align*}
+Then we have that:
+\begin{align*}
+    \zeta(s) &= \pi^{s - \frac{1}{2}} \cdot \frac{\Gamma(\frac{1-s}{2})}{\Gamma(\frac{s}{2})} \cdot \zeta(1-s)\\
+    &= \pi^{s - \frac{3}{2}}\cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \Gamma\br{1- \frac{s}{2}} \cdot    \zeta(1-s)\\
+    &= \pi^{s - 1} \cdot 2^s \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma\br{1-s}  \cdot    \zeta(1-s)
+\end{align*}
+Which is the Functional Equation for the Riemann Zeta Function. Thus:
+\begin{align*}
+    \text{functional equation for $\xi$} \implies\text{functional equation for $\zeta$}
+\end{align*}
+The converse follows by the exact same steps in the reverse order. Thus:
+\begin{align*}
+    \text{functional equation for $\xi$} \iff \text{functional equation for $\zeta$}
+\end{align*}
+And the claim has been proven.
+\end{proof}
+
+\begin{corollary}
+The only zeroes of $\zeta$ outside of the "critical strip" $\set{ 0 \leq \Re(s) \leq 1}$ are simple zeroes at $s \in \set{-2, -4, -6, \cdots}$.
+\end{corollary}
+
+
+\begin{proof}
+By corollary (23.3) we have that $\zeta(s) \neq 0 $ for $\Re(s) > 1$. We now  need to check only on the other side of this strip.\\
+
+Assume that $\Re(s) < 0$. We use the functional equation for $\xi$. Then:
+\begin{align*}
+    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s) = \xi(1-s)
+\end{align*}
+
+Then for each term:
+\begin{enumerate}
+    \item[\fbox{$\zeta(1-s)$}:] Since $\Re(s) < 0$, $\Re(1-s) > 1$. Thus $\zeta(1-s) \neq 0$.
+    \item[\fbox{$\pi^z$}:] $\pi^z = e^{z \cdot \log (\pi)} \neq 0$. Thus $\pi^{-\frac{s}{2}} \neq 0$ and $\pi^{\frac{-1+s}{2}} \neq 0$.
+    \item[\fbox{$\Gamma\big(\frac{1-s}{2} \big) $}:] $\Gamma(s)$ has no zeroes, and has simple poles at $s \in \set{ 0, -1, -2, \cdots}$. It follows that $\Gamma\br{\frac{1-s}{2}}$ is holomorphic and non-zero for $\Re(s) <0$. 
+    \item[\fbox{$\Gamma\br{\frac{s}{2}}$}:] Similarly, $\Gamma\br{\frac{s}{2}}$ is non-zero and has simple poles at $s \in \set{0, -2, -4, \cdots}$. Note that $s \neq 0$ since we assume that $\Re(s) < 0$.
+\end{enumerate}
+Thus:
+\begin{align*}
+    \zeta(s) = \underbrace{\frac{\pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s)}{\pi^{-\frac{s}{2}}}}_{\text{holomorphic and non-zero}} \cdot  \underbrace{\frac{1}{\Gamma\br{\frac{s}{2}}}}_{\text{\stackanchor{$0$ at }{$-2 \N $}}}
+\end{align*}
+
+And thus the claim is proven.
+
+\end{proof}
+
+
+We can thus conclude that $\zeta$ has only the trivial zeroes on the left of the critical strip, none on the right of it, and a mysterious amount in the critical strip.
+
+INSERT TIKZ
+
+In fact there are infinite zeroes in the critical strip (a non-obvious fact). The relationship between $\zeta(s)$ and $\zeta(1-s)$ in the functional equation, a reflection across the line $\Re(s) = \frac{1}{2}$, prompted Riemann to conjecture that every zero of $\zeta$ lies on the line $\Re(s) = \frac{1}{2}$.
+
+\begin{hypothesis}[Riemann]
+All zeroes of $\zeta$ in the critical strip $\set{ s\in \C \mid 0 \leq \Re(s) \leq 1}$ lie on the line $\set{ s\in \C \mid \Re(s) = \frac{1}{2}}$.
+\end{hypothesis}
+
+This is a very important problem in math, mostly because of its relation with prime numbers, which we barely scratched.
+
+\begin{remark}
+While it is tempting to attempt to prove or disprove this hypothesis using only the methods of this class, it is very unlikely that there is one. Any proof will likely involve much more advanced techniques. We know that there are infinite zeroes on the critical line $\Re(s) = \frac{1}{2}$, but not whether there are any off of it. Using computer techniques, we have found many zeroes of $\zeta$; so far all are on the critical line.
+\end{remark}

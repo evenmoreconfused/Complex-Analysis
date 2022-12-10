@@ -1,0 +1,176 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 23}
+\lecture{23}{November 19}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+\section{Euler Product Formula}
+
+\subsection{Infinite Products}
+Given $\{ a_n \}_{n=1}^\infty, \, a_n \in \C$, we shall say that their infinite product $\prod_{n=1}^\infty a_n$ converges if the sequence $A_N = \prod_{n=1}^N a_n \in \C$ converges to some $A\in \C$ as $N \to \infty$. In this case we will write $A= \prod_{n=1}^\infty a_n$.
+
+\begin{lemma}
+Suppose $\{ a_n \}_{n=1}^\infty, \, a_n \in \C$, such that $\sum_{n-1}^\infty \abs{a_n} < \infty$. Then $\prod_{n=1}^\infty \br{1+a_n}$ is convergent and $\prod_{n=1}^\infty \br{1+a_n}$ happens if and only if $\exists m \geq 1 $ s.t. $1+a_m = 0$.
+\end{lemma}
+
+\begin{proof}
+Clearly if $\exists m \geq 1 $ s.t. $1+a_m = 0$ then $\prod_{n=1}^N(1+a_n) = 0 \, \, \forall N\geq m$. Thus the infinite product converges, and converges to $0$. Now assume that $1+a_n \neq 0 \, \forall n \geq 1$.\\
+
+Since $\sum_{n=1}^\infty \abs{a_n} < \infty$, then $\abs{a_n} \xrightarrow[]{n\to \infty } 0$. Thus for all $n$ sufficiently large, $\abs{a_n} < \frac{1}{2}\, \forall n \geq n_0$. We shall disregard the $a_n$'s for $n < n_0$ (this doesn't affect the convergence since there are finite of these terms). WLOG assume that $\abs{a_n} < \frac{1}{2} \, \forall n \geq 1$.\\
+
+Then $1+a_n \in D_\frac{1}{2}(1)$. Note that $0 \not\in D_\frac{1}{2}(1)$. We can thus use the principal branch of $\log$ on this disk. Then we can calculate $\log(1+a_n)$. This is well defined by the usual power series:
+\begin{align*}
+    \log(1+z) = z - \frac{z^2}{2} + \frac{z^3}{3} - \cdots
+\end{align*}
+We also have that for $\abs{z}< 1$:
+\begin{align*}
+    1+z = e^{\log(1+z)}
+\end{align*}
+We further have for $\abs{z} < \frac{1}{2}$ that:
+\begin{align*}
+    \abs{\log(1+z)} = \abs{z - \frac{z^2}{2} + \frac{z^3}{3} - \cdots} \leq  2 \abs{z}
+\end{align*}
+Then let $b_n = \log(1+a_n)$. Then $\abs{b_n} \leq 2 \abs{a_n}$. Then $\sum_{n=1}^\infty \abs{b_n} \leq 2 \sum_{n=1}^\infty \abs{a_n} < \infty$. Then $\sum_{n=1}^N b_n \xrightarrow[]{N \to \infty} B$. Now:
+\begin{align*}
+    \prod_{n=1}^N (1+a_n) = \prod_{n=1}^N e^{\log(1+a_n)} = \prod_{n=1}^\N e^{b_n} = e^{ \br{\sum_{n=1}^N b_n}} \xrightarrow{N \to \infty} e^B \in \C \setminus \{0 \}
+\end{align*}
+Thus $\prod_{n=1}^\infty (1+a_n) < \infty$, and we are done.
+
+
+
+\end{proof}
+
+\subsection{Euler Product Formula}
+
+Let $p$ be a prime number ($p \geq 2$). Then let $s \in \C$. We have defined the complex power $p^{-s}$ as:
+\begin{align*}
+    p^{-s} = e^{-s\log(p)}
+\end{align*}
+where $\log$ is the natural log. Then we can consider $1-p^{-s}$. This is not zero for $\Re(s) > 1$. Indeed:
+\begin{align*}
+    &\abs{p^{-s}} = p^{-\Re(s)} = \br{\frac{1}{p}}^{\Re(s)} < \frac{1}{p} \leq \frac{1}{2}\\
+    \Rightarrow &\abs{1-p^{-s}} \geq \frac{1}{2}
+\end{align*}
+Then, for $\Re(s)>1$ we consider $\frac{1}{1-p^{-s}}$. We want to consider the infinite product of these where $p$ ranges over all primes. Now consider the partial product:
+\begin{align}
+    \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \frac{1}{1-p^{-s}} = \exp\bigg(-\sum_{\text{\stackanchor{$p \leq N$}{prime}}} \log(1-p^{-s}) \bigg)
+\end{align}
+Where $\log$ is the principal branch. Note that $1-p^{-s} \in D_{\frac{1}{2}}(1)$. Then we check that $\sum_{p \text{ prime}} \log(1-p^{-s})$ is absolutely convergent. If it is, the sum in (23.1) has a limit, so the LHS converges as well.\\
+
+Then applying the previous lemma [WHICH ONE?? HOW??] it suffices to see that, for $\Re(s) > 1$ we have:
+\begin{align*}
+    \sum_{p \text{ prime}}\abs{p^{-s}} = \sum_{p \text{ prime}} p^{-\Re(s)} \leq \sum_{n =1}^\infty n^{-\Re(s)} < \infty
+\end{align*}
+Thus for $\Re(s) > 1$, $\prod_{p \text{ prime}} \frac{1}{1-p^{-s}}$ is convergent, and it defines a holomorphic function of $s$ for $\Re(s) >1$ (since $\prod_{p \leq N} \frac{1}{1-p^{-s}}$ is holomorphic for $\Re(s) >1$, and $\sum\abs{p^{-s}} < \infty$ implies uniform convergence).\\
+
+Thus
+\begin{align*}
+    \prod_{p \text{ prime}} \frac{1}{1-p^{-s}}
+\end{align*}
+defines a holomorphic function on $\Re(s) > 1$.
+
+\begin{theorem}[Euler]
+For $\Re(s)>1$ we have that:
+\begin{align*}
+    \zeta(s) = \prod_{p \text{ prime}} \frac{1}{1-p^{-s}}
+\end{align*}
+
+\end{theorem}
+
+\begin{proof}
+We know that both sides are holomorphic on $\Re(s) >1$. It suffices to prove the equality for $s \in (1, \infty) \subset \R$ (by the identity principle these will be the same, since each point will be an accumulation point).\\
+
+We employ the fundamental theorem of arithmetic ($ n \in N$ can be decomposed uniquely into primes). Fix $M> N, \; M,N \in \N$. We claim that:
+\begin{align}
+    \sum_{n=1}^N \frac{1}{n^s} \leq \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \br{1 + \frac{1}{p^s} + \frac{1}{p^{2s} } + \cdots + \frac{1}{p^{Ms}}}
+\end{align}
+Indeed, for any $2 \leq n \leq N$ we can write, where $0 \leq a_p \leq M$:
+\begin{align*}
+n &= \prod_{\text{\stackanchor{$p \leq N$}{prime}}} p ^{a_p}\\
+&\Downarrow\\
+\frac{1}{n^s} &= \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \frac{1}{p^{a_p  \cdot s}}
+\end{align*}
+It follows that (since $a_p \leq M$) every term in the LHS of (23.2) appears on the RHS of (23.2). This follows by expanding out the RHS into a big sum, and seeing that no two element in the LHS will be represented by the same element in the RHS (by the uniqueness of prime factorization). Since each element in the RHS of (23.2) is positive, our claim is proven. Then:
+\begin{align*}
+    \sum_{n=1}^N \frac{1}{n^s} &\leq \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \br{1 + \frac{1}{p^s} + \frac{1}{p^{2s} } + \cdots + \frac{1}{p^{Ms}}}\\
+    \text{(geometric series) }&\leq \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \frac{1}{1-p^{-s}}\\
+    \text{($1-p^{-s} < 1$) }&\leq \prod_{p  \text{ prime}} \frac{1}{1-p^{-s}}\\
+\end{align*}
+Thus we have achieved half the equality we want:
+\begin{align*}
+    \zeta(s) \leq \prod_{p  \text{ prime}} \frac{1}{1-p^{-s}}
+\end{align*}
+The other half follows similarly. We claim that:
+\begin{align}
+    \prod_{\text{\stackanchor{$p \leq N$}{prime}}} \br{1 + \frac{1}{p^s} + \frac{1}{p^{2s} } + \cdots + \frac{1}{p^{Ms}}} \leq \sum_{n=1}^\infty \frac{1}{n^s} = \zeta(s)
+\end{align}
+This is again because every term on the LHS of (23.3) appears on the RHS of (23.3). This follows from expanding the LHS as a big sum, then noticing that by unique prime factorization, every term in the LHS multiplies out to a unique $\frac{1}{n^s}$. The inequality follows by noting that any term of the RHS that is not in the LHS is necessarily positive.\\
+
+Then let $M \to \infty$. Then:
+\begin{align*}
+    \prod_{\text{\stackanchor{$p \leq N$}{prime}}} &\frac{1}{1-p^{-s}} \leq \zeta(s)\\
+    &\Downarrow \text{ let $N \to \infty$}\\
+    \prod_{p \text{ prime}} &\frac{1}{1-p^{-s}} \leq \zeta(s)
+\end{align*}
+And thus we have both sides of the equality we desire. Thus the claim has been proven.
+
+\end{proof}
+
+\begin{corollary}
+$\forall s \in \C$ with $\Re(s) > 1$, we have that $\zeta(s) \neq 0$
+\end{corollary}
+\begin{proof}
+Indeed, for $\Re(s) > 1$, $p$ prime, we have that $\frac{1}{1-p^{-s}} \neq 0$. By lemma (23.1) then:
+\begin{align*}
+    \zeta(s) = \prod_{p \text{ prime}} \frac{1}{1-p^{-s}} \neq 0
+\end{align*}
+\end{proof}
+
+\begin{corollary} The following sum is divergent:
+\begin{align*}
+    \sum_{p \text{ prime}} \frac{1}{p}
+\end{align*}
+\end{corollary}
+\begin{note}
+As $N$ increases, the number of primes less than $N$ increases more and more slowly. This result is unintuitive, since the "density" of primes is low.
+\end{note}
+\begin{proof}
+Let us use Euler's Product Formula for $\Re(s) > 1$. Consider the principal branch of $\log$. Since $\zeta(s) \neq 0$ on $\Re(s) > 1$, we can take $\log(\zeta(s))$. Then:
+\begin{align*}
+    \log(\zeta(s)) = \sum_{p \text{ prime}} \br{- \log(1-p^{-s})}
+\end{align*}
+Now let $s \in \R$, $s> 1$, $s$ close to $1$. Then, noting that:
+\begin{align*}
+\log(1+x) &= x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots\\
+\implies \abs{\log(1+x) - x} &= \abs{ - \frac{x^2}{2} + \frac{x^3}{3} - \cdots } \\
+\text{(for $\abs{x} < \tfrac{1}{2}$) }&\leq 2 \abs{x}^2\\\\
+\implies \abs{\log(1-p^{-s}) +p^{-s}} &\leq 2 p^{-2s}\\
+\end{align*}
+we have that:
+\begin{align*}
+    \abs{\sum_{p \text{ prime}} p^{-s} - \sum_{p \text{ prime}} \br{- \log(1-p^{-s})} } &\leq \sum_{p \text{ prime}} \abs{\br{- \log(1-p^{-s})} - \br{p^{-s}}}\\ &\leq  \sum_{p \text{ prime}} 2 p^{-2s}\\
+    &\leq 2 \sum_{n=1}^\infty n^{-2s}\\
+    \text{(indep. of $s$ for $s$ close to $1$) } & \leq C
+\end{align*}
+This implies that in some sense the sums $\sum_p p^{-s}$ and $\sum_p \br{- \log(1-p^{-s})}$ act similarly for $s$ close to $1$. We then let $s \to 1^+$. Then we notice that:
+\begin{align*}
+    \log(\zeta(s)) = \sum_{p \text{ prime}} \br{- \log(1-p^{-s})}
+\end{align*}
+That is to say that $\sum_p p^{-s}$ will diverge as $s \to 1^+$ if and only if $\log( \zeta(s)) \xrightarrow[]{s \to 1^+} + \infty$. We know already that $\zeta (s)$ has a simple pole at $s=1$ with residue $1$, it follows that for $s$ near $1$ we can write:
+\begin{align*}
+    \zeta(s) = \frac{1}{s-1} + \underbrace{h(s)}_{\text{hol'c}}
+\end{align*}
+However for $s \in (1,\infty) \subset 
+R$ we have $\log\br{\frac{1}{s-1}} = - \log(s-1) \xrightarrow[]{s \to 1^+} +\infty$. Since $h(s)$ is bounded it follows that $\log( \zeta(s)) \xrightarrow[]{s \to 1^+} + \infty$.\\
+
+Thus $\sum_p p^{-s}$ diverges to $+ \infty$ as $s \to 1^+$. Thus:
+\begin{align*}
+    \sum_{p \text{ prime}} \frac{1}{p} = + \infty
+\end{align*}
+And the claim is proven.
+\end{proof}
+
+

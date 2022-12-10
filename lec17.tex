@@ -1,0 +1,330 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 17}
+\lecture{17}{October 29}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+
+Today we will discuss rational linear functions in more depth. Recall that last class we ended with a discussion on $\psi_\alpha$, the M{\"o}bius Functions, finding that $z \mapsto e^{i \theta} \psi_\alpha = e^{i \theta} \frac{\alpha - z}{ 1 - \overline{\alpha} z}$ are elements of $Aut(D)$. We will prove that every element of $Aut(D)$ is of this form, first starting with an important lemma.
+
+\section{To be Named}
+
+\isubsection{THM: Schwarz Lemma}
+\begin{theorem}[Schwarz Lemma]
+
+Let $D = D_1(0) \subset \C$ and $f: D \to D$ holomorphic such that $f(0) = 0$. Then:
+
+\begin{enumerate}
+    \item $\abs{f(z)} \leq \abs{z}$
+    \item if $\abs{f(z_0)} = \abs{z_0}$ for some $z_0 \in D \setminus \{ 0 \}$, then $f (z) = \lambda z$ for some $\lambda \in \C$ s.t. $\abs{\lambda} = 1$ (ie $f$ is a rotation)
+    \item  $\abs{f'(0)} \leq 1$
+    \item if $\abs{f'(0)} = 1$, then $f$ is a rotation
+\end{enumerate}
+
+
+\end{theorem}
+
+
+
+
+
+
+
+\begin{proof}
+Note that by assumption, $\abs{f(z)} < 1  \, \forall z \in D$.
+
+\begin{enumerate}
+    \item Consider $g(z) \defas \frac{f(z)}{z}$. $g$ is holomorphic on $D \setminus \{ 0 \}$. Thus $g$ has an isolated singularity at $0$. We expand $f$ (noting that $a_0 = 0$ since $f(0) = 0$):
+
+\begin{align*}
+    f(z) &= \sum_{n=1}^\infty a_n z^n\\
+    g(z) &= \sum_{n=1}^\infty a_n z^{n-1} = \sum_{n=0}^\infty a_{n-1} z^{n}
+\end{align*}
+
+This is the Laurent series of $g$ on $D \setminus \{ 0 \}$, which has no negative powers of $z$. This implies that $0 $ is a removable singularity for $g$. Thus $g$ extends to a holomorphic function on $D$, still called $g: D \to \C$.\\
+
+For any $z \in D \setminus \{ 0 \}$, recalling that $\abs{f(z)} < 1$, and letting $\abs{z} = r$, we observe that:
+
+\begin{align*}
+    &\abs{g(z)} = \abs{\frac{f(z)}{z}} = \frac{\abs{f(z)}}{r} < \frac{1}{r}\\\\
+    \implies &\sup_{0 < r < 1} \abs{g(z)} < \frac{1}{r}
+\end{align*}
+
+The Maximum Modulus Principle v2 (12.16) tells us that:
+
+\begin{align*}
+    \sup_{\abs{z} \leq r} \abs{g(z)} < \frac{1}{r}
+\end{align*}
+
+
+Now letting $r \to 1$:
+
+\begin{align*}
+    \sup_{z \in D} \abs{g(z)} \leq 1
+\end{align*}
+
+ie $\forall z \in D$, $\abs{g (z) } = \abs{ \frac{f(z)}{ z }} \leq 1$. Thus $\abs{f(z)} \leq \abs{z}$.
+
+
+\item Suppose now that $\abs{ \frac{f(z_0)}{z_0} } = 1$ for some $z_0 \in D \setminus \{ 0 \}$. Then $z_0$ is a local max for $\abs{g(z)}$ on $D$. By the Maximum Modulus Principle v1 (12.15) we get that $g$ is constant. That is to say that for some $\lambda \in \C, \, g(z) = \lambda$. Then $1 = \abs{g(z_0) } = \abs{\lambda}$. Thus $f (z) = \lambda z$ with $\abs{\lambda} = 1$.
+
+\item Now we note that:
+
+\begin{align*}
+    g(0) = \lim_{z \to 0} g(z) = \lim_{z \to 0} \frac{f(z)}{z} = \lim_{z \to 0} \frac{f(z) - f(0)}{z - 0} = f'(0) = a_1
+\end{align*}
+
+Then $\abs{f'(0)} = \abs{g(0) } \leq 1$.
+
+
+\item Let $\abs{f'(0) } = 1 = \abs{g(0)}$. Then $\abs{g}$ achieves a local max at $z = 0$. Similar to the proof of statement 2, it follows that $f$ is a rotation.
+\end{enumerate}
+\end{proof}
+
+
+We can now prove the result stated at the beginning of the lecture as a corollary to the Schwarz Lemma.
+
+
+\begin{corollary}
+
+Let $f \in Aut(D)$. Then $\exists \theta \in \R, \, \exists \alpha \in D$ s.t.
+
+\begin{align*}
+    f(z) = e^{i \theta} \frac{\alpha - z}{1 - \overline{\alpha } z}
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Let $f \in Aut(D)$. By assumption, $f$ is bijective. Thus $\exists ! \, \alpha \in D$ s.t. $ f(\alpha) = 0$. Let $g \defas f \circ \psi_\alpha$. Then $g \in Aut(D)$ and $g(0) = 0$. Note that since $g$ is bijective, then $g^{-1} : D \to D$ is biholomorphic with $g^{-1}(0) = 0$.\\
+
+We then apply the Schwarz Lemma to $g$ and $g^{-1}$ to get that:
+
+\begin{align*}
+    \abs{g(z)} &\leq \abs{z}, \: z \in D\\
+    |g^{-1} ( w) | &\leq \abs{w}, \: w \in D
+\end{align*}
+Letting $w = g(z)$ we get that $\forall z \in D$:
+
+\begin{align*}
+    \abs{z} = \abs{g^{-1} \left( g(z) \right)   } &\leq \abs{g(z)} \leq \abs{z}\\
+    &\Downarrow\\
+    \abs{g(z)} &= \abs{z}
+\end{align*}
+
+Thus $g$ satisfies the condition in the second statement of the Schwarz Lemma (17.1.2) and is thus a rotation. That is to say that $g(z) = e^{i \theta} z $ for some $\theta \in \R$. Thus we have shown that $f \left( \psi_\alpha (z) \right) = \left( f \circ \psi_\alpha \right) (z) = e^{i \theta} z$. Letting $z = \psi_\alpha (w)$ for any $w \in D$, we get that:
+
+\begin{align*}
+   f(w) = f \left( \psi_\alpha \left( \psi_\alpha (w) \right) \right) = e^{i \theta} \psi_\alpha (w)
+\end{align*}
+And we are done.
+\end{proof}
+
+
+
+
+We now turn our attention to finding $Aut(\HH)$.
+
+\subsection{Classifying $Aut(\HH)$}
+
+Recall that we found a biholomorphic map $F:\HH \to D$ with:
+
+\begin{align*}
+    F(z) &= \frac{i-z}{i+z}\\
+    F^{-1} (z) &= i \cdot \frac{1-z}{1+z}
+\end{align*}
+
+Say now that $f \in Aut(\HH)$. This, along with $F$ and $F^{-1}$, can be visualized with a commutative diagram:
+
+INSERT TIKZ
+
+Then since $f, \, F, \, F^{-1}$ are all biholomorphisms, $F \circ f \circ F^{-1} : D \to D$ is a biholomorphism. That is to say that $F \circ f \circ F^{-1} \in Aut(D)$. Thus:
+
+\begin{align*}
+F \circ f \circ F^{-1} &= e^{i \theta} \circ \psi_\alpha\\
+\Updownarrow\\
+f = F^{-1} \circ &\left( e^{i \theta} \circ \psi_\alpha \right) \circ F
+\end{align*}
+
+That is to say that $Aut(\HH) = \set{ F^{-1} \circ g \circ F \mid g \in Aut(D) }$.\\
+
+This is a completely satisfactory description of $Aut(\HH)$, but we may want to find a more concrete description of the same group. This can be obtained as follows:\\
+
+Let $SL(2,R) \defas \set{ \big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big) \mid a,b,c,d \in \R, \text{ with } ad-bc=1  }$. Readers who are not convinced this is a group may check that it is. 
+
+
+\begin{definition}
+
+
+Let $\big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big) = A \in SL(2,R)$. Then:
+
+\begin{align*}
+    F_A(z) \defas \frac{az+ b}{cz+d}
+\end{align*}
+\end{definition}
+
+\isubsection{THM: Characterization of $Aut(\HH)$}
+
+\begin{theorem}[Characterization of $Aut(\HH)$]
+\phantom{a}
+\begin{enumerate}
+    \item $A \in SL(2,R) \implies F_A \in Aut(\HH)$
+    \item $f \in Aut(\HH) \implies \exists A \in SL(2, \R)$ s.t. $f = F_A$
+    
+    \item $Aut( \HH ) \cong  \faktor{SL(2, \R)}{ \pm I_2} = \vcentcolon PSL(2,\R)$ (projectivized special linear group)
+\end{enumerate}
+
+
+\end{theorem}
+
+\begin{note}
+Note that $\pm I_2 = \langle -I_2 \rangle = \set{ I_2, -I_2 } \triangleleft SL(2, \R)$ 
+\end{note}
+
+
+\begin{proof}
+\phantom{a}
+
+\begin{enumerate}
+    \item $F_A$ is meromorphic in $\C$, with one simple pole at $z = - \frac{d}{c} \in \R$. Since this pole is not in $\HH$, $F_A : \HH \to \C$ is holomorphic.\\
+    
+    Next we check that $F_A(\HH) \subset \HH$. Let $z = x+iy \in \HH$ (ie $\Im(z) >0$). Then:
+    
+    \begin{align*}
+        \Im \br{F_A(z)} &= \Im \br{\frac{az+b}{cz+d}}\\
+        &= \Im \br{\frac{(az+b)(c\overline{z} +d)}{\abs{cz+d}^2}}\\
+        &= \Im \br{\frac{ac\abs{z}^2 + adz + bc\overline{z} + bd}{\abs{cz+d}^2}}\\
+        &= \Im \br{\frac{ adz + bc\overline{z} }{\abs{cz+d}^2}}\\
+        &= \frac{{}(ad-bc) \Im (z)}{\abs{cz+d}^2}\\
+        &= \frac{\Im (z)}{\abs{cz+d}^2} > 0
+    \end{align*}
+    Thus $F_A : \HH \to \HH$ holomorphic.
+    
+    Note that $F_{I_2} (z) = z$. Let $A= \big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big), \, B = \big(\begin{smallmatrix}
+  e & f\\
+  g & h
+\end{smallmatrix}\big)$. It is straightforward (yet tedious) to check that:
+
+\begin{align*}
+    F_{A\cdot B} (z) = \frac{(ae+bg)z+af+bh}{(ce+dg)z+cf+dh} = F_A \circ F_B
+\end{align*}
+
+It follows that $(F_A)^{-1} = F_{A^{-1}}$. Thus $F_A$ is a biholomorpism from $\HH$ to $\HH$. Thus $F_A \in Aut(\HH)$.
+    \item Let $z,w \in \HH$. Our first step will be to show that $\exists A \in SL(2, \R)$ such that $F_A(z) = w$. We do this by finding $A,B $ such that $F_A(z) = F_B(w) = i$. Then $F_{B^{-1} \cdot A} (z ) = w$.\\
+    
+    Let $0 \neq c \in \R$. Consider $A_1 = \big(\begin{smallmatrix}
+  0 & -\frac{1}{c}\\
+  c & 0
+\end{smallmatrix}\big)$. Then:
+
+\begin{align*}
+    F_{A_1} (z) &= \frac{-\frac{1}{c}}{cz} = - \frac{\overline{z}}{\abs{cz}^2}\\
+   &\Downarrow\\
+    \Im \br{F_{A_1} (z)} &= \frac{\Im (z)}{\abs{cz}^2}\\
+    \text{(let c = $\sqrt{\tfrac{\Im (z)}{\abs{z}^2}}$) } &= 1
+\end{align*}
+
+INSERT TIKZ
+
+We then take the translation $F_{A_2}, \, A_2 = \big(\begin{smallmatrix}
+  1 & b\\
+  0 & 1
+\end{smallmatrix}\big)$, with $F_{A_2} (z) = z+b$. Let $b = - \Re \br{F_{A_1} (z)}$. Then:
+
+\begin{align*}
+    F_{A_2 \cdot A_1} (z) = i
+\end{align*}
+
+Our next step is to consider the rotation matrix:
+\begin{align*}
+    A_\theta = \begin{pmatrix}
+  \cos(\theta) & -\sin( \theta)\\
+  \sin (\theta) & \cos ( \theta)
+\end{pmatrix}
+\end{align*}
+
+Then $F_{A_\theta} \in Aut \br{D}$. Thus $F \circ F_{A_\theta} \circ F^{-1} \in Aut \br{\HH}$. One can calculate that:
+
+\begin{align*}
+    F \circ F_{A_\theta} \circ F^{-1} (z)= e^{-2 i \theta}
+\end{align*}
+
+ie $F \circ F_{A_\theta} \circ F^{-1}$ is the rotation by $-2 \theta$.\\
+
+Now let $f \in Aut ( \HH)$. $\exists !  \, z_0 \in \HH$ s.t. $f(z_0) = i$. Now let $A \in SL(2,\R) $ s.t. $F_A (i) = z_0$.\\
+
+Then define the composition $g \defas f \circ F_A  \in Aut ( \HH)$. Note that $g(i) = f \br{F_A ( i) } = f(z_0) = i$.\\
+
+Then define the composition $h \defas F \circ g \circ F^{-1} \in Aut (D)$. Note that $h(0) = F \circ g \circ F^{-1} (0) = F \circ g (i) = F (i) = 0$.\\
+
+By corollary (17.2), $h$ is of the form $e^{i \theta} \frac{\alpha - z}{1 - \overline{\alpha } z}$. Since $h(0) = 0$, it follows that $h$ is a rotation by $-2 \theta$ for some $\theta \in \R$. Thus:
+\begin{align*}
+F \circ g \circ F^{-1} = &h = F \circ F_{A_\theta} \circ F^{-1}\\
+&\Downarrow\\
+f \circ F_A = &g = F_{A_\theta}\\
+&\Downarrow\\
+f &= F_{A_\theta A^{-1}}
+\end{align*}
+
+And we have proved statement 2.
+
+
+    \item Consider the map $\alpha : SL(2, \R) \to Aut ( \HH), \, A \mapsto F_A$. We proved last time that:
+    
+    \begin{itemize}
+        \item (in part 1) $\alpha$ is a group homomorphism (or a morphism of groups) ie
+        \begin{enumerate}
+            \item $F_{A \cdot B} = F_A \circ F_B$
+            \item $(F_A)^{-1} = F_{A^{-1}}$
+        \end{enumerate}
+        \item (in part 2) $\alpha$ is surjective ie $SL(2, \R) \xrightarrow[]{\alpha} Aut ( \HH) \to \{ e \}$ is an exact sequence of groups
+    \end{itemize}
+    
+    Then it follows by the first isomorphism theorem, with $K \defas \ker(\alpha) \triangleleft SL(2,\R)$, that:
+    
+    \begin{align*}
+        Aut(\HH) \cong  \faktor{SL(2,\R)}{K}
+    \end{align*}
+    
+    That is to say that we have the exact sequence:
+    
+    \begin{align*}
+        \{ e \} \to K \to SL(2,\R) \xrightarrow[]{\alpha}   Aut(\HH) \to \{ e \}
+    \end{align*}
+    
+    %CHANGE WEIRD IDENTITY NOTATION?
+    
+    Thus it suffices to determine $K = \ker ( \alpha) = \set{A \in SL(2,\R) \mid F_A = (x \mapsto x)}$. Let $A= \big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big)$ such that $F_A = (x \mapsto x)$. Then:
+
+\begin{align*}
+    \frac{az + b}{cz + d} &= z \qquad \forall z \in \HH\\
+    &\Downarrow\\
+    cz^2 + (d-a) z + b &= 0 \qquad \forall z \in \HH
+\end{align*}
+This is a polynomial with infinite roots (all of $\HH$). However, a polynomial of degree 2 may have at most 2 roots, unless it is the 0 polynomial. Thus $c = b = d-a = 0$. Thus $A= \big(\begin{smallmatrix}
+  a & 0\\
+  0 & a
+\end{smallmatrix}\big)$ with the caveat that $ \big|\begin{smallmatrix}
+  a & 0\\
+  0 & a
+\end{smallmatrix}\big|   = a^2 = 1$. Thus $A = \pm I_2$. Since $K = \set{ I_2, -I_2}$ we are done.
+\end{enumerate}
+
+
+\end{proof}
+
+

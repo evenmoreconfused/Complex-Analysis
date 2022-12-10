@@ -1,0 +1,308 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 6}
+\lecture{6}{September 22}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+
+\section{Cauchy's Theorem Continued}
+
+This lecture the proof of Cauchy's Theorem was continued. The rest of the proof was put with the first part of the proof in lecture 5.
+
+We start this lecture with a corollary of Cauchy's Theorem, preceded by a rewording of a previous theorem.
+
+\begin{theorem}[Local Existence of Antiderivatives version 2]
+
+$ \oic $ open, $\foc$ continuous such that $\int_{\partial T} f(z) \dif z = 0$, $ \forall$ $T \subset \om$ triangle. Then $\forall$ disks $D\subset \Omega$ $\exists F:D\rightarrow \C$ holomorphic $C^1$ s.t. $F'(z)=f(z) \, \forall z\in D$. Thus an antiderivative of $f$ exists.
+\end{theorem}
+
+
+\begin{proof}
+The proof for (4.2) works just as well using these assumptions.
+\end{proof}
+
+\isubsection{COR: Morera's Theorem}
+
+\begin{corollary}[Morera's Theorem]
+$\Omega \subset \mathbb{C}$ open connected, $f:\Omega \rightarrow \mathbb{C}$ continuous such that $\int_{\partial T} f(z) \dif z = 0$, $ \forall$ T triangle. Then $f$ is holomorphic.
+\end{corollary}
+
+\begin{note}
+This is the converse of Goursat's Theorem. The proof is similar to to the proof of Local Existence of Antiderivatives (4.2) with some slight modifications.
+\end{note}
+
+
+
+
+
+
+\begin{proof} Now Morera follows. Since (6.1) applies to $f$, we get that it has antiderivatives, so $\exists F$ s.t. $F'(z)=f(z)$. We know that $F$ is analytic, thus so is $f$. It follows that $f$ is holomorphic.
+
+\end{proof}
+
+
+
+
+
+We now use Cauchy's Theorem to compute some real variable integrals. Computing real integrals is one of the original motivations for exploring complex analysis and complex integrals.
+
+\isubsection{EX: Fourier Transform}
+\begin{example}[Fourier Transform of Gaussian]
+
+The goal here is to compute the Fourier transform in $\R$ of the Gaussian $e^{- \pi x^2}$.  That is to say given $\xi \in \R$ we want to compute:
+
+\begin{align*}
+    \int_{-\infty}^{\infty} e^{- \pi x^2} e^{- 2 \pi i x \xi} \dif x
+\end{align*}
+
+First let us dispense with the case where $\xi = 0$, that is to say compute:
+
+\begin{align*}
+    \int_{-\infty}^{\infty} e^{- \pi x^2} \dif x
+\end{align*}
+
+Observe that if you square it, it becomes a double integral:
+
+\begin{align*}
+    \left(  \int_{-\infty}^{\infty} e^{- \pi x^2}  \dif x \right)^2 = \int_{\R ^2}  e^{- \pi( x^2+y^2)}  \dif A
+\end{align*}
+
+Changing it to polar coordinates, with $\dif A = r \dif \theta \dif r $ and $x^2+y^2 = r^2$:
+\begin{align*}
+    \int_{\R ^2}  e^{- \pi( x^2+y^2)}  \dif A &= \int_{0}^{\infty} \int_{0}^{2 \pi} e^{- \pi r^2}  r \dif \theta \dif r \\
+    &= 2 \pi \int_{0}^{\infty}  e^{- \pi r^2}  r \dif r \\
+    &= -e^{-\pi r^2} \Bigr|_0^\infty = 1\\
+\end{align*}
+
+Now let $\xi > 0$. Consider $f(z) =  e^{- \pi z^2}$, holomorphic on $\C$. We use Cauchy's Theorem for $f$ on a well chosen contour:
+
+\begin{center}
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    
+    \draw [thin] [->] (-4,0)--(4,0);
+    \draw [thin] [->] (0,-1)--(0,3);
+    
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3,0) -- (3,0);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (3,2) -- (-3,2);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (3,0) -- (3,2);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3,2) -- (-3,0);
+    
+    
+    \draw (-3,0)[below] node {$-R$};
+    \draw (3,0)[below] node {$R$};
+    \draw (3,2)[above] node {$R+i\xi$};
+    \draw (-3,2)[above] node {$-R+i\xi$};
+    
+    \draw (1,0)[below] node {$\gamma_1$};
+    \draw (3,1)[right] node {$\gamma_2$};
+    \draw (-1,2)[above] node {$\gamma_3$};
+    \draw (-3,1)[left] node {$\gamma_4$};
+    
+    \draw (0,1)[right] node {$\Omega_R$};
+    
+\end{tikzpicture}
+\end{center}
+
+$\gamma_R$ is a piecewise smooth closed curve, and $\om_R$ is the rectangle inside $\gamma_R$. $f(z)$ is holomorphic on $\C$, so in particular $f(z)$ is holomorphic on $\overline{\om_R}$. By Cauchy's Theorem then:
+
+
+
+\begin{align*}
+      0  &= \int_{\gamma_R} f(z) \dif z\\
+    \text{Thus: } 0 &= \int_{\gamma_1} e^{-\pi z^2} \dif z + \int_{\gamma_2} e^{-\pi z^2} \dif z + \int_{\gamma_3} e^{-\pi z^2} \dif z + \int_{\gamma_4} e^{-\pi z^2} \dif z\\
+\end{align*}
+
+Using $z(t) = t, \, z'(t) = 1,  \, t \in [-R,R]$:
+
+\begin{align*}
+    \int_{\gamma_1} e^{-\pi z^2} \dif z = \int_{-R}^R e^{-\pi t^2}  \dif t & \xrightarrow{R\to \infty} 1 
+\end{align*}
+
+Using $z(t) = R + it, \, z'(t) = i,  \, t \in [0,\xi]$:
+
+\begin{align*}
+    \int_{\gamma_2} e^{-\pi z^2} \dif z &= \int_{0}^\xi e^{-\pi (R+it)^2} i \dif t \\ 
+    &= \int_{0}^\xi e^{-\pi (R^2-t^2+2itR)} i \dif t\\
+    &= i \int_{0}^\xi e^{-\pi (R^2-t^2)} e^{-2 \pi i t R}  \dif t\\
+\end{align*}
+
+Then:
+
+\begin{align*}
+    \abs{\int_{\gamma_2} e^{-\pi z^2} \dif z} &= \abs{\int_{0}^\xi e^{-\pi (R^2-t^2)} e^{-2 \pi i t R}  \dif t}\\
+    & \leq \int_{0}^\xi \underbrace{\abs{ e^{-\pi (R^2-t^2)} }}_{e^x > 0 \forall x \in \R} \cdot \underbrace{ \abs{e^{-2 \pi i t R} }}_{=1} \dif t\\
+    &= \int_{0}^\xi e^{-\pi (R^2-t^2)}  \dif t \\ &= \int_{0}^\xi e^{-\pi R^2} e^{\pi t^2}  \dif t \\ 
+    & \leq e^{-\pi R^2}  \int_{0}^\xi e^{\pi \xi^2} \dif t \\ &= e^{-\pi R^2} e^{\pi \xi^2} \xi \xrightarrow{R\to \infty} 0\\
+\end{align*}
+
+Similarly:
+
+\begin{align*}
+    &\int_{\gamma_4} e^{-\pi z^2} \dif z \xrightarrow{R\to \infty} 0\\
+\end{align*}
+
+Finally using $z(t) = i\xi +t, \, z'(t) = 1,  \, t \in [-R,R]$ (this is a reverse parameterization):
+
+\begin{align*}
+    \int_{\gamma_3} e^{-\pi z^2} \dif z &= - \int_{-R}^R e^{-\pi (t+i\xi)^2}  \dif t\\
+    &= - \int_{-R}^R e^{-\pi (t+i\xi)^2}  \dif t\\
+    & = - \int_{-R}^R e^{-\pi (t^2-\xi^2)} e^{-2\pi i t \xi}  \dif t\\
+    &= - e^{\pi \xi ^2 } \int_{-R}^R e^{-\pi t^2} e^{-2\pi i t \xi}  \dif t
+\end{align*}
+
+Letting $R \to \infty$, we get exactly what we wanted to evaluate in the beginning of the example. By the fact that the four integrals summed give zero we get that for $ \xi > 0$:
+
+\begin{align*}
+    - e^{\pi \xi ^2 } \int_{-\infty}^\infty &e^{-\pi t^2} e^{-2\pi i t \xi}  \dif t = -1\\
+    &\Downarrow\\
+    \int_{-\infty}^\infty &e^{-\pi t^2} e^{-2\pi i t \xi}  \dif t = e^{-\pi \xi ^2 }
+\end{align*}
+
+Similarly for $\xi < 0$ (apply a similar rectangle below the axis instead of above it):
+
+\begin{align*}
+    \int_{-\infty}^\infty e^{-\pi t^2} e^{-2\pi i t \xi}  \dif t = e^{-\pi \xi ^2 }
+\end{align*}
+
+This implies that the Fourier transform of the Gaussian is itself.
+
+\end{example}
+\isubsection{EX: An Integral}
+\begin{example}
+
+In this example we want to compute:
+
+\begin{align*}
+    \int_0^\infty \frac{1-cos(x)}{x^2} \dif x\\
+\end{align*}
+    
+We use $f(z) = \frac{1-e^{iz}}{z^2}$, which is holomorphic on $\C \setminus \{0\}$. Then with $x\in \R$:
+
+\begin{align*}
+    \Re(f(x)) = \Re \left( \frac{1-e^{ix}}{x^2} \right) = \frac{1-cos(x)}{x^2}
+\end{align*}
+
+Now apply Cauchy to the following contour $\gamma_{R,\epsilon}$:
+
+\begin{center}
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}
+    ]
+    \clip (-4,-1.1) rectangle (4,4);
+    %\draw (-4,-1) rectangle (4,4);
+    \draw[postaction={decorate}][rotate = -120] [blue,line width=1.5pt] (0,0) circle [radius=3];
+    \draw[postaction={decorate}][xscale=-1][rotate = -60] [blue,line width=1.5pt] (0,0) circle [radius=1];
+    
+    \draw[color=white][fill=white] (-3.5,0) rectangle (3.5,-2);
+    
+    
+    \draw [thin] [->] (-4,0)--(4,0);
+    \draw [thin] [->] (0,-1)--(0,4);
+    
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (1-0.026,0) -- (3+0.026,0);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3-0.026,0) -- (-1+0.026,0);
+    
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (-3,0) -- (3,0);
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (3,2) -- (-3,2);
+   % \draw[postaction={decorate}] [blue,line width=1.5pt] (3,0) -- (3,2);
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (-3,2) -- (-3,0);
+    
+    
+    \draw (-3,0)[below] node {$-R$};
+    \draw (3,0)[below] node {$R$};
+    \draw (-1,0)[below] node {$-\epsilon$};
+    \draw (1,0)[below] node {$+\epsilon$};
+    
+    \draw[thick] (-0.1,0.1) -- (0.1,-0.1);
+    \draw[thick] (0.1,0.1) -- (-0.1,-0.1);
+    
+    \draw (-2,0)[below] node {$\gamma_1$};
+    \draw (2,0)[below] node {$\gamma_3$};
+    \draw (120:1)[above] node {$\gamma_2$};
+    \draw (120:3)[above] node {$\gamma_4$};
+    
+    \draw (0,1.75) [right] node {$\Omega_{R,\epsilon}$};
+    
+    
+    
+\end{tikzpicture}
+\end{center}
+
+
+$f$ is holomorphic on $\Omega_{R,\epsilon} \, \forall R > \epsilon >0 $. Thus Cauchy's Theorem applies and gives:
+
+\begin{align*}
+    0 = \int_{\gamma_1} f(z) \dif z +\int_{\gamma_2} f(z) \dif z +\int_{\gamma_3} f(z) \dif z +\int_{\gamma_4} f(z) \dif z 
+\end{align*}
+
+The $\gamma_1$ and $\gamma_3$ terms are useful to us since taking the real part and $\epsilon \to 0, R \to \infty$ gives us the integral we're looking for over the real line (useful to us since this function is symmetric).
+
+Now consider the $\gamma_4$ term, $\int_{\gamma_4} f(z) \dif z $.
+
+Consider $z=x+iy, \, y>0 $. Then $\abs{e^{iz}} = \abs{e^{ix}} \abs{ e^{-y}} = \abs{ e^{-y}} \leq 1 $ (does not apply if $z$ is in the lower half-plane.
+
+\begin{align*}
+    \abs{f(z)} &= \frac{\abs{1-e^{iz}}}{\abs{z}^2}\\
+    & \leq \frac{1+\abs{e^{iz}}}{\abs{z}^2} \leq \frac{2}{\abs{z}^2}\\
+\end{align*}
+
+Now since $\gamma_4$ is contained in the upper half-plane:
+
+\begin{align*}
+   \abs{ \int_{\gamma_4} f(z) \dif z } &\leq L(\gamma_4) \sup_{z\in \gamma_4} \abs{f(z)}\\
+   &\leq \pi R \cdot \frac{2}{R^2} \xrightarrow[]{R\to \infty} 0\\
+\end{align*}
+
+
+Now consider the $\gamma_2$ term, $\int_{\gamma_2} f(z) \dif z $. Paramaterize $\gamma_2$ (backwards) by $z(t) = \epsilon e^{it}, t\in [0,\pi]$. Now:
+
+\begin{align*}
+    e^{iz} &= 1 + iz + \frac{(iz)^2}{2} + \frac{(iz)^3}{3!} + \hdots\\
+   1- e^{iz}  &=  -iz - \frac{(iz)^2}{2} - \frac{(iz)^3}{3!} - \hdots\\
+   &\Downarrow\\
+   \frac{ 1- e^{iz}}{ z^2} &= - \frac{i}{z} - \frac{(iz)^2}{2z^2} - \frac{(iz)^3}{3!z^2} - \hdots\\
+   &= - \frac{i}{z} + g(z)\\
+   \text{with } \abs{g(z)} &\leq C \text{ for some C as } z \to 0
+\end{align*}
+
+Note that, since $\sup_{z\in \gamma_2} (g(z))$ is bounded:
+
+\begin{align*}
+    \abs{\int_0^\pi g(z) \cdot i \epsilon e^{it} \dif t} \leq \sup_{z\in \gamma_2} (g(z)) \cdot \epsilon \pi \xrightarrow[]{\epsilon \to 0} 0
+\end{align*}
+
+
+And thus:
+
+\begin{align*}
+    \int_{\gamma_2} \underbrace{\frac{ 1- e^{iz}}{ z^2}}_{f(z)} \dif z &= - \int_0^{\pi} f(\epsilon e^{it} ) \cdot i \epsilon e^{it} \dif t\\
+    &= + \int_0^{\pi} \frac{i}{ \epsilon e^{it}} i \epsilon e^{it} \dif t - \int_0^\pi g(z) \cdot i \epsilon e^{it} \dif t\\
+   \text{(letting $\epsilon \to 0$) } &= -\pi
+\end{align*}
+
+Thus finally, noting that $\int_{\gamma_1} f(z) \dif z + \int_{\gamma_3} f(z) \dif z = \int_\R \frac{ 1- e^{ix}}{ x^2} \dif x$ :
+
+\begin{align*}
+    0 &= \sum_{i=1}^4 \int_{\gamma_i} f(z) \dif z \\
+    \text{($\epsilon \to 0$, $R \to \infty$) }&= \int_\R \frac{ 1- e^{ix}}{ x^2} \dif x - \pi \\
+   &\Downarrow\\
+    \Im \left( \int_\R \frac{ 1- e^{ix}}{ x^2} \dif x \right) &=  0\\
+    \Re \left( \int_\R \frac{ 1- e^{ix}}{ x^2} \dif x \right) &=  \pi = \int_{-\infty}^{\infty} \frac{ 1- cos(x)}{ x^2} \dif x\\
+    &\Downarrow \text{ even function}\\
+    \int_0^{\infty} \frac{ 1- cos(x)}{ x^2} \dif x &= \frac{\pi}{2}\\
+\end{align*}
+
+And we are done.
+
+\end{example}
+
+
+
+

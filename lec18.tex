@@ -1,0 +1,255 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 18}
+\lecture{18}{November 3}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+We begin this lecture with a brief discussion on the function
+
+\section{Square Roots}
+
+Consider $z \in \C, \, \alpha \in \C$. What does $z^\alpha$ mean?
+
+\begin{example}
+
+If $\alpha \in \Z$, $z^\alpha$ is known to us.
+
+\end{example}
+
+\begin{example}
+If $\alpha = \frac{1}{2}$, $z^\alpha$ is not known to us.
+\end{example}
+
+ We do not have a solid idea of what $z^\frac{1}{2}$ is. We would like to call this $\sqrt{z}$, however if $w = \sqrt{z} \Rightarrow w^2 = z$, there are two distinct possibilities for $w$ (for a non-zero $z$). This is since if $w_0$ is a solution, so is $-w_0$.
+ 
+ \begin{definition}[Powers of $z$]
+ Let $\alpha,\,z \in C$ with $z \neq 0$. Then we define:
+ 
+ \begin{align*}
+     z^\alpha \defas e^{\alpha \log(z)}
+ \end{align*}
+ \end{definition}
+ 
+ 
+ \begin{remark}
+ This definition is fine as $z$ varies in $\om$ simply connected with $0 \not\in \om$, since in this case we can take $\log(z)$ to be one branch of the complex logarithm of $\om$, and define $z^\alpha$ by $e^{\alpha \log(z)}$.\\
+ 
+ However, changing the branch of $\log$ changes $\log(z) \to \log(z) + 2 \pi i k, \, k \in \Z$, which will change $z^\alpha$ as well. This is not desirable.
+ \end{remark}
+ 
+ 
+ Thus $z^ \alpha$ can be defined on $\om$ simply connected, $0 \not\in \om$. They gives you holomorphic functions on $\om$, but there are many branches in general.
+ 
+ 
+ \begin{example}
+ $\sqrt{z} = e^ { \frac{1}{2}\log(z)}$. If I change the branch of $\log$, I get a new $\sqrt{z}$ given by: 
+ 
+ \begin{align*}
+ \sqrt{z} = e^{ \frac{1}{2} (\log(z)  + 2 \pi i k)} =  e^{\frac{1}{2} \log(z)} \cdot e^{\pi i k} = (-1)^k \cdot e^{\frac{1}{2} \log(z)}
+ \end{align*}
+ 
+ Thus for $\om$ simply connected, $0 \not\in \om$ there are exactly two branches of $\sqrt{z}$ on $\om$.
+ \end{example}
+ 
+ \begin{remark}
+ If $\om$ simply connected but $0 \in \om$, then in general $\sqrt{z}$ can't be defined as a holomorphic function on $\om$.
+ \end{remark}
+ 
+ \begin{example}
+ $D=D_1(0)$. Assume that $f(z) \defas \sqrt{z}$ existed, a holomorphic function on $D$ such that $f^2(z) = z$, $\forall z \in D$. Then, noting that $f(0) = 0$:
+ 
+ \begin{align*}
+     1 = \left. \frac{\dif z }{\dif z}  \right|_{z=1} = \left. \frac{\dif }{\dif z} f^2(z)  \right|_{z=1} = 2 f(0) f'(0) = 0  \quad \lightning
+ \end{align*}
+ \end{example}
+ 
+ \begin{remark}
+ If $\om$ is simply connected and $0 \not\in \om$, let $\sqrt{z}$ be any branch of square root on $
+ om$. Then $\forall z \in \om$:
+ 
+ \begin{align*}
+     \abs{\sqrt{z}} = \sqrt{ \phantom{} \abs{z}}
+ \end{align*}
+ 
+ Indeed, letting $z = re^{i \theta}$:
+ 
+ \begin{align*}
+     \abs{\sqrt{z}} = \abs{e^{\frac{1}{2} \log(re^{i \theta})}} = \abs{e^{\frac{1}{2} \log(r) + \frac{1}{2} i(\theta + 2 \pi k)}} =  \abs{e^{\frac{1}{2} \log(r)}} = \abs{\sqrt{r}} = \sqrt{r} = \sqrt{ \phantom{} \abs{z}}
+ \end{align*}
+ \end{remark}
+ 
+\section{A closer look at $SL(2,\R) $}
+ 
+ Recall from last lecture our treatment and definition of $SL(2,\R) $. Some elements of $SL(2,\R) $ are more interesting than other ones:
+ 
+ \begin{itemize}
+     \item (translations) $T_b = \big(\begin{smallmatrix}
+  1 & b\\
+  0 & 1
+\end{smallmatrix}\big), \, b \in \R \implies F_{T_b}(z) = z+b $ ie $F_{T_b}$ is translation by $b$
+
+INSERT TIKZ
+
+\item (inversion wrt $D$) $S = \big(\begin{smallmatrix}
+  0 & -1\\
+  1 & 0
+\end{smallmatrix}\big),  \implies F_{S}(z) = - \frac{1}{z} $
+
+INSERT TIKZ
+
+ \end{itemize}
+ 
+Observe that:
+
+\begin{align*}
+    SL(2,\Z) \defas \set{ A = \big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big) \mid a,b,c,d \in \Z, \text{ with } ad-bc=1  } \subset  SL(2,\R)
+\end{align*}
+
+Similarly one can define $PSL(2,\Z) \defas \faktor{SL(2,\Z)}{\pm I_2}\, $  (called the "modular group").
+
+\begin{theorem}
+  Let $T = T_1 = \big(\begin{smallmatrix}
+  1 & 1\\
+  0 & 1
+\end{smallmatrix}\big) \in PSL(2,\Z)$. Then $\langle S,T \rangle = PSL(2,\Z)$.
+\end{theorem}
+ 
+\begin{proof}
+Consider $A = \big(\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big) \in PSL(2,\Z)$. We cane freely assume that $c > 0$ (otherwise multiply by $- I_2$). We consider several cases:
+
+\begin{enumerate}
+    \item \fbox{$c = 0$}:
+    By the condition that $\abs{A} = 1$, $ad = 1$. Since $a,d \in \Z$, $a = d = \pm 1$. Then, recalling that since we are working in $PSL(2,\Z)$ we can freely multiply by $-I_2$:
+    
+    \begin{align*}
+        A =  \bigg( \begin{matrix}
+  \pm 1 & b\\
+  0 & \pm 1
+\end{matrix} \bigg) = \bigg( \begin{matrix}
+  1 & \pm b\\
+  0 & 1
+\end{matrix} \bigg) = T^{\pm b}
+    \end{align*}
+    Thus $A \in \langle S,T \rangle$.
+    
+    \item \fbox{$c = 1$}:
+    
+    By determinant condition $ad-b = 1$. Thus:
+    
+    \begin{align*}
+        A = \bigg( \begin{matrix}
+  a & ad-1\\
+  1 & d
+\end{matrix} \bigg) = \bigg( \begin{matrix}
+  1 & a\\
+  0 & 1
+\end{matrix} \bigg) \bigg( \begin{matrix}
+  0 & -1\\
+  1 & 0
+\end{matrix} \bigg) \bigg( \begin{matrix}
+  1 & d\\
+  0 & 1
+\end{matrix} \bigg) = T^a \cdot S \cdot T^d
+    \end{align*}
+Thus $A \in \langle S,T \rangle$.
+    \item \fbox{$c > 1$}:
+    
+    We proceed by induction on $c$, with the base case being $c=1$. By determinant condition $ad-bc = 1$. This is equivalent to $\gcd(c,d) =1$. We can write $d = cq +r$ with $ r \in \N, \,\, 0 < r < c$. Then:
+    
+    \begin{align*}
+        A\cdot T^{-q} \cdot S= \bigg( \begin{matrix}
+  a & b\\
+  c & d
+\end{matrix} \bigg) \bigg( \begin{matrix}
+  1 & -q\\
+  0 & 1
+\end{matrix} \bigg) \bigg( \begin{matrix}
+  0 & -1\\
+  1 & 0
+\end{matrix} \bigg) = \bigg( \begin{matrix}
+   -aq+b & -a\\
+  -cq+d & -c 
+\end{matrix} \bigg) = \bigg( \begin{matrix}
+   -aq+b & -a\\
+  r & -c 
+\end{matrix} \bigg)
+    \end{align*}
+Since $0 < r < c$, by induction it follows that $ A\cdot T^{-q} \cdot S \in \langle S,T \rangle$. Thus $ A \in \langle S,T \rangle$.
+    
+\end{enumerate}
+\end{proof}
+
+We present one more example of the computation of an automorphism group. So far we have computed $Aut(\C)$, $Aut(\C^*)$, $Aut(\HH)$, $Aut(D)$, and $Aut(S^2)$. We will now compute $Aut(D*) = Aut(D_1 ( 0) \setminus \{ 0 \} )$
+
+\begin{example}[$Aut(D^*)$]
+
+$Aut(D^*) = \set{ F : D^* \to D^* \mid F \text{ holomorphic and bijective}}$. By definition $\abs{F(z)} < 1, \; \forall z \in D^*$. Thus $0 \in D$ is a removable singularity for $F$. By the Riemann Extension Theorem $\exists \Tilde{F} : D \to \C$ holomorphic s.t. $\Tilde{F} \mid_{D^*} = F$.\\
+
+It follows from taking a limit as $z \to 0$ that $ \big| \Tilde{F} (z)\big| \leq 1, \; \forall z \in D$. Thus $\Tilde{F} : D \to \overline{D}$. Let us show first that $\Tilde{F} (D) \subset D$. Clearly $\Tilde{F} ( D^*) \subset D$, so we only need to check that $\Tilde{F} (0) = \vcentcolon z \in D$.\\
+
+Assume that $z \in \partial D \Rightarrow \abs{z} = 1$. Then note that $\Tilde{F}$ is non-constant. By the Open Mapping Theorem, $\Tilde{F} (D)$ is open and contains $z \in \partial D$. Then $D_r(z) \subset \Tilde{F} (D)$ for some $r>0$. $D_r(z) $ contains points outside of $\overline{D}$, a contradiction. Thus $\Tilde{F}:D \to D$.\\
+
+Now $\Tilde{F}(0)=0$ by the same argument in example (13.10.1). Thus $\Tilde{F} : D \to D$ is bijective.\\
+
+So $\Tilde{F} \in Aut(D)$ and $\Tilde{F}(0) = 0$. By corollary (17.2):
+
+\begin{align*}
+    \Tilde{F} (z) = e^{i \theta} z, \: \text{ for some $\theta \in \R$}
+\end{align*}
+
+
+It follows that $Aut(D^*) = \set{ e^{i \theta} z \mid 0 \leq \theta < 2 \pi}$ (rotations).
+
+\end{example}
+
+\section{Riemann Mapping Theorem}
+
+We now move to one of the more important results in complex analysis, the Riemann Mapping Theorem. This theorem gives a description of the simply connected open sets in $\C$.
+
+\begin{theorem}[Riemann Mapping Theorem]
+ $\oic$ open, simply connected such that $\om \notin \set{\varnothing, \, \C}$. Then $\forall \, z_0 \in \om, \; \exists \, f : \om \to D = D_1(0)$ holomorphic and bijective (ie $\om$ is biholomorphic to the unit disk) s.t. $f(z_0) = 0$. Furthermore, such $f$ is unique up to composition with rotations of $D$.
+\end{theorem}
+
+\begin{remark}
+This theorem tells us that up to biholomorphism, there are precisely two non-empty non-empty, open, simply connected subsets of $\C$ (namely $D$ and $\C$). We already know that there is no biholomorphism between $\C$ and $D$, since by Liouville's theorem (7.5), since $f$ is an entire bounded holomorphic map, it is constant (which is not bijective).
+\end{remark}
+
+\begin{note}
+
+Simple connectedness is a property preserved by a biholomorphism.
+
+\end{note}
+
+\begin{remark}
+Instead of assuming $\om$ simply connected, we can replace it by any of the statements from theorem (15.9) applying to all $f$ holomorphic. That is to say that we may replace "$\om$ simply connected" by any of the following:
+
+\begin{enumerate}
+    \item for every $f: \om \to \C$ holomorphic, $\exists \, F : \om \to C$ an antiderivative of $f$ on $\om$ 
+    \item for every $f: \om \to \C$ holomorphic, and for every $\gamma$ piecewise smooth closed path in $\om$, $\int_\gamma f(z) \dif z = 0$
+    \item for every $f: \om \to \C$ holomorphic, and for every $\gamma_0, \, \gamma_1$ piecewise smooth closed path in $\om$ with similar end and initial points, $\int_{\gamma_0} f(z) \dif z = \int_{\gamma_1} f(z) \dif z$
+\end{enumerate}
+
+
+So we conclude that if $\oic$ open, non-empty and satisfies any of the above conditions, then $\om$ is simply connected.\\
+
+
+\begin{proof}
+If $\om = \C$, we are done (since $\C$ is simply connected). If $\om \neq \C$, we apply the Riemann Mapping Theorem to get a biholomorphism $f: \om \to D$. $D$ is convex and hence simply connected. Since simple connectedness is preserved by biholomorphisms, it follows that $\om$ is simply connected.
+\end{proof}
+
+
+
+\end{remark}
+
+\begin{proof}[Uniqueness in the R.M.T.]
+Let $f, \, g : \om \to D$ be two biholomorphisms s.t. $f(z_0) = g(z_0) = 0$. Then consider $h \defas f \circ g^{-1} : D \to D$. $h$ is a biholomorphism from $D$ to $D$, thus $h$ is an automorphism of $D$. Since $h(0) = 0$, $h$ must be a rotation. Thus $f = g \circ h$.
+\end{proof}

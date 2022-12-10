@@ -1,0 +1,337 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 26}
+\lecture{26}{December 1}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+
+We now finally prove the functional equation for $\xi$. First we start with several preliminary results.\\
+
+Let $f: \R \to \C$ a smooth function that decays at least quadratically at $\infty$, so that $\sum_{n=-\infty}^{\infty} f(\theta+n)$ converges $\forall \theta \in \R$. Then recall that the Fourier transform of this function, for all $\xi \in \R$, is:
+\begin{align*}
+    \hat{f}(\xi) \defas \int_{-\infty}^\infty e^{-2 \pi i x \xi} f(x) \dif x
+\end{align*}
+This integral converges since $e^{-2 \pi i x \xi}$ has modulus $1$, and since $f(x)$ decays quadratically.
+
+\begin{proposition}[Poisson Summation Formula]
+Let $f$ be a function that has a defined Fourier transform. Then $\forall \theta \in \R$:
+\begin{align*}
+    \sum_{n=-\infty}^\infty f(\theta + n) = \sum_{n=-\infty}^\infty \hat{f}(n) \cdot e^{2 \pi i n \theta}
+\end{align*}
+\end{proposition}
+\begin{proof}
+Let $\theta \in \R$. Let $\psi(\theta) \defas \sum_{n=-\infty}^{\infty} f(n+\theta)$. $\psi : \R \to \C$ is smooth, and has the property that $\psi(\theta+1) = \psi(\theta) $. We use without proof that we can write $\psi$ as a Fourier Series:
+\begin{align*}
+    \psi(\theta) = \sum_{n=-\infty}^{\infty} c_n \cdot e^{2 \pi i n \theta}
+\end{align*}
+where
+\begin{align*}
+    c_n &= \int_0^1 \psi(\theta) \cdot e^{-2 \pi i n \theta} \dif \theta \\ &= \int_0^1 \sum_{k=-\infty}^{\infty} f(k+\theta) \cdot e^{-2 \pi i n \theta} \dif \theta \\&=  \sum_{k=-\infty}^{\infty} \int_0^1 f(k+\theta) \cdot e^{-2 \pi i n \theta} \dif \theta \\ \text{(change var $\theta \to \theta +k$) } &= \sum_{k=-\infty}^{\infty} \int_k^{k+1} f(\theta) \cdot e^{-2 \pi i n \theta} \dif \theta \\
+    &= \int_{-\infty}^{\infty} f(\theta) \cdot e^{-2 \pi i n \theta} \dif \theta \\&= \hat{f}(n)
+\end{align*}
+Thus we have that:
+\begin{align*}
+    \sum_{n=-\infty}^{\infty} f(n+\theta) = \psi(n) = \sum_{n=-\infty}^{\infty} \hat{f}(n) \cdot e^{2 \pi i n \theta}
+\end{align*}
+And we are done.
+\end{proof}
+
+\begin{definition}
+We define, for $u \in (0,\infty) \subset \R$, the theta function:
+\begin{align*}
+    \theta(u) = \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u}
+\end{align*}
+\end{definition}
+The summand decays to $0$ super-exponentially fast, and thus this infinite sum converges.\\
+
+Recall the definition of $\xi$:
+\begin{align*}
+    \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+\end{align*}
+
+\begin{lemma}
+For $\Re(s) > 1$ we can write:
+\begin{align*}
+    \xi(s) = \frac{1}{2} \int_0^\infty u^{\frac{s}{2} - 1} \br{\theta(u) - 1} \dif u
+\end{align*}
+\end{lemma}
+
+\begin{note}
+Notice that this definition is similar to the Gamma Function. The $\theta(u) - 1$ takes the role of the $e^{-t}$ in the definition of $\Gamma$, while the $u^{\frac{s}{2} - 1} $ is some slightly different power of the $u$ that we find in the definition of $\Gamma$.\\
+\end{note}
+
+\begin{proof}
+We first note that
+\begin{align*}
+    \theta(u) &= \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u} = 2 \cdot \sum_{n=1 }^{\infty} e^{- \pi n^2 u} + 1\\\\
+    \implies  \sum_{n=1 }^{\infty}& e^{- \pi n^2 u} = \frac{\theta(u) - 1}{2}
+\end{align*}
+
+Notice that for $n  \neq 0$ (otherwise the change of variable is not well-defined), using the change of variable $t = \pi n^2 u$, $\dif u = \frac{\dif t}{ \pi n^2}$ we have:
+\begin{align*}
+    \int_0^\infty e^{- \pi n^2 u} \cdot  u^{\frac{s}{2} -1} \dif u &= \bigg( \underbrace{ \int_0^\infty e^{-t} t^{\frac{s}{2} - 1} \dif t}_{\Gamma\br{\frac{s}{2}}} \bigg) \cdot \br{\pi n^2}^{- \frac{s}{2}} \\
+    &= \Gamma\br{\frac{s}{2}} \cdot \pi^{- \frac{s}{2}} \cdot n^{-s}
+\end{align*}
+
+Then summing $\sum_{n=1}^\infty$ yields:
+\begin{align*}
+    \xi(s) = \Gamma\br{\frac{s}{2}} \cdot \pi^{- \frac{s}{2}} \cdot \sum_{n=1}^\infty   n^{-s} &= \int_0^\infty \bigg( \underbrace{ \sum_{n=1}^\infty  e^{- \pi n^2 u} }_{\frac{\theta(u) - 1}{2}}\bigg) \cdot  u^{\frac{s}{2} -1} \dif u\\
+    &=\frac{1}{2} \int_0^\infty u^{\frac{s}{2} - 1} \br{\theta(u) - 1} \dif u
+\end{align*}
+And we are done.
+\end{proof}
+
+\begin{proposition}
+For all $u > 0$ we have
+\begin{align*}
+    \theta\big(\tfrac{1}{u}\big) = u^{\frac{1}{2}} \cdot \theta(u)
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+We wish to show, for all $u>0$, that:
+\begin{align*}
+    \theta(u) = \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u} = u^{- \frac{1}{2}} \sum_{n=-\infty}^{+\infty} e^{- \pi \frac{n^2}{u}} = u^{- \frac{1}{2}} \cdot  \theta\big(\tfrac{1}{u}\big)
+\end{align*}
+We apply the Poisson Summation Formula.\\
+
+
+Consider the special case $\theta = 0$ in the formula, which yields:
+\begin{align*}
+    \sum_{n=-\infty}^\infty f( n) = \sum_{n=-\infty}^\infty \hat{f}(n)
+\end{align*}
+
+We let $f(x) = e^{-\pi u x^2}$, with $u>0$. Then recall that we found in example (6.4) that:
+\begin{align*}
+    \int_{-\infty}^\infty e^{-\pi x^2} e^{-2\pi i x \xi}  \dif x = e^{-\pi \xi ^2 }
+\end{align*}
+Then change variable, letting $y = \frac{x}{\sqrt{u}}$. Then:
+\begin{align*}
+    \int_{-\infty}^\infty e^{-\pi x^2} e^{-2\pi i x \xi}  \dif x &= \sqrt{u} \int_{-\infty}^\infty e^{-\pi u y^2} e^{-2\pi i y \xi \sqrt{u}}  \dif y
+\end{align*}
+Renaming $\xi \sqrt{u} \xrightarrow{} \xi$ and $y \xrightarrow{} x$ yields:
+\begin{align*}
+    \hat{f}(\xi)=\int_{-\infty}^\infty e^{-\pi u x^2} e^{-2\pi i x \xi}  \dif x = \frac{1}{\sqrt{u}} e^{- \pi \frac{\xi^2}{u}} 
+\end{align*}
+Then the Poisson Summation Formula for $f(x) = e^{- \pi u x^2}$ gives that:
+\begin{align*}
+    \theta(u) = \sum_{n=-\infty}^\infty e^{- \pi u n^2} \overset{PSF}{=} \frac{1}{\sqrt{u} } \sum_{n=-\infty}^\infty e^{- \pi \frac{n^2}{u}} = u^{- \frac{1}{2}} \cdot  \theta\big(\tfrac{1}{u}\big)
+\end{align*}
+And we are done.
+
+\end{proof}
+
+
+
+
+
+
+
+\begin{remark}
+We can rewrite proposition (26.4) as (for $u>0$):
+\begin{align*}
+    \frac{\theta(u) - 1}{2} = u^{- \frac{1}{2}} \cdot \frac{\theta\big(\tfrac{1}{u}\big) - 1}{2} + \frac{1}{2 u^{\frac{1}{2}}} - \frac{1}{2}
+\end{align*}
+\end{remark}
+
+We now finally prove the functional equation for $\xi$.\\
+
+\begin{proof}[Functional Equation]
+By lemma (26.2) we write:
+\begin{align*}
+    \xi(s) &= \int_0^\infty u^{\frac{s}{2} - 1} \br{\frac{\theta(u) - 1}{2}} \dif u\\
+    &= \int_0^1 u^{\frac{s}{2} - 1} \br{\frac{\theta(u) - 1}{2}} \dif u + \int_1^\infty u^{\frac{s}{2} - 1} \br{\frac{\theta(u) - 1}{2}} \dif u\\
+    \text{(rmk (26.5)) } &= \int_0^1 u^{\frac{s}{2} - 1} \br{u^{- \frac{1}{2}} \cdot \frac{\theta\big(\tfrac{1}{u}\big) - 1}{2} + \frac{1}{2 u^{\frac{1}{2}}} - \frac{1}{2}} \dif u + \int_1^\infty u^{\frac{s}{2} - 1} \br{\frac{\theta(u) - 1}{2}} \dif u\\ 
+\end{align*}
+We consider each part of the left integral:
+\begin{align*}
+    \int_0^1 u^{\frac{s}{2} - 1} \br{u^{- \frac{1}{2}} \cdot \frac{\theta\big(\tfrac{1}{u}\big) - 1}{2} + \frac{1}{2 u^{\frac{1}{2}}} - \frac{1}{2}} \dif u &= \int_0^1 u^{\frac{s}{2} - 1} \br{u^{- \frac{1}{2}} \cdot \frac{\theta\big(\tfrac{1}{u}\big) - 1}{2}} \dif u && \circled{1} \\& + \int_0^1 u^{\frac{s}{2} - 1} \br{\frac{1}{2 u^{\frac{1}{2}}}} \dif u && \circled{2} \\& - \int_0^1 u^{\frac{s}{2} - 1} \br{\frac{1}{2}} \dif u && \circled{3}
+\end{align*}
+
+Then we solve each individually.
+\begin{enumerate}
+    \item[\circled{1} :] We use the change of variable $v = \frac{1}{u}, \, \dif v = - \frac{1}{u^2} \dif u$.
+    \begin{align*}
+        \int_0^1 u^{\frac{s}{2} - 1} \br{u^{- \frac{1}{2}} \cdot \frac{\theta\big(\tfrac{1}{u}\big) - 1}{2}} \dif u &= \int_1^\infty v^{-\frac{s}{2} + 1} \cdot v^{ \frac{1}{2}} \cdot \frac{\theta (v ) - 1}{2} \cdot v^{-2} \, \dif v\\
+        &= \int_1^\infty v^{-\frac{s}{2} - \frac{1}{2}} \cdot \frac{\theta (v ) - 1}{2} \dif v
+    \end{align*}
+    Note that this is almost exactly the same as the second part of the integral above.
+    \item[\circled{2} :] This is straightforward to compute.
+    \begin{align*}
+        \int_0^1 u^{\frac{s}{2} - 1} \br{\frac{1}{2 u^{\frac{1}{2}}}} \dif u &= \frac{1}{2} \int_0^1 u^{\frac{s}{2} - \frac{3}{2}} \dif u\\
+        &= \frac{1}{s-1}
+    \end{align*}
+    \item[\circled{3} :] This is also straightforward.
+    \begin{align*}
+        \int_0^1 u^{\frac{s}{2} - 1} \br{\frac{1}{2}} \dif u = \frac{1}{s}
+    \end{align*}
+\end{enumerate}
+Thus we have, for $\Re(s) > 1$, that:
+\begin{align*}
+    \xi(s) &= \int_1^\infty u^{-\frac{s}{2} - \frac{1}{2}} \cdot \frac{\theta (u ) - 1}{2} \dif u + \frac{1}{s-1} - \frac{1}{s} + \int_1^\infty u^{\frac{s}{2} - 1} \br{\frac{\theta(u) - 1}{2}} \dif u\\
+    &= \int_1^\infty \br{\frac{\theta(u) - 1}{2}} \br{u^{-\frac{s}{2} - \frac{1}{2}} + u^{\frac{s}{2}-1}  } \dif u +\frac{1}{s-1} - \frac{1}{s}
+\end{align*}
+Clearly $\frac{1}{s-1} - \frac{1}{s}$ is meromorphic with simple poles at $s=0$ and $s=1$. Then note that $\int_1^\infty \br{\frac{\theta(u) - 1}{2}} \br{u^{-\frac{s}{2} - \frac{1}{2}} + u^{\frac{s}{2} -1  }} \dif u$ is an entire function of $s$. The logic here is the same as the logic used in the proof of theorem (22.3), where it was shown that $\int_1^\infty \frac{t^{s-1}}{e^t - 1} \dif t$ is an entire holomorphic function in $s$.\\
+
+Hence we have found the meromorphic extension of $\xi$ on $\C$ (with simple poles at $0,1$). Furthermore, the RHS of this formula is symmetric under $(s \leftrightarrow 1-s)$. Thus $\xi(s) = \xi(1-s)$, and we have proven that the functional equation for $\xi$ holds.
+
+\end{proof}
+
+We finish by proving the non-vanishing of $\zeta$ on the boundary of the critical strip $\set{z \in \C \mid 0 \leq \Re(z) \leq 1}$.
+
+\begin{theorem}
+If $\Re(s) = 0$ or $\Re(s) = 1$, then $\zeta(s) \neq 0$.
+\end{theorem}
+\begin{note}
+$s=1$ is a pole of $\zeta$, so it is not defined at it, but in any case it is certainly not a zero.
+\end{note}
+\begin{proof}
+First assume that we have proved the theorem for $\Re(s) = 1$. Let $\Re(s) = 0$. Then $\Re(1-s) = 1$. Then we apply the functional equation $\zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s)$. $2^s \neq 0$, $\pi^{s-1} \neq 0$, and $\Gamma(1-s) \neq 0$. $\zeta(1-s) \neq 0$ by the assumption that we already proved the statement for $\Re(s)=1$. $\sin \big( \frac{\pi s}{2} \big)$ only vanishes (for $\Re(s) = 0$) at $s=0$, but $\zeta(1)$ is a pole, and cancels it out (that is to say that $\sin \big( \frac{\pi s}{2} \big) \cdot \zeta(1) \neq 0$). It follows that $\zeta(s) \neq 0$ on the line $\Re(s) = 0$.\\
+
+Now let $\Re(s) = 1$. We introduce two lemmas.
+\begin{lemma}
+Fix the principal branch of $\log(z)$ on $\Re(z) > 0$. Then for $\Re(s) > 1$, we have:
+\begin{align*}
+    \log\br{\zeta(s)} = \sum_{n=0}^\infty c_n \cdot n^{-s} \;\;\;\;\; \text{where $c_n \geq 0$}
+\end{align*}
+Taking the $\log$ of $\zeta(s)$ is okay, since $\zeta(s) \neq 0$ for $\Re(s) > 1$.
+\end{lemma}
+\begin{proof}
+This follows from Euler's Product Formula.
+Noting that for $\abs{z} < 1$:
+\begin{align*}
+    \log \br{ \frac{1}{1-z}} = \sum_{m=1}^\infty \frac{z^m}{m}
+\end{align*}
+we have that:
+\begin{align*}
+    \log\br{\zeta(s) } &= \log  \Bigg( \prod_{p \text{ prime} } \frac{1}{1-p^{-s}} \Bigg) \\&= \sum_{p } \log \Bigg( \frac{1}{1-p^{-s}}\Bigg) \\&= \sum_{p } \sum_{m=1}^\infty \frac{p^{-ms}}{m} \\&= \sum_{n=1}^\infty c_n \cdot n^{-s}\\\\
+    \text{with }c_n = &\begin{cases} \frac{1}{m} &\text{ if $n=p^m$, $p$ prime} \\ 0 &\text{ otherwise}\end{cases}
+\end{align*}
+Notably, $c_n \geq 0$, and thus we are done.
+\end{proof}
+
+\begin{lemma}
+Let $s = \sigma + i t$, with $\sigma = \Re(s) > 1$. Then:
+\begin{align*}
+    \log \abs{ \zeta^3 (\sigma) \cdot \zeta^4 (\sigma+it) \cdot \zeta(\sigma + 2 it) } \geq 0
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Note that:
+\begin{align*}
+    \log \abs{ \zeta^3 (\sigma) \cdot \zeta^4 (\sigma+it) \cdot \zeta(\sigma + 2 it) } &= 3 \log \abs{ \zeta (\sigma) } \\&\;\; + 4 \log \abs{ \zeta (\sigma+it) } \\&\;\; + \log \abs { \zeta(\sigma + 2 it) } \\&= 3 \Re \br{ \log(\zeta(\sigma))} \\&\;\;+ 4 \Re \br{ \log(\zeta(\sigma+i t))} \\&\;\;+ \Re \br{ \log(\zeta(\sigma+ it))}
+\end{align*}
+But then note that:
+\begin{align*}
+    \Re (\zeta(s)) &= \sum_{n=1}^\infty \Re \big(n^{-s}\big) \\&= \sum_{n=1}^\infty \Re \br{ e^{-(\sigma + it) \log(n)}} \\&= \sum_{n=1}^\infty \Re \br{ e^{- \sigma \log(n)} \cdot e^{-i t \log(n)}  } \\&= \sum_{n=1}^\infty n^{- \sigma} \cos (t \log(n))
+\end{align*}
+
+FIGURE OUT HOW TO CHANGE THIS TO MATCH WHAT HE SAID IN CLASS
+
+Now if we let $\theta_n = t \log(n)$, we have that, by the previous lemma, that:
+\begin{align*}
+    \log \abs{ \zeta^3 (\sigma) \cdot \zeta^4 (\sigma+it) \cdot \zeta(\sigma + 2 it) } &= \sum_{n=1}^\infty c_n \cdot n^{-\sigma} \br{ 3 + 4  \cos\br{\theta_n} + \cos\br{ 2 \theta_n}}\\
+     &= \sum_{n=1}^\infty c_n \cdot n^{-\sigma} 2 \cdot \br{ 1 + \cos(\theta_n) }^2 \\ &\geq 0
+\end{align*}
+Where the last equality comes from the fact that $\cos\br{ 2 \theta_n} = 2 \cos^2 ( \theta_n) - 1$.
+\end{proof}\\
+
+Now suppose for a contradiction that $\zeta$ has a zero on $\set{\Re(s) = 1}$. That is to say that $\zeta ( 1 + i t_0 ) = 0$ for some $t_0 \in \R$. Certainly then $t_0 \neq 0$, since $\zeta$ has a pole at $s=1$.\\
+
+Consider $\abs{\zeta(\sigma+i t_0) }^4$. Then by assumption, $\zeta(\sigma+i t_0)$ vanishes as $\sigma \to 1^+$. Thus as $\sigma \to 1^+$ we have that:
+\begin{align*}
+    \abs{\zeta(\sigma+i t_0) }^4 \leq C (\sigma - 1)^4
+\end{align*}
+
+Now consider $\abs{\zeta(\sigma)}^3$. Similarly, since $\zeta(1)$ is a simple pole, we have that as $\sigma \to 1^+$:
+\begin{align*}
+    \abs{\zeta(\sigma)}^3 \leq \frac{C}{(\sigma - 1)^3}
+\end{align*}
+
+Finally, consider $\abs{\zeta(\sigma + 2 it) }$. We know that this point is not a pole since $t_0 \neq 0$. Thus as $\sigma \to 1^+$ we have that:
+\begin{align*}
+    \abs{\zeta(\sigma + 2 it) } \leq C
+\end{align*}
+
+All together, we have that:
+\begin{align*}
+    \abs{ \zeta^3 (\sigma) \cdot \zeta^4 (\sigma+it) \cdot \zeta(\sigma + 2 it) } \leq C (\sigma - 1) \xrightarrow[]{ \sigma \to 1^+} 0
+\end{align*}
+Thus:
+\begin{align*}
+    \log \abs{ \zeta^3 (\sigma) \cdot \zeta^4 (\sigma+it) \cdot \zeta(\sigma + 2 it) }  \xrightarrow[]{ \sigma \to 1^+} - \infty
+\end{align*}
+Which is a clear contradiction to lemma (26.10). Thus we are done.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% We now finally prove the functional equation for $\xi$.
+
+% \begin{proof}
+% Recall the definition of $\xi$:
+% \begin{align*}
+%     \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+% \end{align*}
+
+% We define, for $u \in (0,\infty) \subset \R$, the theta function:
+% \begin{align*}
+%     \theta(u) \defas \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u}
+% \end{align*}
+% The summand decays to $0$ super-exponentially fast, and thus this infinite sum converges.\\
+
+% We claim that for $\Re(s) > 1$ we can write:
+% \begin{align*}
+%     \xi(s) = \frac{1}{2} \int_0^\infty u^{\frac{s}{2} - 1} \br{\theta(u) - 1} \dif u
+% \end{align*}
+% Notice that this definition is similar to the Gamma Function. The $\theta(u) - 1$ takes the role of the $e^{-t}$ in the definition of $\Gamma$, while the $u^{\frac{s}{2} - 1} $ is some slightly different power of the $u$ that we find in the definition of $\Gamma$.\\
+
+% To prove this, notice that for $n  \neq 0$ (otherwise the change of variable is not well-defined), and using the change of variable $t = \pi n^2 u$, $\dif u = \frac{\dif t}{ \pi n^2}$ we have:
+% \begin{align*}
+%     \int_0^\infty e^{- \pi n^2 u} \cdot  u^{\frac{s}{2} -1} \dif u &= \bigg( \underbrace{ \int_0^\infty e^{-t} t^{\frac{s}{2} - 1} \dif t}_{\Gamma\br{\frac{s}{2}}} \bigg) \cdot \br{\pi n^2}^{- \frac{s}{2}} \\
+%     &= \Gamma\br{\frac{s}{2}} \cdot \pi^{- \frac{s}{2}} \cdot n^{-s}
+% \end{align*}
+% Noting that
+% \begin{align*}
+%     \theta(u) &= \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u} = 2 \cdot \sum_{n=1 }^{\infty} e^{- \pi n^2 u} + 1
+% \end{align*}
+% Then summing $\sum_{n=1}^\infty$ yields:
+% \begin{align*}
+%     \xi(s) = \Gamma\br{\frac{s}{2}} \cdot \pi^{- \frac{s}{2}} \cdot \sum_{n=1}^\infty   n^{-s} &= \int_0^\infty \bigg( \underbrace{ \sum_{n=1}^\infty  e^{- \pi n^2 u} }_{\frac{\theta(u) - 1}{2}}\bigg) \cdot  u^{\frac{s}{2} -1} \dif u\\
+%     &=\frac{1}{2} \int_0^\infty u^{\frac{s}{2} - 1} \br{\theta(u) - 1} \dif u
+% \end{align*}
+% And our claim has been proven.\\
+
+% We make a second key
+% \end{proof}

@@ -1,0 +1,666 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 13}
+\lecture{13}{October 15}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+Recall from last lecture the Maximum Modulus Principle v2 (12.16). In the assumption, we require that $\om$ is bounded. We will provide an example where the Maximum Modulus Principle v2 does not hold when $\om$ is unbounded.
+
+\section{Applications of MMP}
+
+\begin{example}
+
+Take $\om = \text{quarter plane} = \set{ z \in \C \mid \Re (z),\Im(z)  > 0 }$. Then $\partial \om = \set{z \in \C \mid \Re(z) = 0 \lor \Im(z) = 0}$.
+
+
+
+\begin{center}
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}
+    ]
+    
+    \draw [thin] (-1,0)--(3,0);
+    \draw [thin] (0,-1)--(0,3);
+    
+    \fill [pattern=north west lines] (0,0) rectangle (3,3);
+    
+    \draw [very thick] (3,0) -- (0,0) -- (0,3);
+    \draw [right](3,2) node {$\om$};
+    \draw [below](1,0) node {$\partial \om$};
+    
+\end{tikzpicture}
+\end{center}
+
+
+
+
+Let $F(z) = e^{-iz^2}$ (holomorphic on $\C$ thus on $\om$ as well). It is easy to check that $z \in \partial \om \implies \abs{F(z)} = 1$. But letting $z = re^{\frac{i \pi}{4}} \in \om \implies \abs{F(z)} = e^{r^2}$ which is unbounded (in particular this is larger than $1$). Thus the Maximum Modulus Principle v2 fails.
+
+\end{example}
+
+\begin{example}
+Say $D= D_1(0)$, $f: \overline{D} \to \C$ holomorphic non-constant s.t. $\abs{f(z)} \leq 1 \; \forall z \in \partial D$. We will show that $f(D) \subset D$.\\
+
+By the Maximum Modulus Principle v2, $\sup_{D} \abs{f} = \sup_{\partial D} \abs{f} \leq 1$. Then $f(D) \subset \overline{D}$.\\
+
+To prove that $f(D) \subset D$, let us use Maximum Modulus Principle v1: if this fails, then $\exists z_0 \in D$ s.t. $\abs{f(z_0)} = 1$, thus $\abs{f}$ achieves a max at $z_0$ and must be constant.
+\end{example}
+
+
+\section{Automorphisms}
+
+\begin{theorem}
+Let $\oic$ open, $\foc$ holomorphic and injective. Then:
+
+\begin{enumerate}
+    \item $f(\om)$ is open
+    \item $f:\om \to f(\om)$ is bijective
+    \item $f'(z) \neq 0 \; \; \forall z \in \om$
+    \item $f^{-1}: f(\om) \to \om$ is holomorphic
+\end{enumerate}
+
+\end{theorem}
+
+\begin{note}
+This does not hold in the real case. Compare point 3 with the function $f(x) = x^3$. This is a smooth injective function from $\R$ to $\R$, but its derivative vanishes at the origin.
+\end{note}
+
+
+\begin{proof}
+\begin{enumerate}
+    \item $f$ injective $\implies$ $f$ non-constant $\implies$ $f$ open map. Thus $f(\om)$ is open.
+    \item $f$ is injective, so obviously bijective.
+    \item $f' \nequiv 0$ on $\om$ (if it was, $f$ would be locally constant and thus not injective). Thus since $f'$ is holomorphic and $f' \nequiv 0$, the zeroes of $f$ are isolated. Let us show that $f'$ is never $0$.\\
+    
+    Suppose that $\exists \, z_0$ s.t. $f'(z_0) = 0$. Let $w_0 = f(z_0)$ and Let $F(z) = f(z) - w_0$. Then $F$ has an isolated zero at $z_0$ (if not isolated, $f \equiv w_0 \; \lightning$). We have that $F'(z_0) = f'(z_0) = 0$, so $z_0$ is a zero of $F$ of order $N \geq 2$. For $z$ close to $z_0$, $F'(z) \neq 0$.\\
+    
+    We argue exactly the same as in the proof of the Open Mapping Theorem (12.13) and get that (using Rouché) for $w$ close to $w_0$, $f(z) = w$ has exactly $N$ solutions close to $z_0$. But at all such $z$, $f'(z) \neq 0$, so these are all distinct (since if two coincide, $f$ at that point has a zero of order at least two, thus $f'$ at that point is 0). Since $N\geq 2$, we get that $f$ is not injective (since there are at least two distinct zeroes of $f(z) - w$, thus two points that are mapped to $w$).\\
+    
+    Hence $f'$ never vanishes on $\om$.
+    \item To show that $f^{-1}$ is holomorphic, for any $w_0 \in f(\om)$, write $w_0 = f(z_0)$ (uniquely) and for $w$ near $w_0$, write $w = f(z)$ (uniquely). Then, noting that since $z,z_0$ are unique and since $f^{-1}$ is continuous, then as $w \to w_0$, $z \to z_0$:
+    
+    \begin{align*}
+        \lim_{w \to w_0}\frac{f^{-1} (w) - f^{-1} (w_0)  }{w-w_0} &= \lim_{z \to z_0} \frac{z-z_0}{f(z) - f(z_0)}\\
+        &= \lim_{z \to z_0} \frac{1}{\frac{f(z) - f(z_0)}{z-z_0}}\\
+        &= \frac{1}{f'(z_0)}
+    \end{align*}
+    
+    Since this limit exists, $f^{-1}$ is holomorphic.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}[Automorphism]
+An \textbf{automorphism of $\om$} is a function $f: \om \to \om \subset \C$ open, $f$ holomorphic bijection. Note that by the theorem above, $f^{-1}$ is holomorphic and bijective from $\om $ to $\om$.
+\end{definition}
+
+\begin{definition}[Automorphism Group]
+We define:
+\begin{align*}
+Aut(\om) \vcentcolon = \set{f:\om \to \om \mid f \text{ automorphism of } \om}
+\end{align*}
+This is called the \textbf{automorphism group of $\om$}.
+\end{definition}
+
+\begin{note}
+$Aut(\om)$ has a natural group structure. Indeed:
+
+\begin{itemize}
+    \item Identity is: $Id : \om \to \om$
+    \item Group law is: $f \cdot g = f \circ g$
+    \item Inverse is: $(f)^{-1} = f^{-1}$
+\end{itemize}
+
+\end{note}
+
+\begin{example}[$Aut(\C)$]
+
+We showed in homework 5 (Stein-Shakarchi, Exercise 3.14) that $f: \C \to \C $ holomorphic injective $\implies$ $f = az+b, \, a,b \in \C, \, a \neq 0$. The converse is true trivially. Functions of the form $az+b$ are also obviously bijective.\\
+
+We conclude that $Aut(\C) = \set{az+b \mid a,b \in \C, \, a \neq 0}$
+
+
+\end{example}
+
+\begin{notation}
+$\C^* \vcentcolon= \C \setminus \{ 0 \} $
+\end{notation}
+
+
+\begin{example}[$Aut(\C^*)$]
+
+$Aut(\C^*) \vcentcolon = \set{f:\C^* \to \C^* \mid f \text{ holomorphic and bijective} }$.
+
+To calculate $Aut(\C^*)$, let us look near $0$. $0$ is an isolated singularity of $f$, so there are three cases:
+
+
+\begin{enumerate}
+    \item $0$ is a removable singularity
+    
+    Thus $\exists$ $\Tilde{f}: \C \to \C$ holomorphic s.t. $\Tilde{f} \mid_{\C^*} = f$. We shall show that necessarily $\Tilde{f} (0) =0$.
+    
+    Suppose that $\Tilde{f} (0) = z \neq 0$. Then since $f$ is bijective $\exists ! \, w \neq 0$ s.t. $f(w) = z = f(0)$. Let $\varepsilon >0$ s.t. $D_\varepsilon(0) \cap D_\varepsilon(w) = \varnothing$. By the open mapping theorem $\Tilde{f} \left( D_\varepsilon(0) \right) $ and $\Tilde{f} \left( D_\varepsilon(w) \right) $ are open, and $z \in \Tilde{f} \left( D_\varepsilon(0) \right) \cap \Tilde{f} \left( D_\varepsilon(w) \right) $. $\Tilde{f} \left( D_\varepsilon(0) \right) \cap \Tilde{f} \left( D_\varepsilon(w) \right) $ is open and non-empty, thus $\exists \Tilde{z} \neq z, \, \Tilde{z} \in \Tilde{f} \left( D_\varepsilon(0) \right) \cap \Tilde{f} \left( D_\varepsilon(w) \right) $. Thus $\exists a \neq 0, \, a \in D_\varepsilon (0)$ and $b \neq 0, \, b \in D_\varepsilon (w)$ with $a \neq b$ s.t. $f(a) = f(b) = \Tilde{z}$. This is in contradiction to the condition that $f$ is injective on $\C ^*$. It follows that $\Tilde{f}(0) = 0$.
+    
+    
+    Thus $\Tilde{f}: \C \to \C$ is bijective.\\
+    
+    Thus $\Tilde{f} \in Aut(\C)$ with $\Tilde{f} (0) = 0$. It follows that $f(z) = az, \, z \neq 0$. Clearly $f(z) = az, \, a \neq 0$ is an automorphism of $\C^*$
+    
+    \item $0$ is a pole
+    
+    Let $g(z) = \frac{1}{f(z)}$. $g(z):\C^* \to \C^* $ is also bijective and holomorphic as a composition of two holomorphic bijections. Thus $g(z) \in Aut(\C^*)$, but since $0$ is a pole of $f$, $0$ is a removable singularity of $g$.\\
+    
+    By case 1, $g(z) = az, \, a \neq 0$. It follows that $f(z) = \frac{1}{az}, \, a \neq 0$. Clearly \\ $f(z) = \frac{1}{az}, \, a \neq 0$ is an automorphism of $\C ^*$.
+    
+    \item $0$ is a n essential singularity
+    
+    This cannot be. This can be seen by applying Caosrati-Weierstra{\ss} and the Open Mapping Theorem to an open neighborhood around $0$.
+    
+\end{enumerate}
+
+It follows that $Aut(\C^*) = \set{ f(z) = az \text{ or } \frac{1}{az}, \, a \neq 0}$
+
+
+\end{example}
+
+
+Much later we will discuss $Aut(D)$, $Aut(D^*)$, and $Aut(\mathbb{H})$ where $\mathbb{H}$ is the upper half plane
+
+
+\section{Riemann Sphere}
+
+We turn our attention now to a topic quite different from what we have seen before. We want to be able to describe the relationship between a sphere and the complex plane. Intuitively, we would like to take the $1$-point compactification $\C \sqcup \{ \infty \} = S^2$ sphere.
+
+
+
+
+
+\begin{center}
+    
+\begin{tikzpicture}[scale=0.5] % CENT
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+\coordinate[mark coordinate] (S) at (0,-\H);
+
+\draw (N) +(-0.3ex,0.6ex) node[above right] {$\infty$};
+\draw (S) +(-0.4ex,-0.4ex) node[below] {\phantom{}};
+\draw [white][fill=white] (S) circle (0.1);
+
+\draw (0,0) node {$\C$};
+
+
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw (0,1.5) node {  $\xleftrightarrow[]{\phantom{sentence}}$};
+\draw (0,0) node {} ;
+\end{tikzpicture}
+\begin{tikzpicture}[scale=0.5] % CENT
+
+
+
+
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+%% draw xyplane and sphere
+
+%\draw[xyplane] (-2*\R,-2*\R) rectangle (2.2*\R,2.8*\R);
+\draw (0,0) circle (\R);
+
+%% characteristic points
+
+\coordinate (O) at (0,0);
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+                                        
+%\coordinate[mark coordinate] (Phat2) at (intersection cs: first line={(S)--(P)},
+%                                        second line={(0,0)--(Paux)});
+
+%% draw meridians and latitude circles
+
+\DrawLatitudeCircle[\R]{0} % equator
+
+
+
+
+
+%% draw lines and put labels
+
+\draw (N) +(-0.3ex,0.6ex) node[above right] {$\infty = \text{North Pole}$};
+
+%\draw (Phat2) node[above right] {$\mathbf{R}$};
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Stereographic Projection}
+
+
+Consider a sphere intersected with a plane. Then given any point $P \in S^2\setminus \{ N \}$ there is a unique line containing $P$ and $N$. This line intersects the $xy$-plane in a point $Q$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+    
+\begin{tikzpicture} % CENT
+
+%% some definitions
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+%% draw xyplane and sphere
+
+%\draw[xyplane] (-2*\R,-2*\R) rectangle (2.2*\R,2.8*\R);
+\draw (0,0) circle (\R);
+
+%% characteristic points
+
+\coordinate (O) at (0,0);
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+\coordinate[mark coordinate] (S) at (0,-\H);
+\path[pzplane] (\angBeta:\R) coordinate[mark coordinate] (P);
+\path[pzplane] (\R,0) coordinate (PE);
+\path[xzplane] (\R,0) coordinate (XE);
+\path (PE) ++(0,0) coordinate (Paux); % to aid Phat calculation
+%\path (PE) ++(0,-\H) coordinate (Paux); % to aid Phat calculation
+\coordinate[mark coordinate] (Phat) at (intersection cs: first line={(N)--(P)},
+                                        second line={(0,0)--(Paux)});
+                                        
+%\coordinate[mark coordinate] (Phat2) at (intersection cs: first line={(S)--(P)},
+%                                        second line={(0,0)--(Paux)});
+
+%% draw meridians and latitude circles
+
+\DrawLatitudeCircle[\R]{0} % equator
+
+
+
+
+
+%% draw lines and put labels
+
+\draw (P) -- (N) +(-0.3ex,0.6ex) node[above right] {$\mathbf{N}$};
+
+\draw (S) +(-0.4ex,-0.4ex) node[below] {$\mathbf{S}$};
+
+\draw (P) -- (Phat) node[above left] {$\mathbf{Q}$};
+\draw (P) node[above left] {$\mathbf{P}$};
+%\draw (Phat2) node[above right] {$\mathbf{R}$};
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{definition}
+
+The map that takes $P$ to $Q$ is called the \textbf{stereographic projection from $N$}, denoted by $Str_N$.
+\end{definition}
+
+
+\begin{remark}
+This is a bijection between $S^2 \setminus \{ N \}$ and $\R^2 = \C$.
+\end{remark}
+
+Now taking the stereographic projection from $S$ gives you a different bijection between $S^2 \setminus \{ S \}$ and $\R^2 = \C$ that takes $P$ to some point $R \in \R^2$.
+
+
+\begin{center}
+    
+\begin{tikzpicture} % CENT
+
+%% some definitions
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+%% draw xyplane and sphere
+
+%\draw[xyplane] (-2*\R,-2*\R) rectangle (2.2*\R,2.8*\R);
+\draw (0,0) circle (\R);
+
+%% characteristic points
+
+\coordinate (O) at (0,0);
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+\coordinate[mark coordinate] (S) at (0,-\H);
+\path[pzplane] (\angBeta:\R) coordinate[mark coordinate] (P);
+\path[pzplane] (\R,0) coordinate (PE);
+\path[xzplane] (\R,0) coordinate (XE);
+\path (PE) ++(0,0) coordinate (Paux); % to aid Phat calculation
+%\path (PE) ++(0,-\H) coordinate (Paux); % to aid Phat calculation
+\coordinate[mark coordinate] (Phat) at (intersection cs: first line={(N)--(P)},
+                                        second line={(0,0)--(Paux)});
+                                        
+\coordinate[mark coordinate] (Phat2) at (intersection cs: first line={(S)--(P)},
+                                        second line={(0,0)--(Paux)});
+
+%% draw meridians and latitude circles
+
+\DrawLatitudeCircle[\R]{0} % equator
+
+
+
+
+
+%% draw lines and put labels
+
+\draw (P) -- (N) +(-0.3ex,0.6ex) node[above right] {$\mathbf{N}$};
+
+\draw (P) -- (S) +(-0.4ex,-0.4ex) node[below] {$\mathbf{S}$};
+
+\draw (P) -- (Phat) node[above left] {$\mathbf{Q}$};
+\draw (P) node[above left] {$\mathbf{P}$};
+\draw (Phat2) node[above right] {$\mathbf{R}$};
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We want to find a map $\phi : \C \to \C$, $Q \mapsto R$. Consider $Q = (x,y,0)$ and $N= (0,0,1)$. To find $P $ we parameterize $\overline{QN}$ by $t \cdot (0,0,1) + (1-t) \cdot (x,y,0) = \big( (1-t) \cdot x, \, (1-t) \cdot y, \, t \big) = \gamma(t)$.
+
+
+
+\begin{center}
+    
+\begin{tikzpicture} % CENT
+
+%% some definitions
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+%% draw xyplane and sphere
+
+%\draw[xyplane] (-2*\R,-2*\R) rectangle (2.2*\R,2.8*\R);
+\draw (0,0) circle (\R);
+
+%% characteristic points
+
+\coordinate (O) at (0,0);
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+\coordinate[mark coordinate] (S) at (0,-\H);
+\path[pzplane] (\angBeta:\R) coordinate[mark coordinate] (P);
+\path[pzplane] (\R,0) coordinate (PE);
+\path[xzplane] (\R,0) coordinate (XE);
+\path (PE) ++(0,0) coordinate (Paux); % to aid Phat calculation
+%\path (PE) ++(0,-\H) coordinate (Paux); % to aid Phat calculation
+\coordinate[mark coordinate] (Phat) at (intersection cs: first line={(N)--(P)},
+                                        second line={(0,0)--(Paux)});
+                                        
+\coordinate[mark coordinate] (Phat2) at (intersection cs: first line={(S)--(P)},
+                                        second line={(0,0)--(Paux)});
+
+%% draw meridians and latitude circles
+
+\DrawLatitudeCircle[\R]{0} % equator
+
+
+
+
+
+%% draw lines and put labels
+
+\draw (P) -- (N) +(-0.3ex,0.6ex) node[above right] {$\mathbf{N=(0,0,1)}$};
+
+\draw (P) -- (S) +(-0.4ex,-0.4ex) node[below] {$\mathbf{S=(0,0,-1)}$};
+
+\draw (P) -- (Phat) node[above left] {$\mathbf{(x,y,0)=Q}$};
+\draw (P) node[above left] {$\mathbf{P}$};
+\draw (Phat2) node[above right] {$\mathbf{R}$};
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+Now $P$ is (one) intersection of $\gamma$ and $S^2$ such that:
+
+\begin{align*}
+    1 = \abs{\gamma(t) }^2 &= (1-t)^2x^2 + (1-t)^2 y^2 + t^2\\
+    \text{(letting $A \vcentcolon = x^2 + y^2$) } &= t^2 (A+1) - 2At + A 
+\end{align*}
+
+This is quadratic in $t$. Thus:
+
+\begin{align*}
+    t &= \frac{A \pm \sqrt{A^2 - (A^2 - 1)}}{A+1}\\ \text{(ignore $t=1$; this is N) } &= \frac{A-1}{A+1}
+\end{align*}
+
+Thus, with $(1-t) = \frac{2}{A+1}$:
+
+\begin{align*}
+    P &= \bigg( \underbrace{\frac{2x}{x^2+y^2+1} }_{\mathfrak{X}}, \,  \underbrace{\frac{2y}{x^2+y^2+1}}_{\mathfrak{Y}} , \, \underbrace{\frac{x^2+y^2-1}{x^2+y^2+1}}_{\mathfrak{Z}}  \bigg)\\
+    &= \left( \mathfrak{X}, \, \mathfrak{Y}, \, \mathfrak{Z} \right)
+\end{align*}
+
+Now take $\Tilde{\gamma} = \overline{SP} = \big( (1-t) \cdot \mathfrak{X}, \, (1-t) \cdot \mathfrak{Y}, \, (1-t)\cdot \mathfrak{Z} - t \big)$. $R$ is the intersection of $\Tilde{\gamma}$ and the $xy$-plane. Thus $t = \frac{\mathfrak{Z}}{\mathfrak{Z}+1}$ and $1-t = \frac{1}{\mathfrak{Z} + 1}$. It follows (after some arithmetic) that:
+
+
+\begin{align*}
+    R &= \left( \frac{\mathfrak{X}}{\mathfrak{Z} + 1} , \, \frac{\mathfrak{Y}}{\mathfrak{Z}+1} , \, 0 \right) = \left( \frac{x}{x^2+y^2} , \, \frac{y}{x^2+y^2} , \, 0         \right)
+\end{align*}
+
+
+So $\phi = Str_S \circ (Str_N)^{-1}$ maps $Q = (x,y,0)$ to $R = \left( \frac{x}{x^2+y^2} , \, \frac{y}{x^2+y^2} , \, 0         \right)$.
+
+We can think of $Q,R$ as elements of $\R^2 = \C$:
+
+\begin{align*}
+    Q &= z = x+iy\\
+    R &= \frac{x}{x^2 + y^2} + i \frac{y}{x^2 + y^2}\\
+    &= \frac{z}{x^2 + y^2}\\
+    &= \frac{z}{\abs{z}^2}\\ &= \frac{1}{\overline{z}}
+\end{align*}
+
+%Thus our map is $\phi: \C \to \C$, $z \mapsto \frac{1}{\overline{z}}$ .
+
+
+If we compose one of the two projections with $\overline{z}$, we get that to obtain $S^2$ you can take two copies of $\C$ and glue them on $\C^* \subset \C$ via the map $z \mapsto \frac{1}{z}$.
+
+ELABORATE
+ADD TIKZ
+
+\begin{remark}
+
+This is an atlas with two charts for the $2$-dimensional  manifold $S^2$, where $z \xleftrightarrow[]{} \frac{1}{z}$ is the transition between the two charts.
+\end{remark}
+
+
+We can use this to define holomorphic functions to and from $S^2$.
+
+
+\begin{definition}
+
+Consider $f: S^2 \to \C$ a map of sets. $f$ is called \textbf{holomorphic} if on $U_1$, $f \circ Str_N: \C \to \C$ is holomorphic and on $U_2$, $f \circ Str_S: \C \to \C$ is holomorphic.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

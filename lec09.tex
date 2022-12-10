@@ -1,0 +1,408 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 9}
+\lecture{9}{October 1}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+
+We spend more time on poles this lecture.
+
+\section{Poles and the Residue Formula}
+
+\begin{note}
+Recall that a holomorphic function $f$ has a pole at $z_0$ if:
+
+\begin{align*}
+    \Tilde{f}(z) \vcentcolon = \begin{cases} \frac{1}{f(z)} & z \in D \setminus \{ z_0 \} \\ 0 & z = z_0  \end{cases}
+\end{align*}
+
+is holomorphic on $D$ (a disk around $z_0$). Naturally this implies that $lim_{z \to z_0} \frac{1}{f(z)} = 0$. This means that $lim_{z \to z_0} f(z) = \pm \infty$. This is to say that a pole is somehow a point where $f$ goes to $\pm \infty$.
+
+\end{note}
+
+
+
+We revisit an example from last lecture:
+
+
+
+
+
+\begin{example}
+The function
+\begin{align*}
+f(z) = \frac{1}{z^2+1} = \frac{1}{(z-i)(z+i)}
+\end{align*}
+has two poles: $z = \pm i$. Consider the pole $i$. Then:
+
+\begin{align*}
+    \frac{1}{z^2+1} = \frac{1}{(z-i)(z+i)} = \frac{\frac{1}{z+i}}{z-i} = \frac{g(z)}{z-z_0}
+\end{align*}
+for $z_0 = i$. $\frac{1}{z+i}$ is indeed a non-vanishing and holomorphic function around $i$. We then expand $g(z)$ in a power series at $z_0 = i$:
+
+\begin{align*}
+    g(z) = \sum _{n=0}^\infty a_n (z-i)^n &= a_0 + \cdots\\ &= \frac{1}{2i} + \cdots\\
+\end{align*}
+Thus $a_{-1} = \frac{1}{2i}$ in the Laurent series expansion, so $Res_i(f) = \frac{1}{2i}$. Similarly, $Res_{-i}(f) = \frac{-1}{2i}$.
+\end{example}
+
+\begin{lemma}
+Say $f$ has a pole at $z_0 \in \om$ of order $N \geq 1$. Then:
+
+\begin{align*}
+    Res_{z_0}(f) = \lim_{z \to z_0} \left[ \frac{1}{(N-1)!} \left( \frac{\partial}{\partial z} \right)^{N-1} \left[ (z-z_0)^N \cdot f(z) \right] \right]
+\end{align*}
+\end{lemma}
+
+\begin{note}
+Multiplying by $(z-z_0)^N$ makes your function holomorphic. We then take the derivative and divide by $(N-1)!$ to readjust it after taking the derivative.
+\end{note}
+
+\begin{proof}
+Expand $f$ by lemma (8.16). Then:
+
+\begin{align*}
+    f(z) &= \frac{a_{-N}}{(z-z_0)^N} + \cdots + \frac{a_{-1}}{z-z_0} + G(z)\\
+    (z-z_0)^N f(z) &= a_{-N} + \cdots + (z-z_0)^{N-1} a_{-1} + (z-z_0)^N G(z)\\
+\end{align*}
+
+Then note that $(z-z_0)^N G(z)$ vanishes to order at least $N$ at the point $z_0$. Since taking the derivative reduces the order of vanishing by 1, the $N-1$th derivative of $(z-z_0)^N G(z)$ vanishes to order at least $1$ at the point $z_0$. Thus lim
+
+\begin{align*}
+    \left( \frac{\partial}{\partial z} \right)^{N-1} (z-z_0)^N f(z) &=  a_{-1} (N-1)! + \underbrace{ \left( \frac{\partial}{\partial z} \right)^{N-1} \left[ (z-z_0) G(z) \right]}_{vanishes} \xrightarrow[]{z \to z_0}  a_{-1}  (N-1)!
+\end{align*}
+\end{proof}
+
+\begin{example}
+\begin{align*}
+    f(z) = \frac{e^z}{z^5} = \frac{g(z)}{z^5}
+\end{align*}
+
+Then the denominator vanishes at 0, and the numerator never vanishes. Thus $f$ has a pole of order 5 at $z_0 = 0$. We approach this in two ways:
+
+\begin{enumerate}
+    \item We directly compute the residue. Expand $e^z = \sum \frac{z^n}{n!}$ as a power series around $z_0 = 0$. Then:
+    \begin{align*}
+        f(z) = \frac{1}{z^5} + \frac{1}{z^4} +\frac{1}{2z^3} + \frac{1}{6z^2} + \frac{1}{24z} + \cdots\\
+    \end{align*}
+    Thus the residue is $\frac{1}{24}$.
+    
+    \item Use lemma. Then $N=5$:
+    
+    \begin{align*}
+        Res_{0}(f) &= \lim_{z \to 0} \frac{1}{4!} \left( \frac{\partial }{\partial z} \right)^4 e^z \\
+        &= \lim_{z \to 0} \frac{1}{4!} e^z\\
+        &= \frac{1}{4!}
+    \end{align*}
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+Suppose $f$ has a pole at $z_0 \in \om$ and expand $f(z) = \sum_{n=-N}^\infty a_n (z-z_0)^n$ in Laurent series around $z_0$ for some $D = D_r(z_0) \ssubset \om$. Then $\forall n$:
+
+\begin{align*}
+    a_n = \frac{1}{2 \pi i} \int_D \frac{f(z)}{(z-z_0)^{n+1}} \dif z
+\end{align*}
+\end{lemma}
+
+\begin{proof} On $\DP$:
+
+\begin{align*}
+    \frac{f(z)}{(z-z_0)^{n+1}} &= \sum_{j=-N}^\infty a_j (z-z_0)^{j-n-1}\\
+    \int_D \frac{f(z)}{(z-z_0)^{n+1}} \dif z &= \sum_{j=-N}^\infty a_j \underbrace{\int_D (z-z_0)^{j-n-1} \dif z}_{2\pi i \text{ if } j-n-1=-1;\text{ 0 else}}\\
+    &= a_n \cdot 2 \pi i
+\end{align*}
+
+\end{proof}
+
+We now present a theorem that is theoretically not very powerful, but is very useful for calculations:
+
+\isubsection{THM: Residue Formula}
+
+\begin{theorem}[Residue Formula]
+
+Suppose $f$ holomorphic on $\om \setminus \set{ z_1,\cdots, z_N}, \, z_j \in \om $. Suppose that $f$ has poles at $z_1,\cdots, z_N$. Let $\om ' \ssubset \om$ open subset with piecewise smooth boundary with $z_1,\cdots, z_N \in \om '$. Then:
+
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\partial \om '} f(z) \dif z = \sum_{i=1}^N Res_{z_i} (f)
+\end{align*}
+
+\end{theorem}
+
+\begin{note}
+Note that you don't have to have $\om ' \ssubset \om$, just that it's holomorphic on the closure of $\om$. Note that this also contains Cauchy's Theorem as a trivial case (when $N$ = 0). In general there is no reason for the sum of the residues to be zero.
+\end{note}
+
+
+
+
+
+\begin{center}
+\begin{tikzpicture}[
+    tangent/.style={
+        decoration={
+            markings,% switch on markings
+            mark=
+                at position #1
+                with
+                {
+                    \coordinate (tangent point-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (0pt,0pt);
+                    \coordinate (tangent unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (1,0pt);
+                    \coordinate (tangent orthogonal unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (0pt,1);
+                }
+        },
+        postaction=decorate
+    },
+    use tangent/.style={
+        shift=(tangent point-#1),
+        x=(tangent unit vector-#1),
+        y=(tangent orthogonal unit vector-#1)
+    },
+    use tangent/.default=1
+]
+    \draw[dotted]
+        plot [smooth cycle] coordinates {(-0.6*10,0) (-0.6*7,0.6*3.5) (0,0.6*5)  (0.6*4,0.6*2.5) (0.6*7,0)  (0.6*5,0.6*-7) (0.6*2,-0.6*6)  (-0.6*5,-0.6*5) };
+    \draw[scale =0.5][tangent=0][tangent=0.1][tangent=0.15][tangent=0.3][tangent=0.4][tangent=0.5][tangent=0.6][tangent=0.7][tangent=0.8][tangent=0.9][tangent=1][tangent=1.1]
+        plot [smooth cycle] coordinates {(-10,0) (-7,3.5) (0,5)  (4,2.5) (7,0)  (5,-7) (2,-6)  (-5,-5) } (0,0) circle (1) (170:5) circle (1) (-80:4) circle (1);
+        
+\draw [thick, use tangent=5][->] (0,0) -- (-0.01,0);
+\draw [thick, use tangent=3][->] (0,0) -- (-0.01,0);
+\draw [thick, use tangent=7][->] (0,0) -- (-0.01,0);
+
+\draw [thick, use tangent=9][->] (0,0) -- (-0.01,0);
+\draw [thick, use tangent=10][->] (0,0) -- (-0.01,0);
+\draw [thick, use tangent=11][->] (0,0) -- (-0.01,0);
+
+
+\draw[thick] (-0.1,0.1) -- (0.1,-0.1) (0.1,0.1) -- (-0.1,-0.1);
+\draw (0,0) circle [radius=0.5];
+\draw (0,0)[below] node {$z_1$};
+
+\draw[shift=(170:2.5)][thick] (-0.1,0.1) -- (0.1,-0.1) (0.1,0.1) -- (-0.1,-0.1);
+\draw (170:2.5) circle [radius=0.5];
+\draw (170:2.5)[below] node {$z_2$};
+
+\draw[shift=(-80:2)][thick] (-0.1,0.1) -- (0.1,-0.1) (0.1,0.1) -- (-0.1,-0.1);
+\draw (-80:2) circle [radius=0.5];
+\draw (-80:2)[below] node {$z_3$};
+
+\draw node at (-3.75,-2) {$\Omega'$};
+\draw node at (-4.3,-2.55) {$\Omega$};
+
+
+\end{tikzpicture}
+
+    
+\end{center}
+
+
+
+
+
+\begin{proof}
+Apply Cauchy's Theorem to some small disks around each pole. By assumption, $f$ is holomorphic on $\om ' \setminus \bigcup_{i=1}^N D_r(z_i)$ for some small $r>0$. Cauchy's Theorem applies on this new domain (parameterizing $\partial D_r(z_i)$ counterclockwise to achieve a negative):
+
+\begin{align*}
+    0 &= \int_{\partial \om '} f(z) \dif z - \sum_{j=1}^N \int_{\partial D_r(z_j)} f(z) \dif z\\
+    \text{(apply lemma (9.6)) } &= \int_{\partial \om '} f(z) \dif z - \sum_{j=1}^N 2\pi i \cdot Res_{z_j} (f)
+\end{align*}
+
+\end{proof}
+
+
+\section{Applications of Residue Formula}
+
+\begin{example}
+$D = D_2(z)$. Compute $\int_{\partial D} \frac{z+1}{z^2 + 1 } \dif z$. This is hard to compute directly, but easy to do directly. $f$ has two simple poles at $z_0 = \pm i$:
+
+\begin{align*}
+    \int_{\partial D} \frac{z+1}{z^2 + 1 } \dif z &= 2\pi i \left( Res_{i} \left( \frac{z+1}{z^2 + 1 } \right) + Res_{-i} \left( \frac{z+1}{z^2 + 1 } \right) \right)\\ \text{(from first example) } &= 2\pi i \left( \frac{1+i}{2i} + \frac{-i+1}{-2i} \right) = 2 \pi i
+\end{align*}
+
+\end{example}
+
+\begin{example}
+Evaluate $\int_{-\infty}^\infty \frac{\dif x }{ 1+ x^2}$. We use the contour of the  semicircle on the upper half plane of radius $R$.
+
+
+\begin{center}
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \clip (-4,-1.1) rectangle (4,4);
+    %\draw (-4,-1) rectangle (4,4);
+    \draw[postaction={decorate}][rotate = 200] [blue,line width=1.5pt] (0,0) circle [radius=3];
+    
+    \draw[color=white][fill=white] (-3.5,0) rectangle (3.5,-2);
+    
+    
+    \draw [thin] [->] (-4,0)--(4,0);
+    \draw [thin] [->] (0,-1)--(0,4);
+    
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3-0.026,0) -- (3+0.026,0);
+    
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (-3,0) -- (3,0);
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (3,2) -- (-3,2);
+   % \draw[postaction={decorate}] [blue,line width=1.5pt] (3,0) -- (3,2);
+    %\draw[postaction={decorate}] [blue,line width=1.5pt] (-3,2) -- (-3,0);
+    
+    
+    \draw (-3,0)[below] node {$-R$};
+    \draw (3,0)[below] node {$R$};
+    
+    \draw[thick] (-0.1,0.1+0.7) -- (0.1,-0.1+0.7);
+    \draw[thick] (0.1,0.1+0.7) -- (-0.1,-0.1+0.7);
+    
+    \draw[thick] (-0.1,0.1-0.7) -- (0.1,-0.1-0.7);
+    \draw[thick] (0.1,0.1-0.7) -- (-0.1,-0.1-0.7);
+    
+    
+    \draw (-2,0)[below] node {$\gamma_1$};
+    \draw (120:3)[above] node {$\gamma_2$};
+    \draw (180-120:3)[above] node {$\gamma_R$};
+    \draw (0,0.7) [above left] node {$i$};
+    \draw (0,-0.7) [above left] node {$-i$};
+    
+    
+    
+    
+\end{tikzpicture}
+\end{center}
+
+Now note that:
+
+\begin{align*}
+    \abs{f(z)} &= \frac{1}{\abs{a+z^2}} \leq \frac{2}{\abs{z}^2} = \frac{2}{R^2}\\
+   \abs{ \int_{\gamma_2} \frac{\dif z }{ 1+ z^2} } &\leq L(\gamma_2) \cdot \frac{2}{R^2} = \pi R \frac{2}{R^2} \xrightarrow[]{R\to \infty} 0\\
+\end{align*}
+
+Thus:
+
+\begin{align*}
+    \int_{\partial R} \frac{\dif z}{1+z^2} = \int_{\gamma_1} \frac{\dif z}{1+z^2} &+ \cancelto{0}{\int_{\gamma_2} \frac{\dif z}{1+z^2}} = 2\pi i \cdot \res{i}{\frac{1}{1+z^2}} = \pi\\
+    \therefore \int_{\gamma_1} \frac{\dif z}{1+z^2} &= \int_{\R} \frac{\dif z}{1+z^2} = \pi
+\end{align*}
+
+\end{example}
+
+
+
+\begin{example}
+Consider $\int_{-\infty}^\infty \frac{e^{ax}}{1+e^x} \dif x$. Note that $\left(\frac{e^{ax}}{1+e^x} \right) \xrightarrow[]{x \to \pm \infty} 0$. Thus $0 < a<1$ (otherwise the integral will diverge at $\pm \infty$).
+
+We propose to use $f(z) = \frac{e^{ax}}{1+e^x}$. This has poles when $e^z = -1$, thus when $z = \pi i + 2 \pi i k, \, k \in \mathbb{Z}$.
+
+We propose this contour:
+
+
+\begin{center}
+\begin{tikzpicture}[very thick,decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    
+    \draw [thin] [->] (-4,0)--(4,0);
+    \draw [thin] [->] (0,-1)--(0,3);
+    
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3,0) -- (3,0);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (3,2) -- (-3,2);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (3,0) -- (3,2);
+    \draw[postaction={decorate}] [blue,line width=1.5pt] (-3,2) -- (-3,0);
+    
+    
+    \draw (-3,0)[below] node {$-R$};
+    \draw (3,0)[below] node {$R$};
+    \draw (3,2)[above] node {$R+2 \pi i$};
+    \draw (-3,2)[above] node {$-R+2 \pi i$};
+    
+    \draw (1,0)[below] node {$\gamma_1$};
+    \draw (3,1)[right] node {$\gamma_2$};
+    \draw (-1,2)[above] node {$\gamma_3$};
+    \draw (-3,1)[left] node {$\gamma_4$};
+    
+    
+    \draw[thick] (-0.1,0.1+1) -- (0.1,-0.1+1);
+    \draw[thick] (0.1,0.1+1) -- (-0.1,-0.1+1);
+    \draw (0,1) [above right] node {$\pi i$};
+    
+\end{tikzpicture}
+\end{center}
+
+
+
+
+By the residue formula:
+
+\begin{align*}
+    \int_{\gamma_1} + \int_{\gamma_2} + \int_{\gamma_3} + \int_{\gamma_4} = 2 \pi i \cdot \res{\pi i}{f}
+\end{align*}
+
+Since these are simple poles:
+
+\begin{align*}
+    \res{\pi i}{f} &= \lim_{z \to \pi i} (z - \pi i) f(z)\\
+    &= \lim_{z \to \pi i} \frac{e^{az} (z-\pi i)}{1+e^z}\\
+\end{align*}
+
+We expand the denominator using $h(z) = e^z$ at $z_0 = \pi i$ :
+
+\begin{align*}
+    h(z) &= h(z_0) + h'(z_0)(z-z_0) + o(\abs{z-z_0})\\
+    &= e^{\pi i} + e^{\pi i} (z- \pi i) +  o(\abs{z-\pi i})\\
+    &= -1 -(z-\pi i) + o(\abs{z-\pi i})\\
+    e^z + 1 &= -(z-\pi i) + o(\abs{z-\pi i})\\
+\end{align*}
+
+Thus:
+
+\begin{align*}
+    \res{\pi i}{f} &= \lim_{z \to \pi i} \frac{e^{az} (z-\pi i)}{1+e^z}\\
+    &= \lim_{z \to \pi i} \left( -e^{az} + o(1) \right) = - e^{a\pi i}
+\end{align*}
+
+Evaluating the $\gamma_1$ term:
+
+\begin{align*}
+    \int_{\gamma_1} f(z) \dif z &= \int_{-R}^R \frac{e^{ax}}{1+e^x} \dif x \xrightarrow[]{R \to \infty } \int_{-\infty}^\infty \frac{e^{ax}}{1+e^x} \dif x\\
+\end{align*}
+
+Evaluating the $\gamma_3$ term, remaining conscious of the fact that $\gamma_3$ is $\gamma_1$ evaluated backwards but shifted up $2 \pi i$:
+
+\begin{align*}
+    \int_{\gamma_3} f(z) \dif z &= \int_{\gamma_3} \frac{e^{az}}{1+e^z} \dif z\\
+    &= \int_{\gamma_1} \frac{e^{a(z+2\pi i)}}{1+e^{(z+2\pi i)}} \dif z\\
+    &= - e^{2\pi i a} \int_{\gamma_1}  f(z) \dif z
+\end{align*}
+ Where the minus sign is because we parameterize $\gamma_3$ in the opposite direction compared to $\gamma_1$, and the factor of $e^{2\pi i a}$ comes from the fact that the parameterization of $\gamma_3$ involves adding $2\pi i$ to the parameterization of $\gamma_1$.
+
+Evaluating the $\gamma_2$ term with parameterization $z(t) = R + it, \, t \in [0,2\pi ]$:
+
+\begin{align*}
+    \abs{\int_{\gamma_2} f(z) \dif z }&=\abs{ \int_0^{2\pi} \frac{e^{a(R+it)}}{1+e^{R+it}} i \dif t }\\
+    &\leq  \int_0^{2\pi} \abs{ \frac{e^{a(R+it)}}{1+e^{R+it}} i} \dif t \\
+    &= \int_0^{2\pi} \frac{e^{aR}}{\abs{ 1+e^{R+it} }} \dif t\\
+    &\leq \int_0^{2\pi}  \frac{e^{aR}}{e^R -1 }       \dif t\\
+    \text{(for some constant C) }&\leq \int_0^{2\pi}  C e^{(a-1)R}       \dif t \xrightarrow[]{R \to \infty} 0
+\end{align*}
+
+Similarly for $\gamma_4$ with parameterization $z(t) = -R - it, \, t \in [0,2\pi ]$:
+\begin{align*}
+    \abs{\int_{\gamma_4} f(z) \dif z } &=\abs{ \int_0^{2\pi} \frac{e^{-a(R+it)}}{1+e^{-(R+it)}} i \dif t }\\
+    &\leq \int_0^{2\pi} \abs{\frac{e^{-a(R+it)}}{1+e^{-(R+it)}}}  \dif t\\
+    \text{(for some constant C) } &\leq \int_0^{2\pi} Ce^{-aR}  \dif t \xrightarrow[]{R \to \infty} 0 \\
+\end{align*}
+
+Finally this implies that, since $\sin(z)  = \frac{e^{iz} - e^{-iz}}{2 i}$:
+
+\begin{align*}
+    - 2 \pi i e^{a\pi i} &= (1-e^{2\pi i a}) \int_\R \frac{e^{ax}}{1+e^x} \dif x\\
+    \implies \int_\R \frac{e^{ax}}{1+e^x} \dif x &= \frac{2\pi i}{e^{\pi ia} - e^{-\pi i a}} = \frac{\pi}{\sin(\pi a)}
+\end{align*}
+
+And thus we are done.
+
+\end{example}

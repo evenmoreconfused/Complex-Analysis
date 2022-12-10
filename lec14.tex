@@ -1,0 +1,661 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 14}
+\lecture{14}{October 20}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+
+\section{Riemann Sphere Continued}
+
+Let $S^2 = \set{ (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) \mid \mathfrak{X}^2 + \mathfrak{Y}^2 +\mathfrak{Z}^2  =1 } \subset \R^3$ be the unit sphere centered at $0$. Last lecture we talked about the stereographic projection from $N = (0,0,1)$ and $S = (0,0,-1)$. Let $U_1 = S^2 \setminus \{ (0,0,1) \}$ and $U_2 = S^2 \setminus \{ (0,0,-1) \}$. These are both open subsets of $S^2$.
+
+
+
+\begin{center}
+    
+\begin{tikzpicture}[scale=0.5] % CENT
+
+%% some definitions
+
+\def\R{2.5} % sphere radius
+\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+\def\angPhi{-40} % longitude of point P
+\def\angBeta{180-25} % latitude of point P
+
+%% working planes
+
+\pgfmathsetmacro\H{\R*cos(\angEl)} % distance to north pole
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+                              cos(\angAz)*sin(\angEl),(0,0)}}}
+%\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz),
+%                              cos(\angAz)*sin(\angEl),(0,-\H)}}}
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+\LongitudePlane[pzplane]{\angEl}{\angPhi}
+\LatitudePlane[equator]{\angEl}{0}
+
+%% draw xyplane and sphere
+
+%\draw[xyplane] (-2*\R,-2*\R) rectangle (2.2*\R,2.8*\R);
+\draw (0,0) circle (\R);
+
+%% characteristic points
+
+\coordinate (O) at (0,0);
+
+\draw [xyplane] (-2.5*\R,-2*\R) rectangle (2*\R,2*\R);
+\coordinate[mark coordinate] (N) at (0,\H);
+\coordinate[mark coordinate] (S) at (0,-\H);
+\path[pzplane] (\angBeta:\R) coordinate[mark coordinate] (P);
+\path[pzplane] (\R,0) coordinate (PE);
+\path[xzplane] (\R,0) coordinate (XE);
+\path (PE) ++(0,0) coordinate (Paux); % to aid Phat calculation
+%\path (PE) ++(0,-\H) coordinate (Paux); % to aid Phat calculation
+\coordinate[mark coordinate] (Phat) at (intersection cs: first line={(N)--(P)},
+                                        second line={(0,0)--(Paux)});
+                                        
+\coordinate[mark coordinate] (Phat2) at (intersection cs: first line={(S)--(P)},
+                                        second line={(0,0)--(Paux)});
+
+%% draw meridians and latitude circles
+
+\DrawLatitudeCircle[\R]{0} % equator
+
+
+
+
+
+%% draw lines and put labels
+
+\draw (P) -- (N) +(-0.3ex,0.6ex) node[above right] {$\mathbf{N=(0,0,1)}$};
+
+\draw (P) -- (S) +(-0.4ex,-0.4ex) node[below] {$\mathbf{S=(0,0,-1)}$};
+
+\draw (P) -- (Phat) node[above left] {$\mathbf{(x,y,0)=Q}$};
+\draw (P) node[above left] {$\mathbf{P}$};
+\draw (Phat2) node[above right] {$\mathbf{R}$};
+
+
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+Define $\phi_1:U_1 \to \C, \, P \mapsto Q$ to be the stereographic projection from $N$. We showed last time that:
+
+\begin{align*}
+\phi_1 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 - \mathfrak{Z}} + i \frac{ \mathfrak{Y}}{1 - \mathfrak{Z}}\\
+\phi_1^{-1} (x+iy) &= \bigg( \frac{2x}{x^2+y^2+1} , \,  \frac{2y}{x^2+y^2+1} , \, \frac{x^2+y^2-1}{x^2+y^2+1}  \bigg)
+\end{align*}
+
+
+Define $\phi_2:U_2 \to \C, \, P \mapsto \overline{R}$ to be the stereographic projection from $S$ composed with complex conjugation. Then;
+
+\begin{align*}
+\phi_2 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 + \mathfrak{Z}} - i \frac{ \mathfrak{Y}}{1 + \mathfrak{Z}}
+\end{align*}
+
+$U_1 \cap U_2 = S^2 \setminus \set{N,S}$. It is clear that $\phi_1 (U_1 \cap U_2) = \phi_2(U_1 \cap U_2) = \C^*$. We showed in the last lecture that:
+
+\begin{align*}
+    \phi_2 \circ \phi_1^{-1} :& \, \, \C^* \to \C^*\\
+    &z \mapsto \frac{1}{z}
+\end{align*}
+
+\begin{note}[If you know about manifolds already]
+$\set{ (U_1, \phi_1) , (U_2, \phi_2) }$ is an atlas for $S^2$ as a Riemann surface, since $ \phi_2 \circ \phi_1^{-1} (z) = \frac{1}{z}$ is holomorphic.
+\end{note}
+
+
+\subsection{Holomorphic Maps on $S^2$}
+We now want to define the concept of holomorphic maps from and to $S^2$.
+
+\begin{definition}[Holomorphic Functions from $S^2$ to $\C$]
+
+$\om \in S^2$ open (can be $S^2$ itself). Let $\foc$ a map of sets. We say that \textbf{$f$ is holomorphic} if on $\phi_1 ( U_1 \cap \om) \subset \C$ open, $F_1 \vcentcolon= f \circ \phi_1^{-1} : \phi_1(U_1 \cap \om) \to \C$ is holomorphic and if on $\phi_2 ( U_2 \cap \om) \subset \C$ open, $F_2 \vcentcolon= f \circ \phi_2^{-1} : \phi_2(U_2 \cap \om) \to \C$ is holomorphic.\\
+
+Equivalently, $f$ is holomorphic if I have $F_1$ holomorphic on $\Tilde{\om} \subset \C$ holomorphic and $F_2 = f \circ \phi_2^{-1} = F \circ \phi_1 \circ \phi_2^{-1} = F \left( \frac{1}{z} \right)$ is holomorphic near $0$ (if $\Tilde{\om}$ contains a neighborhood of $\infty$).
+\end{definition}
+
+REWORK "EQUIV" ABOVE\\
+
+
+\begin{center}
+    
+\begin{tikzpicture}[scale=1] % CENT
+
+\def\R{1} % sphere radius
+\def\angEl{25} % elevation angle
+%\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+%\def\angAz{-10} % azimuth angle
+
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz), cos(\angAz) *sin(\angEl),(0,0)}}}
+
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+
+
+
+% \draw[xyplane] (-2,-2) rectangle (2,2);
+% \draw[xyplane] node at (0,0) {$\times$};
+
+
+
+\pgfmathsetmacro\H{1.5*cos(\angEl)}
+
+
+\draw (0,0) circle (1.5);
+\DrawLatitudeCircle[1.5]{0} % equator
+
+\draw (0,\H) node {$\times$};
+\draw (0,-\H) node {$\times$};
+
+
+%top right
+\draw[xyplane] (-2+8,-2) rectangle (2+8,2);
+%\draw[xyplane] node at (8,0) {$\times$};
+%bottom left
+\draw[xyplane] (-2,-2 -8) rectangle (2,2-8);
+\draw[xyplane] node at (0,-8) {$\times$};
+%bottom right
+\draw[xyplane] (-2+8,-2 -8) rectangle (2+8,2-8);
+\draw[xyplane] node at (0+8,-8) {$\times$};
+
+
+
+%from sphere
+\draw[xyplane][->] (0+2,0) -- (8-2-0.5,0);
+\draw[xyplane][->] (0,0-2) -- (0,-8+2+0.5);
+
+%from bottom left
+\draw[xyplane][<->] (0+2+0.5,0-8) -- (8-2-0.5,0-8);
+
+
+%from bottom right
+\draw[xyplane][->] (8,-8+2+0.5) -- (8,0-2-0.5);
+
+
+
+%across middle
+% \draw[xyplane][->] (0+2,0-2) -- (8-2,-8+2);
+% \draw[xyplane][->] (0+2,0-8+2) -- (8-2,0-2);
+
+\draw[xyplane][->] ($ (8,0)+(225:8) $) -- ($ (0,-8)+(45:8) $);
+\draw[xyplane][color = white][fill = white] (4,-4) circle (0.25);
+
+\draw[xyplane][->] (-45:2.8) -- (-45:8);
+
+
+
+\draw[xyplane][above] node at (4,0) {$f$};
+\draw[xyplane][above] node at (4,-8) {$z \mapsto \frac{1}{z}$};
+
+\draw[xyplane][right] node at (0,-4.75) {$\phi_1$};
+\draw[xyplane][above right] node at (-45:7) {$\phi_2$};
+\draw[xyplane][right] node at (8,-3.75) {$F_2$};
+\draw[xyplane][above left] node at ($ (0,-8)+(45:7) $) {$F_1$};
+
+\draw[xyplane][below right] node at (8+2,-1.5) {$\mathbb{C}$};
+\end{tikzpicture}
+
+\end{center}
+
+% \begin{tikzpicture}
+% for i in range [0,30, 60 , ... , 6000]
+% \draw circle($1/i$) at 0;
+% \end{tikzpicture}
+
+
+\begin{definition}[Holomorphic Functions from $\C$ to $S^2$]
+
+If $\oic$ open, $f: \om \to S^2$ a map of sets, we say that \textbf{$f$ is holomorphic} if both $\phi_1 \circ f: \om \to \C$ and $\phi_2 \circ f: \om \to \C$ are holomorphic.\\
+
+Equivalently, $F = \phi_1 \circ f$ holomorphic and $\phi_2 \circ f = \phi_2 \circ \phi_1^{-1} \circ F = \frac{1}{F}$ holomorphic on $\om \cap \set{F \neq 0}$ ie $F$ has only poles, where $poles = f^{-1} (\text{north pole})$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+    
+\begin{tikzpicture}[scale=1] % CENT
+
+\def\R{1} % sphere radius
+\def\angEl{25} % elevation angle
+%\def\angEl{15} % elevation angle
+\def\angAz{-10} % azimuth angle
+%\def\angAz{-10} % azimuth angle
+
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz), cos(\angAz) *sin(\angEl),(0,0)}}}
+
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+
+
+
+% \draw[xyplane] (-2,-2) rectangle (2,2);
+% \draw[xyplane] node at (0,0) {$\times$};
+
+
+
+\pgfmathsetmacro\H{1.5*cos(\angEl)}
+
+
+\draw (0,0) circle (1.5);
+\DrawLatitudeCircle[1.5]{0} % equator
+
+\draw (0,\H) node {$\times$};
+\draw (0,-\H) node {$\times$};
+
+
+%left
+\draw[xyplane] (-2-8,-2) rectangle (2-8,2);
+%\draw[xyplane] node at (-8,0) {$\times$};
+%bottom
+\draw[xyplane] (-2-4,-2 -8) rectangle (2-4,2-8);
+%\draw[xyplane] node at (0,-8) {$\times$};
+%top
+\draw[xyplane] (-2-4,-2 +8) rectangle (2-4,2+8);
+%\draw[xyplane] node at (0-4,8) {$\times$};
+
+
+
+%from left
+\draw[xyplane][->]  (-8+2+0.5,0) -- (0-2,0);
+\draw[xyplane][->] (-8+1.5,-2-0.5) -- (-5.5,-8+2+0.5);
+\draw[xyplane][->] (-8+1.5,2+0.5) -- (-5.5,+8-2-0.5);
+
+%from sphere
+\draw[xyplane][->] (-110:2) -- (-2.5,-8+2+0.5);
+\draw[xyplane][->] (110:2) -- (-2.5,+8-2-0.5);
+
+
+
+
+
+\draw[xyplane][above right] node at ($ (110:1) + (-2.5/2,5.5/2) $) {$\phi_1$};
+\draw[xyplane][below right] node at ($ (-110:1) + (-2.5/2,-5.5/2) $) {$\phi_2$};
+
+\draw[xyplane][above left] node at ($ (-6.5/2,+2.5/2) + (-5.5/2,+5.5/2) $) {$\phi_1 \circ f$};
+\draw[xyplane][below left] node at ($ (-6.5/2,-2.5/2) + (-5.5/2,-5.5/2) $) {$\phi_2 \circ f$};
+
+\draw[xyplane][above] node at (-4,0) {$f$};
+\draw[above right] node at (50:1.5) {$S^2$};
+
+
+\draw[xyplane][below right] node at (-8+2,-1.5) {$\mathbb{C}$};
+\end{tikzpicture}
+
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{definition}
+
+\begin{definition}[Holomorphic Functions from $S^2$ to $S^2$]
+
+$\om \subset S^2$ open, $f:\om \to S^2$ a map of sets. \textbf{$f$ is holomorphic} if:
+
+\begin{align*}
+    \phi_1 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_1 \cap U_1 \right) \to \phi_1 \left( U_1 \cap U_1\right)\\
+    \phi_1 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_1 \cap U_2 \right) \to \phi_1 \left( U_1 \cap U_2\right)\\
+    \phi_2 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_2 \cap U_1 \right) \to \phi_2 \left( U_2 \cap U_1\right)\\
+    \phi_2 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_2 \cap U_2 \right) \to \phi_2 \left( U_2 \cap U_2\right)\\
+\end{align*}
+are all holomorphic.\\
+
+Equivalently, letting $F= \phi_1 \circ f \circ \phi_1^{-1}$ then $f$ holomorphic as a map $S^2 \to S^2$ if:
+
+\begin{itemize}
+    \item F holomorphic
+    \item $f:z \mapsto \infty$ then $F$ has a pole at $z$
+    \item $f:\infty \mapsto z$ then $F$ holomorphic at $\infty$
+    \item $f: \infty \mapsto \infty$ then $F$ has a pole at $\infty$
+\end{itemize}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+    
+\begin{tikzpicture}[scale=0.5] % CENT
+
+\def\R{1} % sphere radius
+\def\angEl{25} % elevation angle
+%\def\angEl{25} % elevation angle
+\def\angAz{-10} % azimuth angle
+%\def\angAz{-10} % azimuth angle
+
+\tikzset{xyplane/.style={cm={cos(\angAz),sin(\angAz)*sin(\angEl),-sin(\angAz), cos(\angAz) *sin(\angEl),(0,0)}}}
+
+\LongitudePlane[xzplane]{\angEl}{\angAz}
+
+
+
+\pgfmathsetmacro\H{1.5*cos(\angEl)}
+
+
+
+
+\draw[xyplane] (-2,-2) rectangle (2,2);
+
+\draw[xyplane] ($ (-2+6,-2) + (0,{-6*sin(\angAz)})$) rectangle ($ (2+6,2) + (0,{-6*sin(\angAz)})$);
+
+\draw[xyplane] ($ (-2+6+8,-2) + (0,{-14*sin(\angAz)})$) rectangle ($ (2+6+8,2) + (0,{-14*sin(\angAz)})$);
+
+\draw[xyplane] ($ (-2+12+8,-2) + (0,{-20*sin(\angAz)})$) rectangle ($ (2+12+8,2) + (0,{-20*sin(\angAz)})$);
+
+
+
+
+\draw[xyplane] node (A) at ($(3,0) + (0,{-3*sin(\angAz)})$) {};
+\draw[xyplane] node (B) at ($ (17,0) + (0,{-17*sin(\angAz)})$) {};
+\draw node (Ap) at ($ (A) + (0,6) $) {};
+\draw node (Bp) at ($ (B) + (0,6) $) {};
+
+\draw[xyplane] node (C) at ($ (0,0) + (0,{-0*sin(\angAz)})$) {};
+\draw[xyplane] node (D) at ($ (6,0) + (0,{-6*sin(\angAz)})$) {};
+\draw[xyplane] node (E) at ($ (14,0) + (0,{-14*sin(\angAz)})$) {};
+\draw[xyplane] node (F) at ($ (20,0) + (0,{-20*sin(\angAz)})$) {};
+
+\draw node (Cp) at ($ (C) + (0,1) $) {};
+\draw node (Dp) at ($ (D) + (0,1) $) {};
+\draw node (Ep) at ($ (E) + (0,1) $) {};
+\draw node (Fp) at ($ (F) + (0,1) $) {};
+
+
+
+\DrawLatitudeCircleShiftOne[1.5]{0} % equator
+\DrawLatitudeCircleShiftTwo[1.5]{0} % equator
+
+\draw (Ap) circle (1.5);
+\draw (Bp) circle (1.5);
+
+
+\draw [->] ($ (Ap) + (0:1.75) $) -- ($ (Bp) + (180:1.75) $) node [midway, above] {$f$};
+\draw [->] ($ (Ap) + (-120:1.75)$) -- (Cp);
+\draw [->] ($ (Ap) + (-60:1.75)$) -- (Dp);
+\draw [->] ($ (Bp) + (-120:1.75)$) -- (Ep);
+\draw [->] ($ (Bp) + (-60:1.75)$) -- (Fp);
+
+\draw [left] node at ($ (Ap) + (-120:3) + (-0.2,0) $) {$\phi_1$};
+\draw [right] node at ($ (Ap) + (-60:3) + (0.2,0) $) {$\phi_2$};
+\draw [left] node at ($ (Bp) + (-120:3) + (-0.2,0) $) {$\phi_1$};
+\draw [right] node at ($ (Bp) + (-60:3) + (0.2,0) $) {$\phi_2$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{remark}
+It follows that $f: S^2 \to S^2$ holomorphic $\iff$ $F=\phi_1 \circ f \circ \phi_1^{-1}$ meromorphic in $\C$ and meromorphic at $\infty$. By Theorem (11.7) this is equivalent to $F$ being a rational function ie $F$ is the ratio of two complex polynomials.
+\end{remark}
+
+\begin{exercise}
+Compute $Aut(S^2)$. That is to say, characterize the bijective holomorphic maps from $S^2 $ to $S^2$.
+\end{exercise}
+
+
+
+\section{Homotopy and Contour Integrals}
+
+Homotopies are often discussed in an introduction to algebraic topology. We will give a simple-minded yet perfectly rigorous introduction to homotopies.\\
+
+A homotopy is in a sense a "continuous family of continuous paths." This must be defined, but in our treatment we will insist on having piecewise smooth paths.\\
+
+
+Say $\gamma_0, \gamma_1$ be two piecewise smooth curves in $
+C$. Up to reparameterization we may assume that both are parameterized by the same interval $t \in [a,b] \subset \R$. Assume that $\gamma_0(a) = \gamma_1(a) = z_0$ and $\gamma_0(b) = \gamma_1(b) = z_1$.
+
+INSERT TIKZ
+
+\begin{definition}
+Suppose that $\gamma_0, \gamma_1 \subset \om$ are two such curves. We say that \textbf{$\gamma_0$ and $\gamma_1$ are homotopic in $\om$} if $\exists F : [0,1] \times [a,b] \to \om$ continuous such that:
+
+\begin{enumerate}
+    \item $\forall s \in [0,1] , \, \Tilde{\gamma}_s(t) \defas F(s,t)$ is a piecewise smooth curve $\Tilde{\gamma}_s : [a,b] \to \om$
+    \item $\Tilde{\gamma}_0 = F(0,t) \equiv \gamma_0$ and $\Tilde{\gamma}_1 = F(1,t) \equiv \gamma_1$
+    \item $\Tilde{\gamma}_s(a) = z_0$ and $\Tilde{\gamma}_s(b) = z_1$ $\forall s \in [0,1]$
+\end{enumerate}
+
+INSERT TIKZ
+
+\end{definition}
+
+We can think of $\Tilde{\gamma}_s$ as an interpolating family of piecewise smooth curves with similar beginning and ending points which "vary continuously in S," where the "continuous variation" is encoded in the condition that $F$ is continuous.
+
+
+\begin{counterexample}[Moral Counterexample]
+Let $\om = \C^*$.
+
+INCLUDE TIKZ
+
+These two curves should not be homotopic in $\om$, since $F$ must map into $\om$.
+\end{counterexample}
+
+\isubsection{PROP: Homotopy Invariance of Contour Integrals}
+\begin{proposition}[Homotopy Invariance of Contour Integrals]
+
+$\oic$ open, $\foc$ holomorphic, $\gamma_0,\gamma_1:[a,b] \to \om$ piecewise smooth curves that are homotopic in $\om$. Then:
+
+\begin{align*}
+    \int_{\gamma_0} f(z) \dif z = \int_{\gamma_1} f(z) \dif z
+\end{align*}
+
+\end{proposition}
+
+\begin{example}
+Consider the unit circle in $\om = \C^*$.
+
+INCLUDE TIKZ
+
+Then $\gamma_0$ and $\gamma_1$ are not homotopic by the above proposition as if they were, letting $f(z) = \frac{1}{z}$:
+
+\begin{align*}
+    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = 0
+\end{align*}
+
+but we already know that:
+
+\begin{align*}
+    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = \int_{\partial D_1(0)} \frac{1}{z} \dif z = 2 \pi i
+\end{align*}
+
+It follows that $\gamma_0$ and $\gamma_1$ are not homotopic.
+\end{example}
+
+\begin{proof}
+Let $F$ be a homotopy between $\gamma_0$ and $\gamma_1$ in $\om$. let $K = F([0,1] \times [a,b]) \subset \om$. $[0,1] \times [a,b]$ is compact and $F$ is continuous, so $K$ is compact.
+
+Since $K$ is compact and $\om$ is open, $\exists \varepsilon > 0$ such that $\forall z \in K, \, D_{3\varepsilon}(z) \subset \om$ (ie thickening $K$ by $3 \varepsilon$ still lies in $\om$). Also, since $F$ is continuous and $[0,1] \times [a,b]$ is compact, then $F$ is uniformly continuous on $[0,1] \times [a,b]$. Thus $\exists \delta >0$ s.t. for any $s_1, s_2 \in [0,1]$ with $\abs{s_1-s_2} < \delta$ we have $\sup_{t \in [a,b]} \abs{\gamma_{s_1}(t) - \gamma_{s_2}(t)} < \varepsilon $.
+
+
+
+This means that $\gamma_{s_1}$ and $\gamma_{s_2}$ lie within distance epsilon of each other (for $s_1,s_2$ sufficiently small):
+
+
+INSERT TIKZ
+
+
+Fix any such $s_1, s_2$. We choose disks of radius $2 \varepsilon$: $D_0, \cdots ,D_n$, $n$ large, which cover $\gamma_{s_1} \cup \gamma_{s_2}$:
+
+INSERT TIKZ
+
+
+
+
+We choose consecutive points on each curve:
+
+\begin{align*}
+    \set{z_0 = \gamma_{s_1}(a), z_1, \cdots, z_{n+1} = \gamma_{s_1}(b)  } &\text{ on } \gamma_{s_1}\\
+    \set{w_0 = \gamma_{s_2}(a), w_1, \cdots, w_{n+1} = \gamma_{s_2}(b)  } &\text{ on } \gamma_{s_2}\\
+\end{align*}
+
+such that $z_i, \, z_{i+1}, \, w_i, \, w_{i+1} \in D_i, \, i \in \set{0, \cdots , n}$.
+
+INSERT TIKZ
+
+On each disk $D_i$ let $F_i$ be an antiderivative of $f$. Then on $D_i \cap D_{i+1}$ we have $F_i$ and $F_{i+1}$ as antiderivatives of $f$. These must differ from each other by a constant ie. $F_{i+1} = F_i + c_i$ on $D_i \cap D_{i+1}$ for some $c_i \in \C$. Thus:
+
+\begin{align*}
+    F_{i+1} (z_{i+1} ) - F_i ( z_{i+1}) &= F_{i+1} (w_{i+1}) - F_i ( w_{i+1}) = 0\\
+    &\Downarrow\\
+     F_{i+1} (z_{i+1} ) -  F_{i+1} (w_{i+1}) &= F_i ( z_{i+1}) - F_i ( w_{i+1})
+\end{align*}
+ 
+ 
+Thus:
+
+\begin{align*}
+    \int_{\gamma_{s_1}} f(z) \dif z - \int_{\gamma_{s_2}} f(z) \dif z & \overset{    \scalebox{0.35}{FTC}   }{=} \sum_{i=0}^n \left[ F_i (z_{i+1} ) - F_i (z_{i} )\right] - \sum_{i=0}^n \left[ F_i (w_{i+1} ) - F_i (w_{i} )\right]\\
+    &= \sum_{i=0}^n \left[ \big( F_i (z_{i+1}) - F_i (w_{i+1} ) \big) - \big( F_i (z_{i}) - F_i (w_{i} ) \big) \right]\\
+    &= \sum_{i=0}^n \left[ \big( F_{i+1} (z_{i+1}) - F_{i+1} (w_{i+1} ) \big) - \big( F_i (z_{i}) - F_i (w_{i} ) \big) \right]\\
+    \text{(telescopic sum) } &= \big( F_n (z_{n+1}) - F_n ( w_{n+1} ) \big) - \big( F_0 (z_{0}) - F_0 ( w_{0} ) \big)\\
+    &= 0 - 0\\
+    &= 0
+\end{align*}
+ 
+Thus we have proved that with $s_1, s_2 \in [0,1]$ and $\abs{s_1 - s_2} < \delta$:
+
+\begin{align*}
+\int_{\gamma_{s_1}} f(z) \dif z = \int_{\gamma_{s_2}} f(z) \dif z
+\end{align*}
+
+INSERT TIKZ
+
+Let then $s_1 =0$, $s_2$ small, then repeat finitely many times (around $\frac{1}{\delta}$ times) until you get to $s_2 = 1$.
+
+
+
+\end{proof}
+
+
+\begin{definition}
+$\oic$ open subset shall be called \textbf{simply connected} if $\om$ is connected and every two $\gamma_1, \, \gamma_2$ piecewise smooth curves in $\om$ with same initial and end points are homotopic in $\om$.
+\end{definition}
+
+
+\begin{corollary}
+$\foc$ holomorphic and $\om$ simply connected. Then $\forall 
+,\gamma$ piecewise smooth closed curve in $\om$:
+
+\begin{align*}
+    \int_{\gamma} f(z) \dif z = 0
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+
+Pick any point on the curve $\gamma(c)$, with $c \in (a,b)$. Let:
+
+\begin{align*}
+    \gamma_1 &= \gamma\mid_{[0,c]}\\
+    -\gamma_2 &= \gamma\mid_{[c,b]}\\
+    \Rightarrow \;\; \gamma &= \gamma_1 \cup (-\gamma_2)
+\end{align*}
+
+Where $- \gamma_2 $ is just a reverse orientation.
+
+INSERT TIKZ
+
+Then:
+
+\begin{align*}
+    \int_\gamma f(z) \dif z = \int_{\gamma_1} f(z) \dif z - \int_{\gamma_2} f(z) \dif z = 0
+\end{align*}
+\end{proof}
+
+\begin{remark}
+This is not the same as Cauchy, though similar. This is different because in this corollary, $\om$ is assumed to be simply connected, but $\gamma$ is not assumed to be $\gamma = \partial \om ', \, \om ' \ssubset \om$.
+\end{remark}
+

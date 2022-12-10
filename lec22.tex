@@ -1,0 +1,191 @@
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}
+\unchapter{Lecture 22}
+\lecture{22}{November 17}
+\setcounter{section}{0}
+\setcounter{theorem}{0}
+
+% **** YOUR NOTES GO HERE:
+This lecture we will discuss the Riemann Zeta function in more detail.
+
+\begin{definition}[Riemann Zeta Function]
+We define:
+\begin{align*}
+    \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}
+\end{align*}
+This is called the Riemann Zeta function.
+
+\end{definition}
+
+\begin{remark}
+Recall from last lecture that $\frac{1}{n^s} = \frac{1}{\Gamma(s) } \cdot \int_0^\infty e^{-nt} t^{s-1} \dif t$. It follows that:
+\begin{align*}
+    \zeta(s) = \frac{1}{\Gamma(s) } \sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t
+\end{align*}
+Note that we cannot say this for certain since we do not know whether or not $\sum_{n=0}^\infty \frac{1}{n^s}$ is finite. We will show later that for this converges for $\Re(s) >1$, and thus that this is rigorously true for $\Re(s) >1$.
+\end{remark}
+
+ Note that $\forall s \in \C$, where $\log$ is the natural log, we have:
+\begin{align*}
+    \frac{1}{n^s} \defas e^{- s \log(n)}
+\end{align*}
+
+More precisely, one notices that if we want this integral to converge absolutely, it's enough to take $\Re(s) > 1$. Let $\Re(s) = \sigma > 1$. Then:
+\begin{align*}
+    \sum_{n=1}^\infty \abs{\frac{1}{n^s}} &= \sum_{n=1}^\infty \abs{e^{-s \log(n)}}\\
+    &= \sum_{n=1}^\infty e^{- \sigma \log(n)}\\ &= \sum_{n=1}^\infty \frac{1}{n^\sigma}\\ \text{(since $\sigma > 1$) } &< \infty
+\end{align*}
+
+To summarize:
+\begin{itemize}
+    \item for $n \in \N_{>0}$ then $\frac{1}{n^s} = e^{- s \log (n)}$ is an entire function
+    \item for $\Re(s) > 1$ then $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$ is absolutely convergent, thus:
+    \begin{align*}
+        \sum_{n=1}^\infty \frac{1}{n^s} = \lim_{N \to \infty} \sum_{n=1}^N \frac{1}{n^s}
+    \end{align*}
+    and $\forall n, \; \sum_{n=1}^N \frac{1}{n^s}$ is holomorphic for all $\Re(s) >1$.
+\end{itemize}
+
+It follows that $\lim_{N \to \infty} \sum_{n=1}^N \frac{1}{n^s}$ is holomorphic on $\Re(s) > 1$ (since absolutely convergent series of holomorphic functions on $\om$ are also holomorphic on $\om$).\\
+
+We conclude that $\zeta(s)$ is holomorphic on $\set{s \in \C \mid \Re(s) >1 }$.\\
+
+We will now show that there is a meromorphic extension of $\zeta(s)$ on $\C$.
+
+\begin{theorem}[Riemann]
+$\zeta$ has a unique extension as a meromorphic function on $\C$, with a single pole at $s=1$. This pole is simple, with $\res{1}{\zeta} = 1$.
+\end{theorem}
+
+\begin{proof}
+To prove this we will leverage the observation made in remark (22.2).\\
+
+Then for $\Re(s) > 1$ we have:
+\begin{align*}
+    \zeta(s) = \frac{1}{\Gamma(s) } \sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t
+\end{align*}
+
+Recall that $\frac{1}{\Gamma(s) }$ is entire and has simple zeroes at $s \in \set{0,-1,-2, \cdots}$ and that $\frac{1}{\Gamma(1)} = 1$. It is thus sufficient to find a meromorphic extension of $\sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t$ for $\Re(s) > 1$.\\
+
+The sum and integral are both absolutely convergent, so we can switch them to get:
+\begin{align*}
+    \sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t &= \int_0^\infty \br{\sum_{n=1}^\infty  e^{-nt} } t^{s-1} \dif t
+\end{align*}
+Then:
+\begin{align*}
+    \sum_{n=1}^\infty  e^{-nt} &= \sum_{n=1}^\infty  \br{e^{-t}}^n\\
+    &=\sum_{n=0}^\infty  \br{e^{-t}}^n - 1\\
+    \text{(geometric series) }&= \frac{1}{1-e^{-t}} - 1\\
+    &= \frac{e^{-t}}{1-e^{-t}}\\
+    &= \frac{1}{e^t - 1}
+\end{align*}
+
+
+Thus we are seeking a meromorphic extension of:
+\begin{align*}
+    \int_0^\infty \frac{t^{s-1}}{e^t - 1}  \dif t
+\end{align*}
+which is defined and holomorphic for $\Re(s) > 1$. This function looks suspiciously similar to $\Gamma(s) = \int_0^\infty \frac{t^{s-1}}{e^t }  \dif t$. Thus we shall apply the same technique that we used for the meromorphic extension of $\Gamma(s)$ (this was done last lecture in the proof for theorem (21.2)). That is to say that we will split this integral into two parts -- one will be meromorphic, and one will be entire.\\
+
+Now, for $\Re(s) > 1$, we say that:
+\begin{align*}
+    \int_0^\infty \frac{t^{s-1}}{e^t - 1}  \dif t =     \int_0^1 \frac{t^{s-1}}{e^t - 1}  \dif t +     \int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t
+\end{align*}
+Exactly as in the case for $\Gamma$, then $\int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t$ is an entire holomorphic function of $s$. Indeed, we argue as last time. For $\varepsilon \in (0,1)$ we write:
+\begin{align*}
+    F_\varepsilon (s) = \int_1^{\frac{1}{\varepsilon}} \frac{t^{s-1}}{e^t-1} \dif t
+\end{align*}
+Then $F_\varepsilon(s) $ is an entire holomorphic function of $s$ (since $\frac{t^{s-1}}{e^t - 1}$ is entire in $s$ and $[1, \frac{1}{\varepsilon}]$ is bounded and closed, we can apply lemma (20.11)).
+
+
+Then we can estimate:
+\begin{align*}
+    \abs{\int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t - F_\varepsilon(s)} = \int_\frac{1}{\varepsilon}^\infty \frac{t^{s-1}}{e^t - 1}  \dif t
+\end{align*}
+Noting that $e^t-1 \geq \frac{1}{2} e^t$ for $t \geq 2$ and letting $\sigma  = \Re(s) < \sigma_0$ for any fixed $\sigma_0$ then for $t \in [ \frac{1}{\varepsilon}, \infty ) $  we can estimate:
+\begin{align*}
+    \abs{\frac{t^{s-1}}{e^t-1}} \leq 2 e^{-t} t^{\sigma - 1} \leq 2 e^{-t} t^{\sigma_0 - 1} \leq C e^{\frac{-t}{2}} \leq C_{\sigma_0} e^\frac{-1}{2\varepsilon} \xrightarrow[]{\varepsilon \to 0} 0
+\end{align*}
+Thus $F_\varepsilon(s)$ are entire and for all $\sigma_0 > 1$, we have that $F_\varepsilon$ converges to $\int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t$ uniformly on $\set{s \in \C \mid \Re(s) < \sigma_0}$. Thus $\int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t$ is entire holomorphic.\\
+
+We are thus left with finding a meromorphic extension of $\int_0^1 \frac{t^{s-1}}{e^t - 1}  \dif t$. To do this, we examine the behaviour of $\frac{1}{e^t - 1}$ near $t=0$ (this is the only place where the integrand acts badly). To do this we apply Taylor expansion of $e^t$ at $t=0$:
+\begin{align*}
+    e^t &= 1+ t + \frac{t^2}{2}+ \cdots\\
+    e^t-1 &=  t + \frac{t^2}{2}+ \cdots\\
+    \frac{1}{e^t - 1} &= \frac{1}{t \br{1 + \frac{t}{2} + \cdots }} = \frac{1}{t} + E(t)
+\end{align*}
+Where $E(t)$ (the error) is a real analytic function with no (non-removable) singularities:
+\begin{align*}
+    E(t) \defas \frac{1}{e^t-1} - \frac{1}{t} = \sum_{n=0}^\infty a_nt^n
+\end{align*}
+
+
+Plugging this in yields:
+\begin{align*}
+    \int_0^1 \frac{t^{s-1}}{e^t - 1}  \dif t &= \int_0^1 t^{s-2} \dif t + \int_0^1 E(t) t^{s-1}  \dif t\\
+    &= \frac{1}{s-1} + \int_0^1 E(t) t^{s-1}  \dif t
+\end{align*}
+While for any $N > 1$ fixed, we can write (Taylor series with remainder):
+\begin{align*}
+    E(t) &= \sum_{n=0}^N a_n t^n + F_N(t)\\
+    \text{with } \abs{F_N(t)} &\leq C_N t^{N+1} \;\;\, \forall \, t \in [0,1]
+\end{align*}
+Then:
+\begin{align*}
+    \int_0^1 E(t) t^{s-1}  \dif t &= \sum_{n=0}^N \int_0^1 a_n t^{n+s-1} \dif t + \int_0^1 F_N(t) t^{s-1} \dif t\\
+    &= \sum_{n=0}^N \frac{a_n}{n+s} + \int_0^1 F_N(t) t^{s-1} \dif t
+\end{align*}
+Where $\sum_{n=0}^N \frac{a_n}{n+s}$ is a meromorphic function on $\C$ with (at worst, since $a_n$ could be $0$) simple poles at $\set{0,-1,-2, \cdots ,-N}$, while:
+\begin{align*}
+    \abs{\int_0^1 F_N(t) t^{s-1} \dif t} &\leq \int_0^1 \abs{F_N(t)} t^{\sigma-1} \dif t\\
+    \text{(use estimate of $F_N$) }&\leq C_N \int_0^1 t^{\sigma+N} \dif t\\
+    \text{(for $\sigma > -N-1$) }&< \infty
+\end{align*}
+Thus $\int_0^1 F_N(t) t^{s-1} \dif t$ is a holomorphic function on $\set{s \in \C \mid \Re(s) > -N - 1}$.\\
+
+Then for all $N \geq 1$ we have:
+\begin{align}
+    \int_0^\infty \frac{t^{s-1}}{e^t - 1}  \dif t =  \underbrace{\int_1^\infty \frac{t^{s-1}}{e^t - 1}  \dif t}_{\text{entire}} + \underbrace{\frac{1}{s-1} + \sum_{n=0}^N \frac{a_n}{n+s}}_{\text{\stackanchor{simple poles at}{$s \in \set{1,0, -1, \cdots}$}}} + \underbrace{\int_0^1 F_N(t) t^{s-1} \dif t}_{\text{\stackanchor{holomorphic for}{$\Re(s) > -N -1$}}}
+\end{align}
+
+Thus the RHS defines our meromorphic extension on $\set{\Re(s) > -N - 1}$. Since $N$ is arbitrary, we can raise the value of $N$, giving us a new formula which gives us a new extension on an even larger region that agrees with the previous extensions on the smaller regions.\\
+
+Then $\int_0^\infty \frac{t^{s-1}}{e^t - 1}  \dif t = \sum_{n=1}^\infty \int_0^\infty e^{-nt} t^{s-1} \dif t$ has a meromorphic extension to $\C$, with at worst simple poles at $s \in \set{1,0,-1,-2, \cdots}$.\\
+
+Finally, the meromorphic extension of $\zeta(s)$ is obtained by dividing the above meromorphic function by $\Gamma(s)$. Since $\frac{1}{\Gamma(s)}$ is entire holomorphic and has simple zeroes at $s \in \set{0,-1,-2, \cdots}$, it follows that (since a simple zero cancels out a simple pole) $\frac{1}{\Gamma(s)} \cdot (22.1) $ is also a meromorphic extension on $\C$, and has removable singularities at $s \in \set{0,-1,-2, \cdots}$.\\
+
+Then we have found a meromorphic extension of $\zeta(s)$ with a single pole at $s = 1$, which is simple. Note that the residue of $(22.1)$ at $1$ is $1$. Then the residue of our extension at $1$ is $\frac{1}{\Gamma(1)} \cdot 1 = 1$.\\
+
+Thus we have found a meromorphic extension of $\zeta(s)$ with exactly one pole, which is at $1$. Furthermore, this pole is simple, and has a residue of $1$. We have thus proven our claim.
+
+\end{proof}
+
+$\zeta(s)$ is a truly remarkable object! Going forward we will dedicate some time to showing some of the interesting properties of it.\\
+
+We know that $\zeta(s)$ is holomorphic everywhere except $s=1$.
+
+\begin{remark}
+A common misconception is that:
+\begin{align*}
+    \zeta(0) &= \sum_{n=1}^\infty \frac{1}{n^0} = \sum_{n=1}^\infty 1 = 1+1+1+1+\cdots\\
+    \text{and that }\zeta(-1) &= \sum_{n=1}^\infty \frac{1}{n^{-1}} = \sum_{n=1}^\infty n = 1+2+3+4+\cdots
+\end{align*}
+These are both nonsense. Both of these sums clearly diverge, while $\zeta(s)$ is finite everywhere except $s=1$. The misconception comes from idea that we can use the definition of $\zeta(s)$ that is reserved for $\Re(s) > 1$ for these numbers. In fact:
+\begin{align*}
+    \zeta(0) &= -\frac{1}{2}\\
+    \text{and } \zeta(-1) &= - \frac{1}{12}
+\end{align*}
+facts which we will show soon.
+
+\end{remark}
+\begin{note}
+In fact the "equations":
+\begin{align*}
+    1+1+1+1+\cdots &= \zeta(0) = -\frac{1}{2}\\
+    1+2+3+4+\cdots &= \zeta(-1) = - \frac{1}{12}
+\end{align*}
+are both used extensively in physics (specifically in quantum field theory).
+\end{note}
+
+\begin{remark}
+It turns out that $\zeta(2n)$ is known (they are powers of $\pi$), while $\zeta(2n+1)$ is a total mystery. In 1977, Roger Apéry found that $\zeta(3)$ is irrational. This is the only value of $\zeta(2n+1)$ that has been proved to be irrational.
+\end{remark}
