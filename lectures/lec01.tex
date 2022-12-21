@@ -4,13 +4,12 @@
 \lecture{1}{September 3}
 \setcounter{section}{0}
 \setcounter{theorem}{0}
-REVIEWED
+Double REVIEWED
 % **** YOUR NOTES GO HERE:
 
-\section{Introduction to Complex Numbers}
+\section{Introduction to Complex Numbers}\label{sec:intro-cplx-nums}
 
 The set of complex numbers $\mathbb{C}$ is essentially $\mathbb{R}^2$ but with extra structure, notably that $i^2=-1$. Here are some basic facts about complex numbers (with $z=a+bi$):
-
 \begin{enumerate}
     \item $(a_1+b_1i)+(a_2+b_2i)=(a_1+a_2)+(b_1+b_2)i$
     \item $\lambda(a+bi)=\lambda a + \lambda b i$
@@ -22,7 +21,7 @@ The set of complex numbers $\mathbb{C}$ is essentially $\mathbb{R}^2$ but with e
     \item $\overline{z_1 \cdot z_2} = \overline{z_1} \cdot \overline{z_2}$
     \item $\Re(z)=a=\frac{z+\overline{z}}{2}$
     \item $\Im(z) = b = \frac{z-\overline{z}}{2i} = -i\cdot\frac{z-\overline{z}}{2}$
-    \item $\frac{1}{z} = \frac{\overline{z}}{\abs{z}^2}$
+    \item $\frac{1}{z} = \frac{\overline{z}}{\abs{z}^2}$ for $z \neq 0$
 \end{enumerate}
 
 Facts 1 to 3 make $\mathbb{C}$ a field with the additive identity $(0+0i)$ and the multiplicative identity $(1+0i)$. The complex conjugate (from 4) 'flips' the number across the real line. Fact 11 is implied directly by fact 6.
@@ -30,33 +29,30 @@ Facts 1 to 3 make $\mathbb{C}$ a field with the additive identity $(0+0i)$ and t
 \subsubsection{Polar Form}
 
 Consider $z=a+bi$. Then you can express the same z in polar form $(r,\theta)$, with $z= r e^{i\theta}$, $r\geq0$, and $\theta \in [0,2 \pi)$. To convert:
-
 \begin{itemize}
     \item $a=r \cos \br{ \theta } , \, b=r \sin \br{\theta}$
     \item $r = \abs{z}, \, \theta = \arg(z)$
 \end{itemize}
 
 Which lead to: $z=a+bi=r \br{ \cos \br{\theta} +i \sin \br{\theta } }$. This leads to the multiplication tricks:
-
 \begin{align*}
 \text{with } & z_1=r_1 \br{ \cos \br{\theta_1 } +i \sin \br{\theta_1 } }\\
-\text{and } & z_2=r_2 \br{ \cos \br{\theta_2 } +i \sin \br{\theta_2 } }\\\\
-& z_1\cdot z_2 = r_1 \cdot r_2 \br{ \cos \br{\theta_1+\theta_2}+i \sin\br{\theta_1+\theta_2}}\\
-& \frac{1}{z} = \frac{1}{r} \br{ \cos \br{ -\theta } +i \sin \br{ -\theta } }\\
-& z^n = r^n \br{ \cos\br{n\theta}+i \sin\br{n\theta}}
+\text{and } & z_2=r_2 \br{ \cos \br{\theta_2 } +i \sin \br{\theta_2 } }
 \end{align*}
+\begin{itemize}
+    \item $z_1\cdot z_2 = r_1 \cdot r_2 \br{ \cos \br{\theta_1+\theta_2}+i \sin\br{\theta_1+\theta_2}}$
+    \item $\frac{1}{z} = \frac{1}{r} \br{ \cos \br{ -\theta } +i \sin \br{ -\theta } }$
+    \item $z^n = r^n \br{ \cos\br{n\theta}+i \sin\br{n\theta}}$.
+\end{itemize}
 
 
 \section{Introduction to Complex Functions}
 
-The big idea of complex analysis is to study functions that are differentiable in the complex sense.\\
-
-We study functions $f:\Omega \xrightarrow{} \mathbb{C}$ with $\Omega \subseteq \mathbb{C}$, $\Omega$ open and connected (called a domain).
+The big idea of complex analysis is to study functions that are differentiable in the complex sense. We study functions $f:\Omega \xrightarrow{} \mathbb{C}$ with $\Omega \subseteq \mathbb{C}$, $\Omega$ open and connected (called a \textbf{domain}).
 
 
 \begin{definition}[Holomorphism]
 $f:\Omega \xrightarrow{} \mathbb{C}$ is said to be \textbf{holomorphic} if $\forall z_0 \in \Omega$, the following limit exists:
-
 \begin{align*}
     \lim_{h\xrightarrow{} 0} \frac{f(z_0+h)-f(z_0)}{h} =\vcentcolon f'(z_0) \in \mathbb{C}\\
 \end{align*}
@@ -65,25 +61,22 @@ $f:\Omega \xrightarrow{} \mathbb{C}$ is said to be \textbf{holomorphic} if $\for
 
 The fact that $h\in \mathbb{C}$ is crucial; $h$ can approach $z_0$ from anywhere, and the limit must be the same and exist no matter the approach. Here is an example of a non-holomorphic function:
 
-\begin{example}
+\begin{counterexample}\label{cex:non-hlc}
 $f(z)=\Re(z)$, $\Omega = \mathbb{C}$ is not holomorphic as (letting $z = z_1 + i z_2$ and $h = h_1 + i h_2$):
-
 \begin{align*}
     f'(z) &= \lim_{h\xrightarrow{} 0}\frac{f(z+h)-f(z)}{h}\\
     &= \lim_{h\xrightarrow{} 0}\frac{z_1+h_1-z_1}{h_1+ih_2} = \lim_{h\xrightarrow{} 0}\frac{h_1}{h_1+ih_2}\\
     \text{(if h1 = 0)} &= \lim_{h\xrightarrow{} 0}\frac{0}{ih_2}=0\\
     \text{(if h2 = 0)} &= \lim_{h\xrightarrow{} 0}\frac{h_1}{h_1}=1
 \end{align*} which are not equal.
-\end{example}
+\end{counterexample}
 
 \begin{lemma}
 If $\Omega \subset \mathbb{C}$, $f,g:\Omega \xrightarrow{} \mathbb{C}$ holomorphic, then the following are holomorphic and expand in the following ways:
-
 \begin{itemize}
-    \item $f+g$, $(f+g)' = f'+g'$
-    \item $f \cdot g$, $(f \cdot g)' = f'g+fg'$\\
-    \item $\frac{f}{g}$, $\left( \frac{f}{g} \right)' = \frac{f'g-fg'}{g^2} \text{ for every $x_0$ such that $g(x_0) \neq 0$ }$\\\\
-    lastly:
+    \item $f+g$; $(f+g)' = f'+g'$
+    \item $f \cdot g$; $(f \cdot g)' = f' \cdot g +f \cdot g'$\\
+    \item $\frac{f}{g}$; $\left( \frac{f}{g} \right)' = \frac{f'g-fg'}{g^2} \text{ for every $x_0$ such that $g(x_0) \neq 0$ }$\\
     \item if $f:\Omega\xrightarrow{}\Omega' \subset \mathbb{C}$ and $g:\Omega'\xrightarrow{}\mathbb{C}$ are hol'c\\ then $(g \circ f)$ is also hol'c and $(g \circ f)'(z) = g'(f(z))\cdot f'(z)$
 \end{itemize}
 \end{lemma}
@@ -95,20 +88,21 @@ The proof of these facts are identical to the real case, and as such excluded.
 
 
 We can view a complex function $f:\Omega \xrightarrow[]{} \mathbb{C}$ as a function $f:U \xrightarrow{} \mathbb{R}^2$ with $U \subset \mathbb{R}^2$. In this sense then we can write
-
 \begin{align*}
 f(z)=f(x+yi)=f(x,y) &= \Re (f(x,y)) + i \Im (f(x,y))\\ &= u(x,y)+iv(x,y)
 \end{align*}
 
-Note that $u(x,y),v(x,y) \in \mathbb{R}$, and that when added together (along with the $i$) they map from $\mathbb{R}^2$ to $\mathbb{R}^2$.\\
+Note that $u(x,y),v(x,y) \in \mathbb{R}$, and that when added together (along with the $i$) they map from $\mathbb{R}^2$ to $\mathbb{R}^2$.
 
-We now want to see what $f(x,y)$ being holomorphic implies for $u(x,y)$ and $v(x,y)$. The idea is to copy what was done in example (1.2), and consider the limit from the horizontal axis and from the vertical axis.\\
+\subsection{Cauchy-Riemann Equations}
+
+We now want to see what $f(x,y)$ being holomorphic implies for $u(x,y)$ and $v(x,y)$. The idea is to copy what was done in counterexample (\ref{cex:non-hlc}), and consider the limit from the horizontal axis and from the vertical axis.\\
 
 For now we only consider one direction: what is implied about $u(x,y)$ and $v(x,y)$ when $f(x,y)$ is holomorphic?\\
 
 \isubsection{THM: Cauchy-Riemann Equations}
 
-\begin{theorem}[Cauchy-Riemann Equations]
+\begin{theorem}[Cauchy-Riemann Equations]\label{thm:holc-implies-CR}
 Let $f:U \xrightarrow{} \mathbb{R}^2$ holomorphic with $U \subset \mathbb{R}^2$. Let $f(x,y) = u(x,y)+iv(x,y)$. Then $\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}$ and $\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$.
 \end{theorem}
 
@@ -119,28 +113,24 @@ Let $f(z)$ be holomorphic. Then:
 \end{align*}
 
 Now let $h=h_1+0i$ ('horizontal' limit). This yields:
-
 \begin{align*}
-    &\lim_{h_1\xrightarrow{} 0} \frac{f(x+h_1,y)-f(x,y)}{h_1}\\
-    = &\frac{\partial f}{\partial x}(z) = f'(z)\\
-    = &\frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x}.
+     f'(z) = \lim_{h_1\xrightarrow{} 0} \frac{f(x+h_1,y)-f(x,y)}{h_1} = \frac{\partial f}{\partial x}(z) = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x}.
 \end{align*}
 
 %fix this -- formatted weird
 
 Doing the same with $h=0+ih_2$ ('vertical' limit) yields:
-
 \begin{align*}
-    &\lim_{h_2\xrightarrow{} 0} \frac{f(x,y+h_2)-f(x,y)}{ih_2}\\
-    = &\frac{1}{i}\frac{\partial f}{\partial y}(z) = -i\frac{\partial f}{\partial y}(z) = f'(z)\\
-    = -i&\frac{\partial u}{\partial y} +  \frac{\partial v}{\partial y}.
+    f'(z) = \lim_{h_2\xrightarrow{} 0} \frac{f(x,y+h_2)-f(x,y)}{ih_2} = \frac{1}{i}\frac{\partial f}{\partial y}(z) = -i\frac{\partial f}{\partial y}(z) =-i&\frac{\partial u}{\partial y} +  \frac{\partial v}{\partial y}.
 \end{align*}
 
 Since $f(z)$ is holomorphic, these two different approaches must yield equal results. Note also that two complex expressions are only equal if their real parts are equal and their complex parts are equal. This yields:
-
 \begin{align*}
-    &\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}\\
-    \text{and } \, & \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+    f = u + i v \text{ holomorphic} \implies
+    \begin{cases}
+        \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y},\\
+        \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.
+    \end{cases}
 \end{align*}
 And we are done.
 \end{proof}\\
@@ -148,12 +138,11 @@ And we are done.
 These are called the Cauchy-Riemann equations, and they are very important for this class and will be studied in the future. This implies that if $f(x,y)$ is holomorphic, then its components $u(x,y)$ and $v(x,y)$ must satisfy this system of 2 partial differential equations.
 
 \begin{remark}
-Recall from section (1.1), facts 9 and 10, that given a complex number $z=x+iy$ and its complex conjugate $\overline{z} = x-iy$, we can recover the full information about x and y using $x=\frac{z+\overline{z}}{2}$ and $y=b = \frac{z-\overline{z}}{2i}$. We can thus think of a function $f(x,y)$ as a function "$f(z,\overline{z})$". This class will not use this form.
+Recall from section (\ref{sec:intro-cplx-nums}), facts 9 and 10, that given a complex number $z=x+iy$ and its complex conjugate $\overline{z} = x-iy$, we can recover the full information about x and y using $x=\frac{z+\overline{z}}{2}$ and $y=b = \frac{z-\overline{z}}{2i}$. We can thus think of a function $f(x,y)$ as a function "$f(z,\overline{z})$". This class will not use this form.
 \end{remark}
 
 
 This way of writing leads to the question of the value of $f(z)$ differentiated with respect to $z$ and $\overline{z}$:
-
 \begin{align*}
     &\frac{\partial f}{\partial z} = \frac{\partial f}{\partial x}\frac{\partial  x}{\partial z} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial z} = \frac{1}{2} \frac{\partial f}{\partial x} - \frac{i}{2} \frac{\partial f}{\partial y}\\\\
     &\frac{\partial f}{\partial \overline{z}} = \frac{\partial f}{\partial x}\frac{\partial  x}{\partial \overline{z}} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial \overline{z}} = \frac{1}{2} \frac{\partial f}{\partial x} + \frac{i}{2} \frac{\partial f}{\partial y}\\\\
@@ -163,12 +152,11 @@ This way of writing leads to the question of the value of $f(z)$ differentiated 
 
 These are called the Wirtinger Derivatives. They are useful only for the following corollaries:
 \isubsection{THM: Holomorphic iff CR}
-\begin{corollary}
+\begin{corollary}\label{cor:wirt-iff-CR}
 $\frac{\partial f}{\partial \overline{z}} = 0$ $\Leftrightarrow$ f(z) satisfies the Cauchy-Riemann equations.
 \end{corollary}
 
 \begin{proof} By the Wirtinger Derivatives we get:
-
 \begin{align*}
 \frac{\partial f}{\partial \overline{z}} = \frac{1}{2} \left( \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x} + i \frac{\partial u}{\partial y} - \frac{\partial v}{\partial y}\right) = 0
 \end{align*}
@@ -191,20 +179,19 @@ Assume f(z) to be holomorphic. Then $\frac{\partial f}{\partial z} = f'(z)$.
 
 \begin{proof}
 By the Wirtinger Derivatives then:
-
 \begin{align*}
 \frac{\partial f}{\partial z} &= \frac{1}{2}\left( \frac{\partial u}{\partial x} +i\frac{\partial v}{\partial x} -i\frac{\partial u}{\partial y}+\frac{\partial v}{\partial y}\right)\\
 &=\frac{1}{2}\left( \frac{\partial u}{\partial x} + \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x} + i\frac{\partial v}{\partial x}\right)\\
 &= \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x}\\
 &= \frac{\partial f}{\partial x}\\
-&= f'(x)
+\text{(apply holc) } &= f'(z)
 \end{align*}
 And we are done.
 \end{proof}\\
 
 These two corollaries can be combined to the following theorem:
 
-\begin{theorem}
+\begin{theorem}\label{thm:CR-implies-holc}
 Let $f=u+iv:\Omega \xrightarrow{} \mathbb{C}$ and assume $f$ is $C^1$ (implies that u' and v' are continuous and exist). Assume that $f(z)$ satisfies the Cauchy-Riemann equations. Then $f(z)$ is holomorphic.
 \end{theorem}
 
@@ -228,43 +215,49 @@ This implies that $f(z)$ is holomorphic.
 \end{proof}
 
 \begin{remark}
-Combining theorem (1.4) and theorem (1.8) shows that $f$ holomorphic $\iff$ $f$ satisfies the Cauchy-Riemann equations.
+Combining theorem (\ref{thm:holc-implies-CR}) and theorem (\ref{thm:CR-implies-holc}) shows that $f$ holomorphic $\iff$ $f$ satisfies the Cauchy-Riemann equations.
 \end{remark}
 
 
 \begin{remark}
-If you view $f(z)$ as $(u(x,y), v(x,y))$ and assume $f(z)$ is holomorphic. Compute the Jacobian matrix of (u,v) times a vector containing $h_1$ and $ih_2$:
-
-\[ \left( \begin{array}{cc}
-\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
-\frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
-\end{array} \right)
-%
-\left( \begin{array}{cc}
-h_1 \\
-ih_2
-\end{array} \right) =
-\frac{\partial u}{\partial x}h_1 +i\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}h_1 +i\frac{\partial v}{\partial y}h_2
-\]
+If you view $f(z)$ as $(u(x,y), v(x,y))$ and assume $f(z)$ is holomorphic. Computing the Jacobian matrix of (u,v) times a vector containing $h_1$ and $ih_2$ gives:
 \begin{align*}
-&=\frac{\partial u}{\partial x}h_1 + \frac{\partial u}{\partial y}h_2 + i\left(\frac{\partial v}{\partial x}h_1 + \frac{\partial v}{\partial y}h_2\right)\\
-&=\left(\frac{\partial u}{\partial x} -i\frac{\partial u}{\partial y}  \right)h\\
-&= f'(z)h
+    \left( 
+    \begin{matrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
+        \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+    \end{matrix}
+    \right)
+    \left(
+    \begin{matrix}
+        h_1 \\
+        ih_2
+    \end{matrix}
+    \right)
+    &= \frac{\partial u}{\partial x}h_1 +i\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}h_1 +i\frac{\partial v}{\partial y}h_2\\
+    &=\frac{\partial u}{\partial x}h_1 + \frac{\partial u}{\partial y}h_2 + i\left(\frac{\partial v}{\partial x}h_1 + \frac{\partial v}{\partial y}h_2\right)\\
+    &=\left(\frac{\partial u}{\partial x} -i\frac{\partial u}{\partial y}  \right)h\\
+    &= f'(z)h
 \end{align*}
 
 This implies that provided $f$ is holomorphic, the action of the Jacobian on this vector is approximately the same as the mess up above.
 \end{remark}
 
 \begin{remark}
-\[ \left| \begin{array}{cc}
-\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
-\frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
-\end{array} \right| \overset{CR}{=} \left| \begin{array}{cc}
-\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
--\frac{\partial u}{\partial y} & \frac{\partial u}{\partial x}
-\end{array} \right|
-\]
+We have that:
 \begin{align*}
+    \left|
+    \begin{matrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
+        \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+    \end{matrix}
+    \right|
+    &\overset{CR}{=}
+    \left|
+    \begin{matrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
+        -\frac{\partial u}{\partial y} & \frac{\partial u}{\partial x}
+    \end{matrix} \right|\\
     &= \left(\frac{\partial u}{\partial x}\right)^2 + \left(\frac{\partial u}{\partial y}\right)^2\\
     &= \abs{f'(z)}^2\geq 0
 \end{align*}

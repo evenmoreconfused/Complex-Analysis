@@ -15,10 +15,11 @@ Recall the concept of complex power series discussed in the previous lecture: a 
 
 \begin{example}[Logarithm]
 \begin{align*}
-    log(1+z) & \defas z - \frac{z^2}{2} +\frac{z^3}{3} - \frac{z^4}{4} + \cdots\\
+    log(1+z)  `` \! \! &= \! \!"  z - \frac{z^2}{2} +\frac{z^3}{3} - \frac{z^4}{4} + \cdots\\
     &= \sum_{n=1}^\infty \frac{(-1)^{n+1}z^n}{n}\\
-    R&=\frac{1}{\limsup\limits_{n\rightarrow \infty} \, \abs{a_n}^\frac{1}{n}} = \frac{1}{\limsup\limits_{n\rightarrow \infty} \, n^\frac{1}{n}} = 1
+    R&=\frac{1}{\limsup\limits_{n\rightarrow \infty} \, \abs{a_n}^\frac{1}{n}} = \frac{1}{\limsup\limits_{n\rightarrow \infty} \, n^\frac{1}{n}} = 1.
 \end{align*}
+
 Note that the complex logarithm is more complicated than the real logarithm; it won't be a single function, but a family of functions. This power series is only one of the family. An example of the non-simplicity of the logarithm is as follows: given $0 \neq z \in \mathbb{C}$, we want $w=log(z)$ s.t. $e^w=z$. Given w we can easily find z. Given z, can we find w?
 \begin{align*}
     z&=re^{i\theta}, \, r=\abs{z}>0, \, 0 \leq \theta \leq 2\pi, \, \theta = Arg(z)\\
@@ -28,7 +29,10 @@ Note that the complex logarithm is more complicated than the real logarithm; it 
    \text{and } e^{iy} &= e^{i\theta} \implies y = \theta +2\pi k, \, k\in \mathbb{Z}
 \end{align*}
 That is to say that given $z\neq 0$, there are infinitely many w that solve $e^w=z$:
-$$w = log(z) = i\cdot (Arg(z) +2\pi k), \, k\in \mathbb{Z}$$
+\begin{align*}
+    log(z) `` \! \! = \! \! " w = log ( \,  \abs{z} )  + i\cdot (Arg(z) +2\pi k), \, k\in \mathbb{Z}
+\end{align*}
+
 
 which differ by adding multiples of $2 \pi i$.
 \end{example}
@@ -47,19 +51,19 @@ We now continue some of the properties of contour integrals:
         \textit{(change variable $t \to b+a -t$)}  &= - \int_a^b f(z(t))\cdot z'(t) \dif t = - \int_{\gamma} f(z)  \dif z
     \end{align*}
     
-    \item $\forall \lambda, \mu \in \mathbb{C}, \, f,g$ continuous on $\mathbb{C}$:
+    \item The integral operator is linear, ie $\forall \lambda, \mu \in \mathbb{C}, \, f,g$ continuous on $\mathbb{C}$:
     \begin{align*}
         \int_{\gamma} (\lambda f(z) + \mu g(z))  \dif z = \lambda \int_{\gamma} f(z)  \dif z + \mu \int_{\gamma} g(z)  \dif z
     \end{align*}
     
     \item For any $\gamma$ and $f(z)$:
-    \begin{align*}
-    \text{with } L(\gamma) &= arclength(\gamma) = \int_a^b \abs{z'(t)}  \dif t\\
-    \abs{\int_{\gamma} f(z)  \dif z} &= \abs{\int_a^b f(z(t)) z'(t)  \dif t}\\
-    &\leq \int_a^b \abs{f(z(t))} \cdot \abs{z'(t)}  \dif t\\
-    &\leq \sup_{z \in \gamma[a,b]} \abs{f(z)} \cdot \underbrace{\int_a^b \abs{z'(t)}}_{L(\gamma)}  \dif t\\
-    &= \sup\limits_{z \in \gamma[a,b]} \abs{f(z)} \cdot L(\gamma)
-    \end{align*}
+    \begin{align} \label{eq:integral-bound}
+    \text{with } L(\gamma) &= arclength(\gamma) = \int_a^b \abs{z'(t)}  \dif t \nonumber \\
+    \abs{\int_{\gamma} f(z)  \dif z} &= \abs{\int_a^b f(z(t)) z'(t)  \dif t} \nonumber \\
+    &\leq \int_a^b \abs{f(z(t))} \cdot \abs{z'(t)}  \dif t\nonumber \\
+    &\leq \sup_{z \in \gamma[a,b]} \abs{f(z)} \cdot \underbrace{\int_a^b \abs{z'(t)}}_{L(\gamma)}  \dif t \nonumber \\
+    &= \sup\limits_{z \in \gamma[a,b]} \abs{f(z)} \cdot L(\gamma).
+    \end{align}
    
    
 \end{enumerate}
@@ -81,10 +85,10 @@ $f(z) = e^z$ is an antiderivative of itself.
 \end{example}
 
 \isubsection{THM: Fundamental Theorem of Calculus}
-\begin{theorem}[Fundamental Theorem of Calculus]
+\begin{theorem}[Fundamental Theorem of Calculus \label{thm:FTC}]
 Suppose that $F(z)$ is an antiderivative of $f(z)$ on some $\Omega \subset \mathbb{C}$. Let $\gamma$ be a piece-wise smooth path in $\Omega$. Then:
 \begin{align*}
-    \int_\gamma f(z)  \dif z &= F(\gamma(b)) - F(\gamma(a))
+    \int_\gamma f(z)  \dif z &= F(\gamma(b)) - F(\gamma(a)).
 \end{align*}
 \end{theorem}
 
@@ -92,7 +96,7 @@ Suppose that $F(z)$ is an antiderivative of $f(z)$ on some $\Omega \subset \math
 \begin{corollary}
 If $\gamma$ is a closed curve (a curve $\gamma$ with $\gamma(a)=\gamma(b)$) then:
 \begin{align*}
-    \int_\gamma f(z)  \dif z &= 0
+    \int_\gamma f(z)  \dif z &= 0.
 \end{align*}
 
 \end{corollary}
@@ -104,19 +108,19 @@ Assume that $\gamma$ is smooth.
     &= \int_a^b \underbrace{F'(z(t)) z'(t)}_{\frac{d}{  dt} F(z(t))}  \dif t\\
     &= \int_a^b \left( \frac{d}{ dt} F(z(t)) \right)  \dif t\\
     \text{(apply real FTC) }&= F(z(b))-F(z(a))\\
-    &= F(\gamma(b)) - F(\gamma(a))
+    &= F(\gamma(b)) - F(\gamma(a)).
 \end{align*}
 
 If $\gamma$ is only piece-wise smooth:
 \begin{align*}
     \int_\gamma f(z) \dif z &= \sum_{j=0}^{N-1} \int_ {a_j}^{a_{j+1}} f(z(t))z'(t) \dif t\\
    \text{(apply above) } &= \sum_{j=0}^{N-1} (F(z(a_{j+1}))-F(z(a_j)))\\
-   &= F(z(b)) - F(z(a))
+   &= F(z(b)) - F(z(a)).
 \end{align*}
 \end{proof}
 
 \begin{corollary}
-If $f:\Omega \rightarrow \mathbb{C}$ is a holomorphic function on $\Omega$ open and $\underline{\textbf{connected}}$, then $f'(z)=0 \, \forall z \in \Omega \, \implies \, f(z)$ is constant.
+If $f:\Omega \rightarrow \mathbb{C}$ is a holomorphic function on $\Omega$ open and connected, then $f'(z)=0 \, \forall z \in \Omega \, \implies \, f(z)$ is constant.
 \end{corollary}
 
 \begin{proof}
@@ -129,7 +133,7 @@ Apply FTC to f'(z):
 \end{align*}
 \end{proof}
 \begin{remark}
-Connectedness is important here, as if we don't have it we could have a function $f(z)$ defined on two sets, and constant locally on both, but not globally connected.
+Connectedness is important here, as if we don't have it we could have a function $f(z)$ defined on two sets, and constant locally on both, but not globally constant.
 \end{remark}
 
-Next week we'll continue with the proof for $f(z)$ holomorphic $\implies$ $f(z)$ analytic
+Next week we'll continue with the proof for $f(z)$ holomorphic $\implies$ $f(z)$ analytic.

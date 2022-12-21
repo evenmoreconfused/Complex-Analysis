@@ -10,7 +10,6 @@
 We begin with a short discussion on what positive orientation means:
 \subsection{Orientation}
 Consider a blob $\Omega$ with 2 holes in it:
-
 \begin{center}
 \begin{tikzpicture}[
     tangent/.style={
@@ -141,49 +140,42 @@ If you are at a point on the curve, the positive direction is the direction such
 
 \isubsection{PROP: Complex Green's Theorem}
 
-\begin{proposition}[Complex Green's Theorem]
-$\Omega \subset \mathbf{C}$ bounded open, $f:\overline{\Omega} \rightarrow \mathbf{C}, \, C^1 \, f = u+iv, \, u,v:\overline{\Omega} \rightarrow \mathbf{R}$. Assume that $\partial \Omega$ can be parameterized by piecewise smooth curves.
+\begin{proposition}[Complex Green's Theorem]\label{prop:green-theorem}
+$\Omega \subset \mathbb{C}$ bounded open, $f:\overline{\Omega} \rightarrow \mathbb{C}, \, C^1 \, f = u+iv, \, u,v:\overline{\Omega} \rightarrow \mathbb{R}$. Assume that $\partial \Omega$ can be parameterized by piecewise smooth curves.
 
 Then (with the parameterization in the positive direction):
-
 \begin{align*}
-    \int_{\partial \Omega} f(z)  \dif z = 2i \int_\Omega \frac{\partial f}{ \partial \overline{z}}  \dif A 
+    \int_{\partial \Omega} f(z)  \dif z = 2i \int_\Omega \frac{\partial f}{ \partial \overline{z}}  \dif A .
 \end{align*}
-
 This can be interpreted as a complex version of Green's Theorem.
 \end{proposition}
 
 \begin{proof}
 $\Omega = \bigcup_{j=1}^n C_j$, each smooth:
-
 \begin{align*}
-    \int_{\partial \Omega} f(z)  \dif z = \sum_{j=1}^n \int_{C_j} f(z) \dif z
+    \int_{\partial \Omega} f(z)  \dif z = \sum_{j=1}^n \int_{C_j} f(z) \dif z.
 \end{align*}
-
 Parameterize each $C_j$ separately by $z(t), t\in[a,b]$. Then:
-
 \begin{align*}
-\int_{C_j} f(z)  \dif z = \int_{C_j} f(z(t))\cdot z'(t)  \dif z
+\int_{C_j} f(z)  \dif z = \int_{C_j} f(z(t))\cdot z'(t)  \dif z.
 \end{align*}
-
 Write $z(t) = (x(t),y(t)) = x(t)+iy(t)$, $z'(t) = x'(t)+iy'(t)$.
-
 \begin{align*}
 \int_{C_j} f(z)  \dif z &= \int_{C_j} f(z(t))\cdot z'(t)  \dif z\\
 &= \int_a^b (u(x(t),y(t)) + iv(x(t),y(t))) \cdot (x'(t)+iy'(t))  \dif t\\
 &= \int_a^b u(x(t),y(t))\cdot x'(t) \dif t - \int_a^b v(x(t),y(t)) \cdot y'(t)  \dif t \\ +&i \left[ \int_a^b u(x(t),y(t))\cdot y'(t) \dif t +  \int_a^b v(x(t),y(t))\cdot x'(t) \dif t  \right]\\
-&= \int_{C_J} u \dif x - \int_{C_J} v \dif y + i \left[ \int_{C_J} u \dif y + \int_{C_J} v \dif x \right] \\
-\implies \int_{\partial \Omega} f(z)  \dif z &= \int_{\partial \Omega} (u \dif x-v \dif y) + i\int_{\partial \Omega} (u \dif y+v \dif x)
+&= \int_{C_J} u \dif x - \int_{C_J} v \dif y + i \left[ \int_{C_J} u \dif y + \int_{C_J} v \dif x \right]. \\
+\implies \int_{\partial \Omega} f(z)  \dif z &= \int_{\partial \Omega} (u \dif x-v \dif y) + i\int_{\partial \Omega} (u \dif y+v \dif x).
 \end{align*}
-Then both $\int_{\partial \Omega} (u \dif x-v \dif y)$ and $\int_{\partial \Omega} (u \dif y+v \dif x)$ are line integrals of real-valued functions. We can then apply Green's Theorem to them:
 
+Then both $\int_{\partial \Omega} (u \dif x-v \dif y)$ and $\int_{\partial \Omega} (u \dif y+v \dif x)$ are line integrals of real-valued functions. We can then apply Green's Theorem to them:
 \begin{align*}
-    \text{(let $\Vec{F} = (u,-v)$) }\int_{\partial \Omega} (u \dif x-v \dif y) &= \int_\Omega \left( -\frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}  \right)  \dif A\\
-    \text{(let $\Vec{F} = (v,u)$) }\int_{\partial \Omega} (u \dif y+v \dif x) &= \int_\Omega \left( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}  \right)  \dif A\\
+    \text{(let $\Vec{F} = (u,-v)$) }\int_{\partial \Omega} (u \dif x-v \dif y) &= \int_\Omega \left( -\frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}  \right)  \dif A.\\
+    \text{(let $\Vec{F} = (v,u)$) }\int_{\partial \Omega} (u \dif y+v \dif x) &= \int_\Omega \left( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}  \right)  \dif A.\\
     \Downarrow\\
     \int_{\partial \Omega} f(z) \dif z &= i\int_\Omega \bigg(  \underbrace{\frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x}}_{\frac{df}{ \dif z}} + i \bigg( \underbrace{  \frac{\partial u}{\partial y} + i \frac{\partial v}{\partial y}}_{\frac{\partial f}{\partial y}} \bigg)\bigg) \dif A\\
     &= i \int_\Omega \left( \frac{\partial f}{\partial x} + i\frac{\partial f}{\partial y} \right)  \dif A\\
-   \text{(apply (1.6))} &= 2i \int_\Omega \frac{\partial f}{\partial \overline{z}}  \dif A\\
+   \text{(apply (\ref{cor:wirt-iff-CR}))} &= 2i \int_\Omega \frac{\partial f}{\partial \overline{z}}  \dif A.\\
 \end{align*}
 
 \end{proof}
@@ -193,13 +185,12 @@ We now get to the key result of this chapter:
 \isubsection{THM: Cauchy's Theorem}
 \begin{theorem}[Cauchy's Theorem]
 $\Omega \subset \mathbb{C}$ open, connected, $f:\Omega \rightarrow \mathbb{C}$. Then the following are equivalent:
-
 \begin{enumerate}
-    \item f is holomorphic (in $\Omega$)
-    \item $f\in C^1(\Omega)$ and $\frac{\partial f}{\partial \overline{z}} = 0$ on $\Omega$ (CR equation)
-    \item $f\in C^1(\Omega)$ and $\forall \Omega' \ssubset \Omega$ (\, $\overline{\Omega'} \subset \Omega$ and compact) then $\int_{\partial \Omega'} f(z) \dif z = 0$
-    \item $f\in C^1(\Omega)$ and $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w$ (Cauchy's Integral Formula)
-    \item $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$, this power series absolutely convergent on D (ie f is analytic on $\Omega$) and $\forall n\geq 0$, $a_n = \frac{f^{(n)}(z_0) }{n!} = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{(w-z)^{n+1}}  \dif w$.
+    \item f is holomorphic (in $\Omega$).
+    \item $f\in C^1(\Omega)$ and $\frac{\partial f}{\partial \overline{z}} = 0$ on $\Omega$ (CR equation).
+    \item $f\in C^1(\Omega)$ and $\forall \Omega' \ssubset \Omega$ (\, $\overline{\Omega'} \subset \Omega$ and compact) then $\int_{\partial \Omega'} f(z) \dif z = 0$.
+    \item $f\in C^1(\Omega)$ and $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w$ (Cauchy's Integral Formula).
+    \item $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$, and this power series is absolutely convergent on D (ie $f$ is analytic on $\Omega$) and $\forall n\geq 0$, $a_n = \frac{f^{(n)}(z_0) }{n!} = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{(w-z)^{n+1}}  \dif w$.
 \end{enumerate}
 \end{theorem}
 
@@ -208,11 +199,11 @@ $\Omega \subset \mathbb{C}$ open, connected, $f:\Omega \rightarrow \mathbb{C}$. 
 
 
 \begin{note}
-Note that ($1 \leftrightarrow 2$) gained us some depth compared to before. As discussed f holomorphic implies that f is $C^0$, but now we know it is $C^1$ (in fact (5) implies that f is $C^\infty$).
+Note that ($1 \leftrightarrow 2$) gained us some depth compared to before. As discussed $f$ holomorphic implies that $f$ is $C^0$, but now we know it is $C^1$ (in fact (5) implies that $f$ is $C^\infty$).
 
 Note that (3) is a much stronger version of Goursat. Goursat is for triangles only, but this applies to many more cases (Goursat is the same statement with $\overline{\Omega'}=T$ triangle). We also proved this for disks.
 
-Statement (4) is very important; it tells us that if you want to know the value of f(z), we can find the value by computing an integral on a disk containing z.
+Statement (4) is very important; it tells us that if you want to know the value of $f(z)$, we can find the value by computing an integral on a disk containing $z$.
 
 Statement (5) contains a generalization of Cauchy's Integral Formula in the formula for $a_n$. Statement (4) can be recovered by letting $n=0$.
 \end{note}
@@ -220,27 +211,26 @@ Statement (5) contains a generalization of Cauchy's Integral Formula in the form
 
 
 \begin{proof}
-The proof will take a $(1) \Rightarrow (2) \Leftrightarrow (3) \Rightarrow (4) \Rightarrow (5) \Rightarrow (1)$ approach.
+We will prove $(1) \Rightarrow (2) \Leftrightarrow (3) \Rightarrow (4) \Rightarrow (5) \Rightarrow (1)$.
 
 \begin{enumerate}
-    \item[$(2)\Rightarrow (3):$] This is an immediate result of Complex Green's Theorem (5.1).
-    \item[$(3)\Rightarrow (2):$] Suppose not, ie $\exists z$ s.t. $\frac{\partial f}{\partial \overline{z}} \neq 0$. Consider $D= D_r(z_0)\ssubset \Omega$. Apply (3) to give:
+    \item[$(2)\Rightarrow (3):$] This is an immediate result of theorem (\ref{prop:green-theorem}).
+    \item[$(3)\Rightarrow (2):$] Suppose not, ie $\exists z_0$ s.t. $\frac{\partial f}{\partial \overline{z}} (z_0) \neq 0$. Consider $D= D_r(z_0)\ssubset \Omega$. Apply (3) to give:
     \begin{align*}
         0 = \abs{\int_{\partial D} f(z)  \dif z} \overset{Green}{=}& \abs{2i \int_D \frac{\partial f}{\partial \overline{z}}(z)  \dif A}\\
-        =& 2\abs{\int_D \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)  \dif A + \frac{\partial f}{\partial \overline{z}}(z_0) \int_D \dif A }\\
-        \geq&  2\abs{\frac{\partial f}{\partial \overline{z}}(z_0) \underbrace{\int_D \dif A}_{\pi r^2}}  -  2 \abs{\int_D \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)  \dif A}\\
-        =& 2\pi r^2 \underbrace{\abs{\frac{\partial f}{\partial \overline{z}}(z_0)}}_{>0 \text{ assumed}} - 2 \abs{\int_D \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)  \dif A}\\
+        =& 2\abs{\int_D  \left( \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) \right)  \dif A + \frac{\partial f}{\partial \overline{z}}(z_0) \int_D \dif A }\\
+        \text{(reverse triangle ineq) } \geq&  2\abs{\frac{\partial f}{\partial \overline{z}}(z_0) \underbrace{\int_D \dif A}_{\pi r^2}}  -  2 \abs{\int_D \left( \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) \right)  \dif A}\\
+        =& 2\pi r^2 \underbrace{\abs{\frac{\partial f}{\partial \overline{z}}(z_0)}}_{>0 \text{ assumed}} - 2 \abs{\int_D \left( \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) \right)  \dif A}.
     \end{align*}
-    $f\in C^1 \implies \exists f' \in C^0 \implies \exists \delta>0$ s.t. if $\abs{z-z_0}< \delta$ then $\abs{ \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) }< \frac{1}{2}\abs{\frac{\partial f}{\partial \overline{z}}(z_0)}$. Thus:
-    
+    Now $f\in C^1 \implies  \frac{\partial  f }{ \partial \overline{z}} \in C^0 \implies \exists \delta>0$ s.t. if $\abs{z-z_0}< \delta$ then $\abs{ \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) }< \frac{1}{2}\abs{\frac{\partial f}{\partial \overline{z}}(z_0)}$. Thus:
     \begin{align*}
-        2 \abs{\int_D \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)  \dif A} &\leq 2 \int_D \abs{ \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)}  \dif A\\
+        2 \abs{\int_D \left( \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0) \right)  \dif A} &\leq 2 \int_D \abs{ \frac{\partial f}{\partial \overline{z}}(z) - \frac{\partial f}{\partial \overline{z}}(z_0)}  \dif A\\
         &< \pi r^2 \abs{\frac{\partial f}{\partial \overline{z}}(z_0)}\\
         &\Downarrow\\
-        0 &\geq \left( 2\pi r^2 - \pi r^2\right) \abs{\frac{\partial f}{\partial \overline{z}}(z_0)} > 0 \, \, \, \bot
+        0 &\geq \left( 2\pi r^2 - \pi r^2\right) \abs{\frac{\partial f}{\partial \overline{z}}(z_0)} > 0,
     \end{align*}
-    
-    \item[$(3) \Rightarrow (4):$] Assume (3). Then (2) holds. Hence $\frac{df}{d\overline{z}} = 0$ in $\Omega$. Fix $z\in\Omega$. Let: $g(w) = \frac{f(w)-f(z)}{w-z}$ for $w\in\Omega \setminus \{z\}$. Then $g\in C^1(\Omega \setminus \{z\})$ and $\frac{dg}{d\overline{w}}(w) = 0$. Thus $g$ satisfies (2) and thus (3) on $\Omega \setminus \{z\}$. Apply (3) on $\Omega' = \{ \epsilon < \abs{w-z} < \delta \, | \, 0<\epsilon<\delta\}$, with $\delta$ small enough that $\Omega' \ssubset \Omega$. Then $\Omega'$ is an annulus centered at $z$:
+    which is absurd.
+    \item[$(3) \Rightarrow (4):$] Assume (3). Then (2) holds. Hence $\frac{df}{d\overline{z}} = 0$ in $\Omega$. Fix $z\in\Omega$. Let $g(w) = \frac{f(w)-f(z)}{w-z}$ for $w\in\Omega \setminus \{z\}$. Then $g\in C^1(\Omega \setminus \{z\})$ and $\frac{dg}{d\overline{w}}(w) = 0$. Thus $g$ satisfies (2) and thus (3) on $\Omega \setminus \{z\}$. Apply (3) on $\Omega' = \{ \epsilon < \abs{w-z} < \delta \, | \, 0<\epsilon<\delta\}$, with $\delta$ small enough that $\Omega' \ssubset \Omega$. Then $\Omega'$ is an annulus centered at $z$:
     
     \begin{center}
     \begin{tikzpicture}[scale = 2]
@@ -269,37 +259,29 @@ The proof will take a $(1) \Rightarrow (2) \Leftrightarrow (3) \Rightarrow (4) \
     
     
     Applying (3) we get by (and taking the integral going clockwise on both curves):
-    
     \begin{align*}
-        0 = \int_{\partial \Omega'} g(w) \dif w &= \int_{\partial C_\delta} g(w)  \dif w - \int_{\partial C_\epsilon} g(w)  \dif w\\
+        0 = \int_{\partial \Omega'} g(w) \dif w &= \int_{\partial C_\delta} g(w)  \dif w - \int_{\partial C_\epsilon} g(w)  \dif w.\\
         &\Downarrow\\
-        \int_{\partial C_\epsilon} g(w)  \dif w &= \int_{\partial C_\delta} g(w)  \dif w
+        \int_{\partial C_\epsilon} g(w)  \dif w &= \int_{\partial C_\delta} g(w)  \dif w.
     \end{align*}
     
-    Then apply the Taylor expansion for $f\in C^1$.
+    We need a ``Taylor expansion" for $f\in C^1$.
     
-    \begin{lemma}
-    For $f \in C^1$, w sufficiently close to z, we have that:
-    
+    \begin{lemma}\label{lem:taylor-C1} % this might be an erroneous label, im not sure how it follows but it referenced "5.4" before which should be this
+    For $f \in C^1$, $w$ sufficiently close to $z$, we have that:
     \begin{align*}
-    f(w) = f(z) + \frac{\partial f}{ \partial z} (z) (w-z) + \frac{ \partial f}{ \partial \overline{z} } (z) (\overline{w}-\overline{z})+ o((z-w))
+    f(w) = f(z) + \frac{\partial f}{ \partial z} (z) (w-z) + \frac{ \partial f}{ \partial \overline{z} } (z) (\overline{w}-\overline{z})+ o( \, \abs{ z-w } ).
     \end{align*}
-    
     This is the Taylor expansion of a $C^1$ function of a complex variable. Note that $o(f)$ is a function such that $\abs{\frac{o(f)}{\abs{f}}} \rightarrow 0$.
     \end{lemma}
     \begin{proof}
-    Use the real Taylor Expansion as follows:
-    
-    
-    
+    Use the real Taylor Expansion as follows:    
     \begin{align*}
         z&=x+iy\\
         w&=a+ib\\
-        \text{(Taylor) } f(w) &= f(z) + \frac{\partial f }{\partial x}(z)(a-x)+ \frac{\partial f }{\partial y}(z)(b-y) +o((z-w))
+        \text{(Taylor) } f(w) &= f(z) + \frac{\partial f }{\partial x}(z)(a-x)+ \frac{\partial f }{\partial y}(z)(b-y) +o( \, \abs{ z-w }).
     \end{align*}
-    
     Then:
-    
     \begin{align*}
         \frac{\partial f}{ \partial z} (z) (w-z) + \frac{ \partial f}{ \partial \overline{z} } (z) (\overline{w}-\overline{z}) &=  \frac{1}{2}\left( \frac{\partial f}{\partial x} - i\frac{\partial f}{\partial y}\right)(a+ib-x-iy)\\
         &+ \frac{1}{2}\left( \frac{\partial f}{\partial x} + i\frac{\partial f}{\partial y}\right)(a-ib-x+iy)\\
@@ -307,37 +289,31 @@ The proof will take a $(1) \Rightarrow (2) \Leftrightarrow (3) \Rightarrow (4) \
     \end{align*}
     \end{proof}
     
-    Then we apply this lemma to f. f is holomorphic so we get (after some rearranging):
-    
+    Then we apply this lemma to $f$. $f$ is holomorphic so we get (after some rearranging):
     \begin{align*}
-        \frac{f(w)-f(z)}{w-z} = g(w) &= \frac{\partial f}{\partial z}(z) + \frac{o((z-w))}{w-z}\\
-        \text{(let w be close to z) }&=\frac{\partial f}{\partial z}(z)\\
+        \frac{f(w)-f(z)}{w-z} = g(w) &= \frac{\partial f}{\partial z}(z) + \frac{o( \, \abs{ z-w } ) }{w-z}\\
+        \text{(let w be close to z) }&=\frac{\partial f}{\partial z}(z).
     \end{align*}
     Now g can be extended to a continuous function on all $\Omega$ (before it was defined for $w \neq z$) by letting $g(z) = \frac{\partial f}{\partial z}(z)$. Thus:
-    
     \begin{align*}
         \abs{\int_{\partial C_\epsilon} g(w)  \dif w} &\leq L(C_\epsilon) \cdot \sup_{w\in C_\epsilon} \abs{g(w)}\\
-        &= 2\pi \epsilon \underbrace{\sup_{w\in C_\epsilon} \abs{g(w)}}_{\text{bd. by (5.4)}}\\
+        &= 2\pi \epsilon \cdot \underbrace{\sup_{w\in C_\epsilon} \abs{g(w)}}_{\text{bd. by (\ref{lem:taylor-C1})}}. \\
         \text{(letting $\epsilon \rightarrow 0$) } & \Downarrow\\
-        0 = \int_{\partial C_\epsilon} g(w)  \dif w &= \int_{\partial C_\delta} g(w)  \dif w
+        0 = \int_{\partial C_\epsilon} g(w)  \dif w &= \int_{\partial C_\delta} g(w)  \dif w.
     \end{align*}
     
     Then:
-    
     \begin{align*}
-        \int_{\partial C_\delta} g(w)  \dif w &= \int_{\partial C_\delta} \frac{f(w)}{w-z}  \dif w - f(z) \underbrace{\int_{\partial C_\delta} \frac{ \dif w}{w-z}}_{compute}
+        \int_{\partial C_\delta} g(w)  \dif w &= \int_{\partial C_\delta} \frac{f(w)}{w-z}  \dif w - f(z) \underbrace{\int_{\partial C_\delta} \frac{ \dif w}{w-z}}_{compute}.
     \end{align*}
-    Let $w=z+\delta e^{it}, t\in [0,2\pi]$:
-    
+    Letting $w=z+\delta e^{it}, t\in [0,2\pi]$:
     \begin{align*}
         \int_{\partial C_\delta} \frac{ \dif w}{w-z} &= \int_{0}^{2\pi} \frac{i\delta e^{it}}{\delta e^{it}} \dif t\\
-        &= i\int_{0}^{2\pi} \dif t =2 \pi i
+        &= i\int_{0}^{2\pi} \dif t =2 \pi i.
     \end{align*}
-    
     Thus:
-    
     \begin{align*}
-         f(z) = \frac{1}{2\pi i}\int_{\partial C_\delta} \frac{f(w)}{w-z}  \dif w 
+         f(z) = \frac{1}{2\pi i}\int_{\partial C_\delta} \frac{f(w)}{w-z}  \dif w.
     \end{align*}
     
     This proves (4) when $z=z_0$. To finish the proof we assume $z_0 \neq z$.
@@ -381,44 +357,39 @@ The proof will take a $(1) \Rightarrow (2) \Leftrightarrow (3) \Rightarrow (4) \
     \end{center}
     
     Consider the function in $w\in\Omega'$, given by$\frac{f(w)}{w-z}$. This is holomorphic and $C^1$ in $\Omega'$ (since $z \notin \Omega'$). Applying (3) gives us:
-    
     \begin{align*}
-        0 = \int_{\partial \Omega'} \frac{f(w)}{w-z}  \dif w &= \int_{\partial D_\delta (z_0)} \frac{f(w)}{w-z}  \dif w - \underbrace{\int_{\partial D_\epsilon (z)} \frac{f(w)}{w-z}  \dif w}_{=2\pi i  \text{ by above}}\\
-        &= \int_{\partial D_\delta (z_0)} \frac{f(w)}{w-z}  \dif w - 2\pi i f(w)\\
+        0 = \int_{\partial \Omega'} \frac{f(w)}{w-z}  \dif w &= \int_{\partial D_\delta (z_0)} \frac{f(w)}{w-z}  \dif w - \underbrace{\int_{\partial D_\epsilon (z)} \frac{f(w)}{w-z}  \dif w}_{=2\pi i f(z) \text{ by above}}\\
+        &= \int_{\partial D_\delta (z_0)} \frac{f(w)}{w-z}  \dif w - 2\pi i f(z)\\
         &\Downarrow\\
-        f(z) &= \frac{1}{2\pi i}\int_{\partial C_\delta} \frac{f(w)}{w-z} \dif w
+        f(z) &= \frac{1}{2\pi i}\int_{\partial C_\delta} \frac{f(w)}{w-z} \dif w,
     \end{align*}
     Which proves it in all cases.
     
     
 \item[$(4) \Rightarrow (5):$] Fix a disc $D= D_r(z_0) \ssubset \Omega$. Let $z\in D$. By (4) then:
-
 \begin{align*}
-    f(z) &= \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w
+    f(z) &= \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w.
 \end{align*}
     
-We expand $\frac{1}{w-z}$ in a power series centered at $z_0$ (so we look for a power series in ($z-z_0$)). First note that:
-
+We expand $\frac{1}{w-z}$ in a power series centered at $z_0$ (so we look for a power series in $(z-z_0)$). First note that:
 \begin{align*}
     \text{(since w $\in \partial D$)  } \abs{w-z_0} &= r\\
     \text{(since z $\in D \setminus \partial D$)  } \abs{z-z_0} &< r\\
-    \implies \abs{\frac{z-z_0}{w-z_0}} &< 1
+    \implies \abs{\frac{z-z_0}{w-z_0}} &< 1.
 \end{align*}
 Thus:
 \begin{align*} 
     \frac{1}{w-z} = \frac{1}{w-z_0-(z-z_0)} &= \frac{1}{w-z_0} \cdot \frac{1}{1-   \underbrace{ \left( \frac{z-z_0}{w-z_0} \right)   }_{<1}}\\
-    &= \frac{1}{w-z_0} \underbrace{ \sum_{n=0}^\infty \left( \frac{z-z_0}{w-z_0} \right)^n }_{\text{absolutely convergent}}
+    &= \frac{1}{w-z_0} \underbrace{ \sum_{n=0}^\infty \left( \frac{z-z_0}{w-z_0} \right)^n }_{\text{absolutely convergent}}.
 \end{align*}
     
 Applying this to the Cauchy Integral Formula gives us:
-
 \begin{align*}
      f(z) &= \frac{1}{2\pi i} \int_{\partial D} \left( \sum_{n=0}^\infty \left( \frac{z-z_0}{w-z_0} \right)^n \frac{f(w)}{w-z_0} \right) \dif w\\
-     \text{(sum ab. conv.) } &= \sum_{n=0}^\infty \underbrace{ \left[  \frac{1}{2\pi i} \int_{\partial D}  \frac{f(w)}{(w-z_0)^{n+1}} \dif w  \right] }_{a_n} (z-z_0)^n \\
+     \text{(sum ab. conv.) } &= \sum_{n=0}^\infty \underbrace{ \left[  \frac{1}{2\pi i} \int_{\partial D}  \frac{f(w)}{(w-z_0)^{n+1}} \dif w  \right] }_{a_n} (z-z_0)^n.
 \end{align*}
     
-Thus $f$ is analytic and is given by the formula claimed in (5). Finally $a_n = \frac{f^{(n)} (z_0)}{n!}$. Indeed if $f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$ absolutely convergent on some disc $D$, then we proved that $f(z)$ is holomorphic and you can differentiate this power series term by term. This gives:
-
+Thus $f$ is analytic and is given by the formula claimed in (5). Finally $a_n = \frac{f^{(n)} (z_0)}{n!}$. Indeed if $f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$ absolutely convergent on some disc $D \ni z$, then we proved that $f(z)$ is holomorphic and you can differentiate this power series term by term. This gives:
 \begin{align*}
     &f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n\\
     \implies &f(z_0) = a_0\\
@@ -428,27 +399,25 @@ Thus $f$ is analytic and is given by the formula claimed in (5). Finally $a_n = 
     \implies &f''(z_0) = 2\cdot a_2\\
     &\vdots \\
     &f^{(k)}(z) = \sum_{n=k}^\infty n(n-1)\hdots(n-k+1) \cdot a_n (z-z_0)^{n-k}\\
-    \implies &f^{(k)}(z_0) = k! \cdot a_k\\
+    \implies &f^{(k)}(z_0) = k! \cdot a_k.
 \end{align*}
 
 This result holds for all convergent power series, thus it holds for this one in particular.
     
-    
-    
-    
-\item[$(1) \Rightarrow (2):$] Assume $f$ holomorphic on $\Omega$. $f$ satisfies the CR equations by (1.5). Use the local existence of antiderivatives. 
+\item[$(1) \Rightarrow (2):$] Assume $f$ holomorphic on $\Omega$. $f$ satisfies the CR equations by (\ref{thm:holc-implies-CR}). We must now prove that $f \in C^1$. We use corollary (\ref{cor:local-prim}).
 
-$\forall z \in \Omega \, \exists D = D_r(z) \ssubset \Omega$, by the local existence of antiderivatives, $\exists F: \Omega \rightarrow \mathbb{C}$ holomorphic and $F' = f$. $F$ is holomorphic and $C^1$ (both of its derivatives are continuous) since $\frac{\partial F}{ \partial \overline{z}} =0$ and $\frac{\partial F}{ \partial z} =f(z)$ which is $C^0$ (since holomorphic functions are continuous). Thus $F$ satisfies (2) on $D$, and thus $F$ satisfies (5) and is analytic on $D$. Thus so is $f= F'$ (since the derivative of a convergent power series is also a convergent power series).
+$\forall z \in \Omega \, \exists D = D_r(z) \ssubset \Omega$, by corollary (\ref{cor:local-prim}), $\exists F: \Omega \rightarrow \mathbb{C}$ holomorphic and $F' = f$. $F$ is holomorphic and $C^1$ (both it and its derivative are continuous) since $\frac{\partial F}{ \partial \overline{z}} =0$ and $\frac{\partial F}{ \partial z} =f(z)$ which is $C^0$ (since holomorphic functions are continuous). Thus $F$ satisfies (2) on $D$, and thus $F$ satisfies (5) and is analytic on $D$. Thus so is $f= F'$ (since the derivative of a convergent power series is also a convergent power series). Power series are $C^1$ and so we're done.
    
    
-\item[$(5) \Rightarrow (1):$] This was discussed when complex power series were discussed, and is a direct application of theorem (2.3).
+\item[$(5) \Rightarrow (1):$] This was discussed when complex power series were discussed, and is a direct application of theorem (\ref{thm:power-series-implies-CR}).
     
     
 \end{enumerate}
 
+And so we are done the proof.
 \end{proof} 
 
 
 \begin{note}
-In statement (2), (3), and (4), $f\in C^1(\Omega)$ means that $f\in C^1$ in the real sense. That is to say that for $u,v$ such that $f=u+iv$ then $u,v \in C^1$.
+In statements (2), (3), and (4), $f\in C^1(\Omega)$ means that $f\in C^1(\Omega)$ in the real sense. That is to say that for $u,v$ such that $f=u+iv$ then $u,v \in C^1(\Omega)$.
 \end{note}
