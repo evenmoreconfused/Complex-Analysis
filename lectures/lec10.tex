@@ -15,21 +15,19 @@ Let $\oic$ open, $z_0 \in \om$, $f: \omP \to \C$ holomorphic. Then $z_0$ is a po
 
 \begin{definition}[Singularity]
 
-Let $\oic$ open, $z_0 \in \om$, $f: \omP \to \C$ holomorphic. $z_0$ is said to be a \textbf{singularity }of $f$ if $f$ cannot be extended to a holomorphic function over all of $\om$ (especially at $z_0$).
+Let $\oic$ open, $z_0 \in \om$, $f: \omP \to \C$ holomorphic. $z_0$ is said to be a \textbf{singularity} of $f$ if $f$ cannot be extended to a holomorphic function over all of $\om$ (especially at $z_0$).
 
 \end{definition}
 
 
 \begin{theorem}
 Let $0 \leq r < R $. Consider $A = \set{ z\in \C \, \mid \, r< \abs{z-z_0} <R }$ (when $r=0$ this gives you a punctured disk). Let $f: A \to \C$ holomorphic. Then for every $r<r'<R'<R$, we can write $f$ as a Laurent series:
-
 \begin{align*}
-    f(z) = \sum_{-\infty}^\infty a_n (z-z_0)^n
+    f(z) &= \sum_{-\infty}^\infty a_n (z-z_0)^n & r' \leq \abs{z-z_0} \leq R',
 \end{align*}
-for $r' \leq \abs{z-z_0} \leq R'$, and this series is absolutely convergent on this smaller annulus $\set{ z\in \C \, \mid \, r'< \abs{z-z_0} <R' }$ and $\forall u \in (r,R)$:
-
+and this series is absolutely convergent on this smaller annulus $\set{ z\in \C \, \mid \, r'< \abs{z-z_0} <R' }$ and $\forall u \in (r,R)$:
 \begin{align*}
-    a_n = \frac{1}{2 \pi i} \int_{\abs{z-z_0}=u} \frac{f(w)}{(w-z_0)^{n+1}} \dif w
+    a_n = \frac{1}{2 \pi i} \int_{\abs{z-z_0}=u} \frac{f(w)}{(w-z_0)^{n+1}} \dif w.
 \end{align*}
 \end{theorem}
 
@@ -62,15 +60,14 @@ When we say that $\sum_{-\infty}^\infty a_n (z-z_0)^n$ is absolutely convergent 
 
 \begin{example}
 Consider $f(z) = e^{\frac{1}{z}}$ on $\C^* = \C \setminus \{ 0 \}$. The Laurent series on any annulus $\set{r < \abs{z} < R}$ is given by:
-
 \begin{align*}
-    f(z) = \sum_{n=0}^\infty \frac{z^{-n}}{n!}
+    f(z) = \sum_{n=0}^\infty \frac{z^{-n}}{n!}.
 \end{align*}
 
 \end{example}
 
 \begin{proof}
-On smaller annulus, $f$ is holomorphic by assumption, so we apply Cauchy's integral formula. Noting that $r' \leq \abs{z-z_0} \leq R'$:
+On smaller annulus, $f$ is holomorphic by assumption, so we apply equation (\ref{eq:cauchy-int-fla}). Noting that $r' \leq \abs{z-z_0} \leq R'$:
 
 
 
@@ -120,13 +117,12 @@ On smaller annulus, $f$ is holomorphic by assumption, so we apply Cauchy's integ
 
 
 \begin{align*}
-    f(z) &= \frac{1}{2 \pi i} \int_{\abs{w- z_0} = R} \frac{f(w)}{w-z} \dif w - \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{w-z} \dif w
+    f(z) &= \frac{1}{2 \pi i} \int_{\abs{w- z_0} = R} \frac{f(w)}{w-z} \dif w - \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{w-z} \dif w.
 \end{align*}
-using the fact that $w-z = w-z_0 -(z-z_0) = (z-z_0) \left( \frac{w-z_0}{z-z_0} -1 \right)$:
-
+Using the fact that $w-z = w-z_0 -(z-z_0) = (z-z_0) \left( \frac{w-z_0}{z-z_0} -1 \right)$:
 \begin{align*}
-    f(z) &= \sum_{n=0}^\infty a_n (z-z_0)^n - \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{w-z} \dif w\\
-    \text{with } a_n &= \frac{1}{2 \pi i} \int_{\abs{w- z_0} = R} \frac{f(w)}{(w-z_0)^{n+1}} \dif w
+    f(z) &= \sum_{n=0}^\infty a_n (z-z_0)^n - \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{w-z} \dif w,\\
+    \text{with } a_n &= \frac{1}{2 \pi i} \int_{\abs{w- z_0} = R} \frac{f(w)}{(w-z_0)^{n+1}}. \dif w
 \end{align*}
 Note that we cannot use the same trick for the second term since $f$ is not holomorphic inside the disk (so the power series does not converge in it). We can still do something similar. Noting that:
 
@@ -154,29 +150,24 @@ Note that we cannot use the same trick for the second term since $f$ is not holo
 \end{center}
 
 
-
-
 \begin{align*}
-    w-z &= - (z-z_0) \left(   1-  \frac{w-z_0}{z-z_0} \right)\\
-\text{and that } \abs{\frac{w-z_0}{z-z_0}} &\leq \frac{r}{r'} < 1
+    w-z &= - (z-z_0) \left(   1-  \frac{w-z_0}{z-z_0} \right),\\
+\text{and that } \abs{\frac{w-z_0}{z-z_0}} &\leq \frac{r}{r'} < 1,
 \end{align*}
-
-We get that:
-
+we get that:
 \begin{align*}
     -\frac{1}{w-z} &= \frac{1}{z-z_0} \cdot \frac{1}{1-\frac{w-z_0}{z-z_0}}\\ &= \frac{1}{z-z_0} \cdot \sum_{n=0}^\infty \left( \frac{w-z_0}{z-z_0} \right)^n\\
     &= \sum_{n=0}^\infty \frac{(w-z_0)^n}{(z-z_0)^{n+1}}\\
     \text{(relabel) } &= \sum_{n=0}^{-\infty} \frac{(z-z_0)^{n-1}}{(w-z_0)^n}\\
-    \text{(relabel) } &= \sum_{n=-1}^{-\infty} \frac{(z-z_0)^{n}}{(w-z_0)^{n+1}}
+    \text{(relabel) } &= \sum_{n=-1}^{-\infty} \frac{(z-z_0)^{n}}{(w-z_0)^{n+1}}.
 \end{align*}
 
 This new representation of $\frac{-1}{w-z}$ has strictly negative powers of $(z-z_0)$, exactly what we want:
-
 \begin{align*}
     f(z) &= \sum_{n=0}^\infty a_n (z-z_0)^n - \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{w-z} \dif w\\
-    &= \sum_{n=0}^\infty a_n (z-z_0)^n + \sum_{n=-1}^{-\infty} a_n (z-z_0)^n\\
+    &= \sum_{n=0}^\infty a_n (z-z_0)^n + \sum_{n=-1}^{-\infty} a_n (z-z_0)^n,
 \end{align*}
-Where the $a_n$ in the second part of the sum comes from the same formula that gave us $a_n$ in the first part of the sum: $a_n = \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{(w-z_0)^{n+1}} \dif w$. Note that you can use any radius you want that is in the annulus, especially $r$ and $R$. The integral evaluates to the same thing by Cauchy's Theorem.
+where the $a_n$ in the second part of the sum comes from the same formula that gave us $a_n$ in the first part of the sum: $a_n = \frac{1}{2 \pi i} \int_{\abs{w- z_0} = r} \frac{f(w)}{(w-z_0)^{n+1}} \dif w$. Note that you can use any radius you want that is in the annulus, especially $r$ and $R$. The integral evaluates to the same thing by theorem (\ref{thm:cauchy-theorem}).
 \end{proof}
 
 
@@ -189,12 +180,11 @@ Laurent series allow us to study isolated singularities.
 
 \section{Classification of Singularities}
 \isubsection{THM: Riemann Extension Theorem}
-\begin{theorem}[Riemann Extension Theorem]
+\begin{theorem}[Riemann Extension Theorem]\label{thm:r-extension-thm}
 Let $\oic$ open , $z_0\in \om$, $f: \omP \to \C$ holomorphic. Suppose that $\sup_{\omP}\abs{f} < \infty$. Then $\exists ! \Tilde{f}: \om \to \C$ holomorphic s.t. $\Tilde{f}\mid_{\omP} = f$.
 \end{theorem}
+
 \begin{definition}[Removable Singularities and Holomorphic Extensions]
-
-
 We call this $\Tilde{f}$ a \textbf{holomorphic extension} of $f$ across $z_0$, and we will say that $z_0$ is a \textbf{removable singularity} of $f$.
 
 \end{definition}
@@ -202,32 +192,27 @@ We call this $\Tilde{f}$ a \textbf{holomorphic extension} of $f$ across $z_0$, a
 
 
 \begin{remark}
-If $\Tilde{f}: \om \to \C$ holomorphic and we call $f=\Tilde{f}\mid_{\omP}$ then obviously $\sup_{D_r(z_0)\setminus \{z_0\} } \abs{f} < \infty$ for $r$ small.
-
-Thus boundedness of $\, \abs{f}$ is necessary and sufficient for $z_0$ being a removable singularity.
+If $\Tilde{f}: \om \to \C$ holomorphic and we call $f=\Tilde{f}\mid_{\omP}$ then obviously $\sup_{D_r(z_0)\setminus \{z_0\} } \abs{f} < \infty$ for $r$ small, thus boundedness of $\, \abs{f}$ is necessary and sufficient for $z_0$ being a removable singularity.
 \end{remark}
 
-\begin{proof}
-Let $R>0$ small enough that $D_R(z_0) \ssubset \om$, and so $\abs{f(z) } \leq C$ for some $C>0$, $\forall z$ such that $0 < \abs{z-z_0} < R$. Expand $f$ in Laurent series on this annulus:
-
+\begin{proof}[\ref{thm:r-extension-thm}]
+Let $R>0$ small enough such that $D_R(z_0) \ssubset \om$, and so $\abs{f(z) } \leq C$ for some $C>0$, $\forall z$ such that $0 < \abs{z-z_0} < R$. Expand $f$ in Laurent series on this annulus:
 \begin{align*}
-    f(z) &= \sum_{-\infty}^\infty a_n (z-z_0)n\\
-    \text{with } a_n &= \int_{\abs{w-z_0} = R} \frac{f(w)}{(w-z_0)^{n+1}} \dif w
+    f(z) &= \sum_{-\infty}^\infty a_n (z-z_0)n,\\
+    \text{with } a_n &= \int_{\abs{w-z_0} = R} \frac{f(w)}{(w-z_0)^{n+1}} \dif w.
 \end{align*}
 
 So for $n = -m$, $m > 0$ (ie $n<0$):
-
 \begin{align*}
     \abs{a_{-m}} &\leq \frac{1}{2 \pi } \cdot \abs{\int_{\abs{w-z_0} =R} \frac{f(w)}{(w-z_0)^{-m+1}}  \dif w}\\
     &= \frac{1}{2 \pi } \cdot \abs{\int_{\abs{w-z_0} =R} f(w)(w-z_0)^{m-1}  \dif w}\\
     \text{let ($w(t) = z_0 +Re^{it}$) } &= \abs{\int_{\abs{w-z_0} =R} f(z_0 +Re^{it})R^{m-1} +Re^{i(m-1)t} Ri e^{it}  \dif t}\\
-    &\leq R^m \cdot C \xrightarrow[]{R\to 0} 0
+    &\leq R^m \cdot C \xrightarrow[]{R\to 0} 0.
 \end{align*}
 
 Where the final line comes from the fact that $\abs{f}$ is bounded, and the fact that $\abs{e^{ix}} = 1$. Thus letting $R \to 0$ we get that $\abs{a_{-m}} = 0 \, \forall m>0$. Thus the Laurent series has no negative powers.
 
 Let $\Tilde{f}(z) = \sum_{n=0}^\infty a_m (z-z_0)^n$ on $D_R(z_0)$. This agrees with $f$ on $D_R(z_0) \setminus \{ z_0 \}$, so we get a holomorphic extension of $f$ across $z_0$. The uniqueness of $\Tilde{f}$ was already discussed (compare to analytic continuation).
-
 \end{proof}
 
 \begin{corollary}
@@ -240,7 +225,7 @@ $f: \omP \to \C$ holomorphic. $f$ has a pole at $z_0$ iff $\abs{f(z)} \xrightarr
     
     \item[$\Leftarrow$] Since $f$ goes to infinity near $z_0$, $f(z) \neq 0$ $ \forall z \in D_r(z_0) \setminus \{ z_0 \}$ for some $r>0$ small. Thus $\frac{1}{f(z)}$ is holomorphic on $D_r(z_0) \setminus \{ z_0 \}$ and $\sup_{D_r(z_0) \setminus \{ z_0 \}} \frac{1}{\abs{f(z)}} \leq C$ since $\abs{f} \to \infty$.
     
-    Since $\frac{1}{f(z)}$ is holomorphic and bounded, Riemann extension applies to it. Thus $z=z_0$ is a removable singularity of $\frac{1}{f(z)}$, and since $\abs{f} \to \infty$ then $\abs{\frac{1}{f}} \xrightarrow[]{z\to z_0} 0$. Thus the holomorphic extension of $\frac{1}{f(z)}$ at $z_0$ has vale 0. Thus $z_0$ is a pole of $f$.
+    Since $\frac{1}{f(z)}$ is holomorphic and bounded, theorem (\ref{thm:r-extension-thm}) applies to it. Thus $z=z_0$ is a removable singularity of $\frac{1}{f(z)}$, and since $\abs{f} \to \infty$ then $\abs{\frac{1}{f}} \xrightarrow[]{z\to z_0} 0$. Thus the holomorphic extension of $\frac{1}{f(z)}$ at $z_0$ has value 0. Thus $z_0$ is a pole of $f$.
 \end{enumerate}
 \end{proof}
 
@@ -252,21 +237,17 @@ We can now examine the 3 different kinds of poles.
 $z_0 \in \om$, $f: \omP \to \C$ holomorphic ($z_0$ is a singularity of $f$).
 
 There are three mutually exclusive cases:
-
 \begin{enumerate}
-    \item $z_0$ is a \textbf{removable singularity} of $f$ $\iff$ $\abs{f} < C$ near $z_0$ (iff by Riemann extension)
+    \item $z_0$ is a \textbf{removable singularity} of $f$ $\iff$ $\abs{f} < C$ near $z_0$ (iff by theorem (\ref{thm:r-extension-thm})),
     
-    \item $z_0$ is a \textbf{pole} of $f$ $\iff$ $\abs{f} \xrightarrow[]{z\to z_0} \infty$
+    \item $z_0$ is a \textbf{pole} of $f$ $\iff$ $\abs{f} \xrightarrow[]{z\to z_0} \infty$,
     
-    \item $z_0$ is an \textbf{essential singularity} of $f$ $\iff$ $z_0$ is neither removable nor a pole
+    \item $z_0$ is an \textbf{essential singularity} of $f$ $\iff$ $z_0$ is neither removable nor a pole.
 \end{enumerate}
 \end{definition}
 
 \begin{example}
-$f(z) = e^{\frac{1}{z}}$ has an essential singularity at $z_0 = 0$.
-
-Consider $\abs{e^{\frac{1}{z}}}$ as $z\to 0$.
-
+$f(z) = e^{\frac{1}{z}}$ has an essential singularity at $z_0 = 0$. Consider $\abs{e^{\frac{1}{z}}}$ as $z\to 0$:
 \begin{enumerate}
     \item[$0<z \in \R$:] $e^{\frac{1}{z}} \xrightarrow[]{x \to 0} +\infty$\\
     \item[$0>z \in \R$:] $e^{\frac{1}{z}} \xrightarrow[]{x \to 0} 0$\\
@@ -293,8 +274,7 @@ Let $f(z) = \sum_{n=-\infty}^\infty a_n (z-z_0)^n$. Three distinct cases:
 \end{note}
 
 \isubsection{THM: Casorati-Weierstra{\ss}}
-\begin{theorem}[Casorati-Weierstra{\ss}]
-
+\begin{theorem}[Casorati-Weierstra{\ss}]\label{thm:caso-weier}
 Suppose $f: \omP \to \C$ holomorphic and $z_0$ an essential singularity. Then $\forall r> 0$ small such that $D_r(z_0) \subset \om$, we have that $f(D_r(z_0) \setminus \{ z_0 \})$ is dense in $\C$.
 \end{theorem}
 
@@ -308,8 +288,8 @@ Then $\abs{g(z)} < \frac{1}{\delta} \, \forall z \in A$, so $z_0$ is a removable
 
 
 \begin{enumerate}
-    \item[$g(z_0) \neq 0$:] $g(z) = \frac{1}{f(z) - w}$, $g(z) \neq 0$ near $z_0$, thus we take $\frac{1}{g(z)} + w = f(z)$. Since this is a sum of two holomorphic functions, $f$ is also holomorphic at $z_0$. Thus $z_0$ is a removable singularity of $f$. $\lightning$
-    \item[$g(z_0) = 0$:] Then since $g\neq 0$,  $z_0$ is an isolated zero of $g$ with an order of vanishing of $N \geq 1$. So $f(z) = w + \frac{1}{g(z)}$. This is holomorphic on $A$ as the sum of two functions that are holomorphic on $A$. Since $\frac{1}{g(z)}$ has a pole at $z_0$, so does $f(z)$. $\lightning$
+    \item[$g(z_0) \neq 0$:] $g(z) = \frac{1}{f(z) - w}$, $g(z) \neq 0$ near $z_0$, thus we take $\frac{1}{g(z)} + w = f(z)$. Since this is a sum of two holomorphic functions, $f$ is also holomorphic at $z_0$. Thus $z_0$ is a removable singularity of $f$, which is absurd.
+    \item[$g(z_0) = 0$:] Then since $g\neq 0$,  $z_0$ is an isolated zero of $g$ with an order of vanishing of $N \geq 1$. So $f(z) = w + \frac{1}{g(z)}$. This is holomorphic on $A$ as the sum of two functions that are holomorphic on $A$. Since $\frac{1}{g(z)}$ has a pole at $z_0$, so does $f(z)$, which is absurd.
 \end{enumerate}
 
 
@@ -328,7 +308,7 @@ Poles are special enough that we give a name to functions that are composed of o
 
 
 \begin{definition}[Meromorphic Functions]
-A function $f$ on $\om$ open is called \textbf{meromorphic} if there is a countable collection $\{ z_i \}_{i=0}^\infty \subset \om$ of points with no accumulation point inside $\om$ (the boundary is possible), and $f: \om \setminus \bigcup_{j=0}^\infty \{ z_j \} \to \C $ holomorphic function such that $z_j$'s are all poles of $f$.
+A function $f$ on $\om$ open is called \textbf{meromorphic} if there is a countable collection $\{ z_i \}_{i=0}^\infty \subset \om$ of points with no accumulation point inside $\om$ (accumulation points on the boundary is possible), and $f: \om \setminus \bigcup_{j=0}^\infty \{ z_j \} \to \C $ holomorphic function such that $z_j$'s are all poles of $f$.
 \end{definition}
 
 

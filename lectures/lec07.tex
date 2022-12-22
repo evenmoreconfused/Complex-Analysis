@@ -11,14 +11,15 @@ We start with a method for bounding the derivatives of a holomorphic function.
 
 \section{Cauchy's Estimates}
 
+double reviewed
+
 \isubsection{THM: Cauchy's Estimates}
 
-\begin{theorem}[Cauchy's Estimates]
+\begin{theorem}[Cauchy's Estimates]\label{thm:cauchy-estimates}
 
-$\foc$ holomorphic function on $\oic$. Let $z_0 \in \om, r>0 $ s.t. $D=D_r(z_0) \ssubset \om$. Then $\forall n\geq 0$:
-
+$\foc$ holomorphic function on $\oic$. Let $z_0 \in \om, r>0 $ s.t. $D=D_r(z_0) \ssubset \om$. Then $\forall n\geq 0$:  
 \begin{align*}
-    \abs{f^{(n)}} \leq \frac{n!}{r^n} \cdot \sup_{\partial D}\abs{f}
+    \abs{f^{(n)}}(z_0) \leq \frac{n!}{r^n} \cdot \sup_{\partial D}\abs{f}
 \end{align*}
 
 \end{theorem}
@@ -30,15 +31,14 @@ This is linked closely to the coefficients of the power series representation of
 
 
 \begin{proof}
-This is a straightforward application of Cauchy's Integral Formula. Parameterize $D$ by $z(t) = z_0 +re^{it}$:
-
+This is a straightforward application of equation (\ref{eq:cauchy-int-fla}). Parameterize $D$ by $z(t) = z_0 +re^{it}$:
 \begin{align*}
     \abs{f^{(n)}} &= \abs{\frac{n!}{2\pi i} \int_{\partial D} \frac{f(z)}{(z-z_0)^{n+1}} \dif z }\\
     &\leq \frac{n!}{2\pi} \abs{\int_{0}^{2\pi} \frac{f(z_0 +re^{it})}{(z_0 +re^{it}-z_0)^{n+1}} \cdot i r e^{it} \dif t }\\
     &\leq \frac{n!}{2\pi} \abs{\int_{0}^{2\pi} \frac{f(z_0 +re^{it})}{r^{n+1}e^{i(n+1)t}} \cdot r e^{it} \dif t }\\
     &\leq  \frac{n!}{2\pi} \abs{\int_{0}^{2\pi} \frac{f(z_0 +re^{it})}{r^{n}e^{int}} \dif t }\\
     &\leq \frac{n!}{2\pi} \int_{0}^{2\pi}  \frac{\abs{ f(z_0 +re^{it})  }}{r^{n}} \dif t \\
-    &\leq \frac{n!}{2\pi} \sup_{\partial D}\abs{f} \int_{0}^{2\pi}  \frac{1}{r^{n}} \dif t  = \frac{n!}{r^n} \sup_{\partial D}\abs{f}\\
+    &\leq \frac{n!}{2\pi} \sup_{\partial D}\abs{f} \int_{0}^{2\pi}  \frac{1}{r^{n}} \dif t  = \frac{n!}{r^n} \sup_{\partial D}\abs{f}.
 \end{align*}
 \end{proof}
 
@@ -53,7 +53,7 @@ A function $f:\C \to \C$, f holomorphic on $\C$, is called an \textbf{entire} ho
 
 \isubsection{COR: Liouville}
 
-\begin{corollary}[Liouville]
+\begin{corollary}[Liouville]\label{cor:liouville}
 
 Consider $f:\C \to \C$ entire holomorphic with $\sup_{z\in \C}\abs{f(z)} \leq C$ for some $C$. Then $f$ is constant.
 
@@ -63,24 +63,22 @@ More generally, $f:\C \to \C$ entire holomorphic with $\abs{f(z)} \leq C\abs{z}^
 
 
 \begin{note}
-This corollary says that if $f$ entire holomorphic grows slower than a polynomial, it is a polynomial. This implies that if $f$ entire holomorphic is not a polynomial, it must grow faster than any polynomial. Some examples are $e^z$, $cos(z)$, and $sin(z)$ (unlike the real case where $cos(z)$ and $sin(z)$ are bounded).
+This corollary says that if $f$ entire holomorphic grows slower than a polynomial, it is a polynomial. This implies that if $f$ entire holomorphic is not a polynomial, it must grow faster than any polynomial. Some examples are $e^z$, $\cos(z)$, and $\sin(z)$ (unlike the real case where $\cos(z)$ and $\sin(z)$ are bounded).
 \end{note}
 
 \begin{proof}
-Since $f$ entire holomorphic, we know that it can be written as a power series that converges everywhere. By Cauchy's Estimates we have an estimate for the growth of this $a_n$.
-
+Since $f$ entire holomorphic, we know that it can be written as a power series that converges everywhere:
 \begin{align*}
-    f(z) = \sum_{n=1}^\infty a_n z^n \text{ (this converges for all $z\in \C$)}
+    f(z) = \sum_{n=1}^\infty a_n z^n \text{ (this converges for all $z\in \C$)}.
 \end{align*}
 
-Applying Cauchy's Estimates on $D_r(0)$ for any $r>0$ gives:
-
+We have an estimate for the growth of this $a_n$; applying theorem (\ref{thm:cauchy-estimates}) on $D_r(0)$ for any $r>0$ gives:
 \begin{align*}
-    \abs{a_n} = \frac{\abs{f^{(n) (0)  }}}{n!} &\leq \frac{\sup_{\partial D_r(0)}\abs{f}}{r^n}\\
-    &\leq \frac{Cr^k}{r^n}
+    \abs{a_n} = \frac{\abs{f^{(n)} (0)  }}{n!} &\leq \frac{\sup_{\partial D_r(0)}\abs{f}}{r^n}\\
+    &\leq \frac{Cr^k}{r^n}.
 \end{align*}
 
-If $n>k$ this implies that $\abs{a_n} \xrightarrow[]{r\to \infty} 0$. Thus: $f(z) = \sum_{n=1}^{k} a_n z^n$ and $f$ is a polynomial of degree at most k.
+If $n>k$ this implies that $\abs{a_n} \xrightarrow[]{r\to \infty} 0$. Thus: $f(z) = \sum_{n=1}^{k} a_n z^n$ and $f$ is a polynomial of degree at most $k$.
 
 \end{proof}
 
@@ -95,20 +93,18 @@ This is equivalent to saying that $\C$ is an algebraically closed field. This is
 
 \begin{proof}
 Suppose that $P$ has no roots. Then the reciprocal is defined. $\frac{1}{P(z)}$ is an entire holomorphic function. We want to bound $\abs{\frac{1}{P(z)}} = \frac{1}{\abs{P(z)}}$. Then $P(z) = z^d( a_d + \frac{a_{d-1}}{z} + \cdots + \frac{a_0}{z^d})$. For $\abs{z} \gg 1$, we can examine $\frac{P(z)}{z^d} = ( a_d + \frac{a_{d-1}}{z} + \cdots + \frac{a_0}{z^d}) \xrightarrow[]{\abs{z}\to \infty} a_d$. That is to say that $\exists R > 0 $ s.t. $\forall \abs{z} > R$ we have:
-
 \begin{align*}
-    \abs{\frac{P(z)}{z^d}} &= \frac{\abs{P(z)}}{\abs{z^d}} > \frac{\abs{a_d}}{2}>0\\
+    \abs{\frac{P(z)}{z^d}} &= \frac{\abs{P(z)}}{\abs{z^d}} > \frac{\abs{a_d}}{2}>0.\\
     &\Downarrow\\
-    \frac{1}{\abs{P(z)}} &\leq \frac{2}{\abs{a_d}} \cdot \frac{1}{\abs{z}^d} \leq C \: \forall \abs{z} > R
+    \frac{1}{\abs{P(z)}} &\leq \frac{2}{\abs{a_d}} \cdot \frac{1}{\abs{z}^d} \leq C \: \forall \abs{z} > R.
 \end{align*}
     
 Then outside the disk $D_R(0)$ $f$ is bounded. $f$ is bounded inside the disk since $\frac{1}{P(z)}$ is holomorphic, thus continuous on $D_R(0)$, and thus bounded inside the compact disk. Thus on $\C$:
-
 \begin{align*}
-     \abs{\frac{1}{P(z)}} \leq C
+     \abs{\frac{1}{P(z)}} \leq C.
 \end{align*}
 
-By Liouville, $\frac{1}{P(z)} $ is a constant. Thus $P(z)$ is a constant. This is a contradiction since we assumed that $P(z) $ had positive degree.
+By corollary (\ref{cor:liouville}), $\frac{1}{P(z)} $ is a constant. Thus $P(z)$ is a constant. This is a contradiction since we assumed that $P(z) $ had positive degree.
 \end{proof} 
 
 \begin{note}
@@ -117,32 +113,28 @@ By repeating this argument we can show that $P(z)$ of degree d has exactly d roo
 
 
 \isubsection{THM: Zeroes are Isolated}
-\begin{theorem}[Zeroes of Holomorphic Functions]
+\begin{theorem}[Zeroes of Holomorphic Functions]\label{thm:isolated-zeroes}
 
 $\foc$ holomorphic, $\om$ open and connected, $f \not\equiv 0$ on $\om$. Then the zeroes for $f$ inside $\om$ are isolated. That is to say that if $f(z_0)=0, \, z_0 \in \om$ then $\exists $V $\subset \om$ open such that $f(z) \neq 0 \, \forall z\in V \setminus \{0\}$.
 
 \end{theorem}
 
 \begin{proof}
-Suppose $z_0$ is a non-isolated zero of $f$.
-
-We claim that $f\equiv 0$ in some neighbourhood of $z_0$. To show the claim, we let $f(z) = \sum_{n=1}^{\infty} a_n (z-z_0)^n$, which is absolutely convergent near $z_0$. Then if the claim is false, $\exists n >0$ s.t. $a_n\neq 0$. Define $g(z) = (z-z_0)^n(a_n+a_{n+1}(z-z_0) + \cdots )$. Then:
-
+Suppose $z_0$ is a non-isolated zero of $f$. We claim that $f\equiv 0$ in some neighbourhood of $z_0$. To show the claim, we let $f(z) = \sum_{n=1}^{\infty} a_n (z-z_0)^n$, which is absolutely convergent near $z_0$. Then if the claim is false, $\exists n >0$ s.t. $a_n\neq 0$. Define $g(z) = a_n+a_{n+1}(z-z_0) + \cdots $. Then:
 \begin{align*}
     f(z) &= (z-z_0)^n(a_n+a_{n+1}(z-z_0) + \cdots )\\
-    &= (z-z_0)^ng(z)\\
+    &= (z-z_0)^ng(z).
 \end{align*}
+$g(z)$ is the power series for $f$, but with coefficients shifted by $n$. Thus $g(z)$ is holomorphic on some small disk centered at $z_0$ (an absolutely convergent power series with shifted coefficients is still absolutely convergent on the same disk). $g(z_0) = a_n \neq 0 \xRightarrow[]{cont} g(z) \neq 0$ for $z$ close to $z_0$. Since $f(z) = (z-z_0)^ng(z)$ we get that $z_0$ cannot be a non-isolated zero of $f$.
 
-$g(z)$ is the power series for $f$, but with coefficients shifted by n. Thus $g(z)$ is holomorphic on some small disk centered at $z_0$ (an absolutely convergent power series with shifted coefficients is still absolutely convergent on the same disk). $g(z_0) = a_n \neq 0 \xRightarrow[]{cont} g(z) \neq 0$ for $z$ close to $z_0$. Since $f(z) = (z-z_0)^ng(z)$ we get that $z_0$ cannot be a non-isolated zero of $f$.
+We return to the theorem. Let $\om ' = \set{ z \in \om | f \equiv 0 \text{ in some neighbourhood of } z }$. The claim shows that $z_0 \in \om '$, and thus $\om ' \neq \varnothing$. $\om '$ is open (since for any point, $f$ is zero around that point). $\om '$ is also closed.
 
-We return to the theorem. Let $\om ' = \{ z \in \om | f \equiv 0 \text{ in some neighbourhood of } z \}$. The claim shows that $z_0 \in \om '$, and thus $\om ' \neq \varnothing$. $\om '$ is open (since for any point, f is zero around that point). $\om '$ is also closed.
-
-To see this, suppose you have a sequence $\{ z_n \}_{n=0}^\infty \in \om ', z_n \xrightarrow[]{n\to \infty} z_\infty \in \om $. $f(z_n) = 0 \xRightarrow[]{cont} f(z_\infty) = 0$. Then $z_\infty$ is a non-isolated zero of $f$ (because it is a limit of zeroes). By the claim $f(z_\infty) \equiv 0 $ around $z_\infty$, thus $z_\infty \in \om '$. Thus $\om '$ is closed. This implies, applying connectedness, that $\om ' = \om$. Thus $f \equiv 0$ on $\om$, contradiction.
+To see this, suppose you have a sequence $\{ z_n \}_{n=0}^\infty \in \om ', z_n \xrightarrow[]{n\to \infty} z_\infty \in \om $. $f(z_n) = 0 \xRightarrow[]{cont} f(z_\infty) = 0$. Then $z_\infty$ is a non-isolated zero of $f$ (because it is a limit of zeroes). By the claim $f \equiv 0 $ around $z_\infty$, thus $z_\infty \in \om '$. Thus $\om '$ is closed. This implies, applying connectedness, that $\om ' = \om$. Thus $f \equiv 0$ on $\om$, contradiction.
 
 \end{proof} 
 
 
-\begin{definition}[Order of Vanishing]
+\begin{definition}[Order of Vanishing]\label{def:order-vanish}
 In the proof we showed that if $f$ holomorphic in $\om \ni z_0, \: f \not\equiv 0$, then we can write $f(z) = (z-z_0)^N g(z)$, where $g \neq 0$ near $z_0$. Then N is called the \textbf{order of vanishing} of $f$ at $z_0$.
 
 
@@ -151,7 +143,7 @@ In the proof we showed that if $f$ holomorphic in $\om \ni z_0, \: f \not\equiv 
 
 \isubsection{COR: Identity Principle}
 
-\begin{corollary}[Identity Principle]
+\begin{corollary}[Identity Principle]\label{cor:ident-princ}
 Suppose you have $f,g: \om \to \C$ holomorphic such that $\exists \{ z_j \}_{j=0}^\infty, \, z_j \xrightarrow[]{j \to \infty} z_\infty \in \om$ (with $z_i \neq z_j$ for $i \neq j$) such that $f(z_j) = g(z_j) \, \forall j$. Then $f \equiv g$ on $\om$.
 \end{corollary}
 
@@ -160,16 +152,16 @@ If $f-g \not\equiv 0$ then the zeroes of $f-g$ must be isolated, but they are no
 \end{proof}
 
 \begin{definition}[Analytic Continuation]
-Suppose you have $\om_1 \subset \om_2 $ open connected. Suppose $f: \om_1 \to \C$ and $F: \om_2 \to \C$ such that $f = F |_{\om_1}$ (ie $f(z) = F(z) \, \forall z \in \om_1$) then $F$ is called an \textbf{analytic continuation} of $f$ to $\om_2$.
+Suppose you have $\om_1 \subset \om_2 $ open connected. Suppose $f: \om_1 \to \C$ holomorphic and $F: \om_2 \to \C$ holomorphic such that $f = F |_{\om_1}$ (ie $f(z) = F(z) \, \forall z \in \om_1$) then $F$ is called an \textbf{analytic continuation} of $f$ to $\om_2$.
 
 \end{definition}
 
 
 \begin{note}[Uniqueness of Analytic Continuations]
 
-The previous corollary shows that if $F$ and $F'$ are both analytic continuations of $f$ to $\om_2$, then $F \equiv F'$ (since the F and F' will agree on $\om_1$ and thus are equal).
+Corollary (\ref{cor:ident-princ}) shows that if $F$ and $F'$ are both analytic continuations of $f$ to $\om_2$, then $F \equiv F'$ (since $F$ and $F'$ will agree on $\om_1$ and thus are equal).
 
-We can thus refer to F as the (unique) analytic continuation of f to $\om_2$.
+We can thus refer to $F$ as the (unique) analytic continuation of $f$ to $\om_2$.
 \end{note}
 
 We now present a bit of review material in preparation for a discussion of normal families.
@@ -184,22 +176,28 @@ Suppose that $\exists \foc$ such that $f_n \to f$ uniformly on compact subsets o
 \begin{proof}
 Uniform convergence on compact subsets means that for any $K \subset \om$ compact then $\sup_{z\in K} \abs{f_n(z) - f(z)} \xrightarrow[]{n \to \infty} 0$. 
 
-Using Goursat (4.1) and Morera (6.1), let $z\in \om$. It suffices to show that $f$ is holomorphic on $D=D_r(z) \ssubset \om $ for some $r>0$. We check that $f$ is holomorphic on D. Let $T \subset D$ a triangle. Then by Goursat $\int_{\partial T} f_n(z) \dif z =  0$. On the other hand, for $D \subset K \subset \om$ compact, then if $f_n \xrightarrow[]{uniform} f$ then it is easy to see that $\int_{\partial T} f_n(z) \dif z \xrightarrow[]{uniform} \int_{\partial T} f(z) \dif z$. Thus $\int_{\partial T} f(z) \dif z = 0$.
+Using theorem (\ref{thm:goursat}) and corollary (\ref{cor:morera}), let $z\in \om$. It suffices to show that $f$ is holomorphic on $D=D_r(z) \ssubset \om $ for some $r>0$. We check that $f$ is holomorphic on $D$. Let $T \subset D$ a triangle. Then by theorem (\ref{thm:goursat}) $\int_{\partial T} f_n(z) \dif z =  0$. On the other hand, for $D \subset K \subset \om$ compact, then if $f_n \tou f$ it is easy to see that $\int_{\partial T} f_n(z) \dif z \tou \int_{\partial T} f(z) \dif z$. Thus $\int_{\partial T} f(z) \dif z = 0$.
 \end{proof}
 
 \begin{note}
-This proposition says that if f is a uniform limit of holomorphic functions, then f is also holomorphic. This is quite bizarre; a uniform limit of smooth functions on a compact set need not be smooth. Stone-Weierstrass says that every continuous function can be uniformly approximated by polynomials (both smooth and analytic), and thus that every continuous function is a uniform limit. This is quite different compared to the complex case.
+This proposition says that if $f$ is a uniform limit of holomorphic functions, then $f$ is also holomorphic. This is quite bizarre; a uniform limit of smooth functions on a compact set need not be smooth. Stone-Weierstrass says that every continuous function can be uniformly approximated by polynomials (both smooth and analytic), and thus that every continuous function is a uniform limit. This is quite different compared to the complex case.
 \end{note}
 
 
 
-\begin{theorem}[Ascoli-Arzelà]
-Let $\om$ open. Let $\{f_n \}_{n=0}^\infty, \, f_n : \om \to \C$ holomorphic on $\om$. Suppose that $f_n$ is uniformly bounded (ie $\sup_{z\in \om} \abs{f_n(z)} < C$ for some C) and that $\{f_n\}$ are uniformly equi-continuous on $\om$ (ie $\forall \epsilon \exists \delta$ s.t. if $\abs{x-y} < \delta, \, x,y \in \om$, then $\abs{f_n(x) - f_n(y)} < \epsilon$ for all n). Then $\exists \foc$ continuous (and holomorphic by the previous proposition) such that $f_{n_j} \xrightarrow[]{uniform} f$ for some subsequence $n_j$ on compact subsets of $\om$.
+\begin{theorem}[Ascoli-Arzelà]\label{thm:ascoli-arzela}
+Let $\om$ open. Let $\{f_n \}_{n=0}^\infty, \, f_n : \om \to \C$ holomorphic on $\om$. Suppose that
+\begin{itemize}
+    \item $f_n$ is uniformly bounded (ie $\sup_{z\in \om} \abs{f_n(z)} < C$ for some $C$),
+    \item $\set{ f_n }$ are uniformly equicontinuous on $\om$ (ie $\forall \epsilon \exists \delta$ s.t. if $\abs{x-y} < \delta, \, x,y \in \om$, then $\abs{f_n(x) - f_n(y)} < \epsilon$ for all n).
+\end{itemize}
+
+Then $\exists \foc$ continuous (and holomorphic by the previous proposition) such that $f_{n_j} \tou f$ for some subsequence $n_j$ on compact subsets of $\om$.
 
 \end{theorem}
  
-\begin{note}
-Usually Ascoli-Arzelà is assumed on K compact, which results in the uniform convergence on K. This is an extension of the usual form. If you have the assumptions on all of $\om$, then in particular you have them for all compact subsets. Thus for every compact set you obtain a uniform limit, and by exhaustion you can see that the limit will always have to be the same function.
+\begin{note}\label{note:after-ascoli-arzela}
+Usually Ascoli-Arzelà is assumed on $K$ compact, which results in the uniform convergence on $K$. This is an extension of the usual form. If you have the assumptions on all of $\om$, then in particular you have them for all compact subsets. Thus for every compact set you obtain a uniform limit, and by exhaustion you can see that the limit will always have to be the same function.
 
 Ascoli-Arzelà tells you that on a compact set you have a uniform limit, which is therefore continuous, and the previous proposition tells you that this limit is holomorphic.
- \end{note}
+\end{note}

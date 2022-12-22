@@ -183,14 +183,28 @@ Then both $\int_{\partial \Omega} (u \dif x-v \dif y)$ and $\int_{\partial \Omeg
 We now get to the key result of this chapter:
 
 \isubsection{THM: Cauchy's Theorem}
-\begin{theorem}[Cauchy's Theorem]
+\begin{theorem}[Cauchy's Theorem]\label{thm:cauchy-theorem}
 $\Omega \subset \mathbb{C}$ open, connected, $f:\Omega \rightarrow \mathbb{C}$. Then the following are equivalent:
 \begin{enumerate}
     \item f is holomorphic (in $\Omega$).
     \item $f\in C^1(\Omega)$ and $\frac{\partial f}{\partial \overline{z}} = 0$ on $\Omega$ (CR equation).
-    \item $f\in C^1(\Omega)$ and $\forall \Omega' \ssubset \Omega$ (\, $\overline{\Omega'} \subset \Omega$ and compact) then $\int_{\partial \Omega'} f(z) \dif z = 0$.
-    \item $f\in C^1(\Omega)$ and $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w$ (Cauchy's Integral Formula).
-    \item $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have $f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$, and this power series is absolutely convergent on D (ie $f$ is analytic on $\Omega$) and $\forall n\geq 0$, $a_n = \frac{f^{(n)}(z_0) }{n!} = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{(w-z)^{n+1}}  \dif w$.
+    \item $f\in C^1(\Omega)$ and $\forall \Omega' \ssubset \Omega$ (\, $\overline{\Omega'} \subset \Omega$ and compact) then
+    \begin{align*}
+        \int_{\partial \Omega'} f(z) \dif z = 0.
+    \end{align*}
+    \item $f\in C^1(\Omega)$ and $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have 
+    \begin{align}\label{eq:cauchy-int-fla}
+        f(z) = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{w-z}  \dif w,
+    \end{align}
+     known as Cauchy's Integral Formula.
+    \item $\forall D = D_r(z_0) \ssubset \Omega$ and $\forall z\in D$ we have
+    \begin{align*}
+        f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n,
+    \end{align*}
+    and this power series is absolutely convergent on D (ie $f$ is analytic on $\Omega$) and
+    \begin{align*}
+        a_n &= \frac{f^{(n)}(z_0) }{n!} = \frac{1}{2\pi i} \int_{\partial D} \frac{f(w)}{(w-z)^{n+1}}  \dif w &\forall n \geq 0.
+    \end{align*}
 \end{enumerate}
 \end{theorem}
 
@@ -201,11 +215,11 @@ $\Omega \subset \mathbb{C}$ open, connected, $f:\Omega \rightarrow \mathbb{C}$. 
 \begin{note}
 Note that ($1 \leftrightarrow 2$) gained us some depth compared to before. As discussed $f$ holomorphic implies that $f$ is $C^0$, but now we know it is $C^1$ (in fact (5) implies that $f$ is $C^\infty$).
 
-Note that (3) is a much stronger version of Goursat. Goursat is for triangles only, but this applies to many more cases (Goursat is the same statement with $\overline{\Omega'}=T$ triangle). We also proved this for disks.
+Note that (3) is a much stronger version of theorem (\ref{thm:goursat}). Theorem (\ref{thm:goursat}) is for triangles only, but this applies to many more cases (theorem (\ref{thm:goursat}) is the same statement with $\overline{\Omega'}=T$ triangle). We also proved this for disks.
 
 Statement (4) is very important; it tells us that if you want to know the value of $f(z)$, we can find the value by computing an integral on a disk containing $z$.
 
-Statement (5) contains a generalization of Cauchy's Integral Formula in the formula for $a_n$. Statement (4) can be recovered by letting $n=0$.
+Statement (5) contains a generalization of equation (\ref{eq:cauchy-int-fla}) in the formula for $a_n$. Statement (4) can be recovered by letting $n=0$.
 \end{note}
 
 
@@ -383,7 +397,7 @@ Thus:
     &= \frac{1}{w-z_0} \underbrace{ \sum_{n=0}^\infty \left( \frac{z-z_0}{w-z_0} \right)^n }_{\text{absolutely convergent}}.
 \end{align*}
     
-Applying this to the Cauchy Integral Formula gives us:
+Applying this to equation (\ref{eq:cauchy-int-fla}) gives us:
 \begin{align*}
      f(z) &= \frac{1}{2\pi i} \int_{\partial D} \left( \sum_{n=0}^\infty \left( \frac{z-z_0}{w-z_0} \right)^n \frac{f(w)}{w-z_0} \right) \dif w\\
      \text{(sum ab. conv.) } &= \sum_{n=0}^\infty \underbrace{ \left[  \frac{1}{2\pi i} \int_{\partial D}  \frac{f(w)}{(w-z_0)^{n+1}} \dif w  \right] }_{a_n} (z-z_0)^n.
