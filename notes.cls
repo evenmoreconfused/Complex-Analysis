@@ -25,10 +25,19 @@
 \usepackage[thinc]{esdiff}
 \usepackage{stackengine}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.misc}
 \usetikzlibrary {patterns.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{cd}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{automata, positioning, arrows}
 
 \tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
 %default radius will be 1pt. 

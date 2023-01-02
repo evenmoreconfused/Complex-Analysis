@@ -88,24 +88,21 @@ Let $S^2 = \set{ (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) \mid \mathfrak{X}^2 
 
 
 Define $\phi_1:U_1 \to \C, \, P \mapsto Q$ to be the stereographic projection from $N$. We showed last time that:
-
 \begin{align*}
-\phi_1 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 - \mathfrak{Z}} + i \frac{ \mathfrak{Y}}{1 - \mathfrak{Z}}\\
-\phi_1^{-1} (x+iy) &= \bigg( \frac{2x}{x^2+y^2+1} , \,  \frac{2y}{x^2+y^2+1} , \, \frac{x^2+y^2-1}{x^2+y^2+1}  \bigg)
+\phi_1 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 - \mathfrak{Z}} + i \frac{ \mathfrak{Y}}{1 - \mathfrak{Z}}.\\
+\phi_1^{-1} (x+iy) &= \bigg( \frac{2x}{x^2+y^2+1} , \,  \frac{2y}{x^2+y^2+1} , \, \frac{x^2+y^2-1}{x^2+y^2+1}  \bigg).
 \end{align*}
 
 
-Define $\phi_2:U_2 \to \C, \, P \mapsto \overline{R}$ to be the stereographic projection from $S$ composed with complex conjugation. Then;
-
+Define $\phi_2:U_2 \to \C, \, P \mapsto \overline{R}$ to be the stereographic projection from $S$ composed with complex conjugation. Then:
 \begin{align*}
-\phi_2 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 + \mathfrak{Z}} - i \frac{ \mathfrak{Y}}{1 + \mathfrak{Z}}
+\phi_2 (\mathfrak{X}, \mathfrak{Y}, \mathfrak{Z}) &= \frac{\mathfrak{X}}{1 + \mathfrak{Z}} - i \frac{ \mathfrak{Y}}{1 + \mathfrak{Z}}.
 \end{align*}
 
 $U_1 \cap U_2 = S^2 \setminus \set{N,S}$. It is clear that $\phi_1 (U_1 \cap U_2) = \phi_2(U_1 \cap U_2) = \C^*$. We showed in the last lecture that:
-
 \begin{align*}
-    \phi_2 \circ \phi_1^{-1} :& \, \, \C^* \to \C^*\\
-    &z \mapsto \frac{1}{z}
+    \phi_2 \circ \phi_1^{-1} : \, \, \C^* &\to \C^*,\\
+    z &\mapsto \frac{1}{z}.
 \end{align*}
 
 \begin{note}[If you know about manifolds already]
@@ -122,8 +119,6 @@ $\om \in S^2$ open (can be $S^2$ itself). Let $\foc$ a map of sets. We say that 
 
 Equivalently, $f$ is holomorphic if I have $F_1$ holomorphic on $\Tilde{\om} \subset \C$ holomorphic and $F_2 = f \circ \phi_2^{-1} = F \circ \phi_1 \circ \phi_2^{-1} = F \left( \frac{1}{z} \right)$ is holomorphic near $0$ (if $\Tilde{\om}$ contains a neighborhood of $\infty$).
 \end{definition}
-
-REWORK "EQUIV" ABOVE\\
 
 
 \begin{center}
@@ -216,7 +211,7 @@ REWORK "EQUIV" ABOVE\\
 
 If $\oic$ open, $f: \om \to S^2$ a map of sets, we say that \textbf{$f$ is holomorphic} if both $\phi_1 \circ f: \om \to \C$ and $\phi_2 \circ f: \om \to \C$ are holomorphic.\\
 
-Equivalently, $F = \phi_1 \circ f$ holomorphic and $\phi_2 \circ f = \phi_2 \circ \phi_1^{-1} \circ F = \frac{1}{F}$ holomorphic on $\om \cap \set{F \neq 0}$ ie $F$ has only poles, where $poles = f^{-1} (\text{north pole})$.
+Equivalently, $F = \phi_1 \circ f$ holomorphic and $\phi_2 \circ f = \phi_2 \circ \phi_1^{-1} \circ F = \frac{1}{F}$ holomorphic on $\om \cap \set{F \neq 0}$ ie $F$ has only poles, where $poles = f^{-1} (\text{north pole})  =f^{-1} ( `` \infty" )$.
 
 
 
@@ -342,22 +337,20 @@ Equivalently, $F = \phi_1 \circ f$ holomorphic and $\phi_2 \circ f = \phi_2 \cir
 \begin{definition}[Holomorphic Functions from $S^2$ to $S^2$]
 
 $\om \subset S^2$ open, $f:\om \to S^2$ a map of sets. \textbf{$f$ is holomorphic} if:
-
 \begin{align*}
-    \phi_1 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_1 \cap U_1 \right) \to \phi_1 \left( U_1 \cap U_1\right)\\
-    \phi_1 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_1 \cap U_2 \right) \to \phi_1 \left( U_1 \cap U_2\right)\\
-    \phi_2 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_2 \cap U_1 \right) \to \phi_2 \left( U_2 \cap U_1\right)\\
-    \phi_2 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_2 \cap U_2 \right) \to \phi_2 \left( U_2 \cap U_2\right)\\
+    \phi_1 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_1 \cap U_1 \right) \to \phi_1 \left( U_1 \cap U_1\right),\\
+    \phi_1 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_1 \cap U_2 \right) \to \phi_1 \left( U_1 \cap U_2\right),\\
+    \phi_2 \circ f \circ \phi_1^{-1} : \phi_1 \left( U_2 \cap U_1 \right) \to \phi_2 \left( U_2 \cap U_1\right),\\
+    \phi_2 \circ f \circ \phi_2^{-1} : \phi_2 \left( U_2 \cap U_2 \right) \to \phi_2 \left( U_2 \cap U_2\right),\\
 \end{align*}
 are all holomorphic.\\
 
 Equivalently, letting $F= \phi_1 \circ f \circ \phi_1^{-1}$ then $f$ holomorphic as a map $S^2 \to S^2$ if:
-
 \begin{itemize}
-    \item F holomorphic
-    \item $f:z \mapsto \infty$ then $F$ has a pole at $z$
-    \item $f:\infty \mapsto z$ then $F$ holomorphic at $\infty$
-    \item $f: \infty \mapsto \infty$ then $F$ has a pole at $\infty$
+    \item F holomorphic,
+    \item $f:z \mapsto \infty$ then $F$ has a pole at $z$,
+    \item $f:\infty \mapsto z$ then $F$ holomorphic at $\infty$,
+    \item $f: \infty \mapsto \infty$ then $F$ has a pole at $\infty$.
 \end{itemize}
 \end{definition}
 
@@ -478,7 +471,7 @@ Equivalently, letting $F= \phi_1 \circ f \circ \phi_1^{-1}$ then $f$ holomorphic
 
 
 \begin{remark}
-It follows that $f: S^2 \to S^2$ holomorphic $\iff$ $F=\phi_1 \circ f \circ \phi_1^{-1}$ meromorphic in $\C$ and meromorphic at $\infty$. By Theorem (11.7) this is equivalent to $F$ being a rational function ie $F$ is the ratio of two complex polynomials.
+It follows that $f: S^2 \to S^2$ holomorphic $\iff$ $F=\phi_1 \circ f \circ \phi_1^{-1}$ meromorphic in $\C$ and meromorphic at $\infty$. By theorem (\ref{thm:char-rat}) this is equivalent to $F$ being a rational function ie $F$ is the ratio of two complex polynomials.
 \end{remark}
 
 \begin{exercise}
@@ -491,45 +484,85 @@ Compute $Aut(S^2)$. That is to say, characterize the bijective holomorphic maps 
 
 Homotopies are often discussed in an introduction to algebraic topology. We will give a simple-minded yet perfectly rigorous introduction to homotopies.\\
 
-A homotopy is in a sense a "continuous family of continuous paths." This must be defined, but in our treatment we will insist on having piecewise smooth paths.\\
-
-
-Say $\gamma_0, \gamma_1$ be two piecewise smooth curves in $
+A homotopy is in a sense a ``continuous family of continuous paths." This must be defined, but in our treatment we will insist on having piecewise smooth paths. Say $\gamma_0, \gamma_1$ are two piecewise smooth curves in $
 C$. Up to reparameterization we may assume that both are parameterized by the same interval $t \in [a,b] \subset \R$. Assume that $\gamma_0(a) = \gamma_1(a) = z_0$ and $\gamma_0(b) = \gamma_1(b) = z_1$.
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \node[label={[above left] $z_0$}] (a3) at (0,0) {};
+    \node[label={[above right]$z_1$}] (b3) at (10,0) {};
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[postaction={decorate}][thick] (a3) to[out=50,in=150]node[above]{$\gamma_1$} (b3);
+    % \foreach \o/\i in {40/160,30/170,20/180,10/190,-10/200}
+       % \draw (a3) to[out=\o,in=\i]  (b3);
+    \draw[postaction={decorate}][thick] (a3) to[out=-20,in=-130]node[below]{$\gamma_0$} (b3);
+\end{tikzpicture}
+\end{center}
 
 \begin{definition}
 Suppose that $\gamma_0, \gamma_1 \subset \om$ are two such curves. We say that \textbf{$\gamma_0$ and $\gamma_1$ are homotopic in $\om$} if $\exists F : [0,1] \times [a,b] \to \om$ continuous such that:
-
 \begin{enumerate}
-    \item $\forall s \in [0,1] , \, \Tilde{\gamma}_s(t) \defas F(s,t)$ is a piecewise smooth curve $\Tilde{\gamma}_s : [a,b] \to \om$
-    \item $\Tilde{\gamma}_0 = F(0,t) \equiv \gamma_0$ and $\Tilde{\gamma}_1 = F(1,t) \equiv \gamma_1$
-    \item $\Tilde{\gamma}_s(a) = z_0$ and $\Tilde{\gamma}_s(b) = z_1$ $\forall s \in [0,1]$
+    \item $\forall s \in [0,1] , \, \Tilde{\gamma}_s(t) \defas F(s,t)$ is a piecewise smooth curve $\Tilde{\gamma}_s : [a,b] \to \om$,
+    \item $\Tilde{\gamma}_0 = F(0,t) \equiv \gamma_0$ and $\Tilde{\gamma}_1 = F(1,t) \equiv \gamma_1$,
+    \item $\Tilde{\gamma}_s(a) = z_0$ and $\Tilde{\gamma}_s(b) = z_1$ $\forall s \in [0,1]$.
 \end{enumerate}
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \node[label={[above left] $z_0$}] (a3) at (0,0) {};
+    \node[label={[above right]$z_1$}] (b3) at (10,0) {};
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[postaction={decorate}][thick] (a3) to[out=50,in=150]node[above]{$\gamma_1$} (b3);
+    \foreach \o/\i in {40/160,30/170,10/190,-10/200,-15/210}
+       \draw (a3) to[out=\o,in=\i]  (b3);
+    \draw[postaction={decorate}] (a3) to[out=20,in=-180]node[above]{$\gamma_s$} (b3);
+    \draw[postaction={decorate}][thick] (a3) to[out=-20,in=-130]node[below]{$\gamma_0$} (b3);
+\end{tikzpicture}
+\end{center}
 
 \end{definition}
 
-We can think of $\Tilde{\gamma}_s$ as an interpolating family of piecewise smooth curves with similar beginning and ending points which "vary continuously in S," where the "continuous variation" is encoded in the condition that $F$ is continuous.
+We can think of $\Tilde{\gamma}_s$ as an interpolating family of piecewise smooth curves with similar beginning and ending points which ``vary continuously in S", where the ``continuous variation" is encoded in the condition that $F$ is continuous.
 
 
 \begin{counterexample}[Moral Counterexample]
 Let $\om = \C^*$.
 
-INCLUDE TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \node[label={[above left] $-1$}] (a3) at (0,0) {};
+    \node[label={[above right]$1$}] (b3) at (10,0) {};
+    \node[label={[above right]$0$}] (c3) at (5,0) {};
+    \draw[shift=(0:5)][thick] (-0.1,0.1) -- (0.1,-0.1) (0.1,0.1) -- (-0.1,-0.1);
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[postaction={decorate}][thick] (a3) to[out=50,in=150]node[above]{$\gamma_1$} (b3);
+    % \foreach \o/\i in {40/160,30/170,20/180,10/190,-10/200}
+       % \draw (a3) to[out=\o,in=\i]  (b3);
+    \draw[postaction={decorate}][thick] (a3) to[out=-20,in=-130]node[below]{$\gamma_0$} (b3);
+\end{tikzpicture}
+\end{center}
 
 These two curves should not be homotopic in $\om$, since $F$ must map into $\om$.
 \end{counterexample}
 
 \isubsection{PROP: Homotopy Invariance of Contour Integrals}
-\begin{proposition}[Homotopy Invariance of Contour Integrals]
+\begin{proposition}[Homotopy Invariance of Contour Integrals]\label{prop:hom-inv-int}
 
 $\oic$ open, $\foc$ holomorphic, $\gamma_0,\gamma_1:[a,b] \to \om$ piecewise smooth curves that are homotopic in $\om$. Then:
-
 \begin{align*}
-    \int_{\gamma_0} f(z) \dif z = \int_{\gamma_1} f(z) \dif z
+    \int_{\gamma_0} f(z) \dif z = \int_{\gamma_1} f(z) \dif z. 
 \end{align*}
 
 \end{proposition}
@@ -537,24 +570,39 @@ $\oic$ open, $\foc$ holomorphic, $\gamma_0,\gamma_1:[a,b] \to \om$ piecewise smo
 \begin{example}
 Consider the unit circle in $\om = \C^*$.
 
-INCLUDE TIKZ
+\begin{center}
+\begin{tikzpicture}[thick,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}
+    ]
+    \draw[postaction={decorate}][xscale=1][rotate = 90] (0,0) circle [radius=1];
+    \draw[postaction={decorate}][xscale=-1][rotate = -90] (0,0) circle [radius=1];
+    
+    \draw[fill] (-1,0) circle (0.08);
+    \draw[fill] (1,0) circle (0.08);
+    
+    \draw (0,1)[below] node {$\gamma_1$};
+    \draw (0,-1)[above] node {$\gamma_0$};
+    \draw (-0.1,-0.02)[below left] node {$0$};
+    \draw[thick] (-0.1,0.1) -- (0.1,-0.1);
+    \draw[thick] (0.1,0.1) -- (-0.1,-0.1);
+    
+\end{tikzpicture}
+\end{center}
 
 Then $\gamma_0$ and $\gamma_1$ are not homotopic by the above proposition as if they were, letting $f(z) = \frac{1}{z}$:
-
 \begin{align*}
-    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = 0
+    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = 0,
 \end{align*}
-
 but we already know that:
-
 \begin{align*}
-    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = \int_{\partial D_1(0)} \frac{1}{z} \dif z = 2 \pi i
+    \int_{\gamma_0} \frac{1}{z} \dif z - \int_{\gamma_1} \frac{1}{z} \dif z = \int_{\partial D_1(0)} \frac{1}{z} \dif z = 2 \pi i.
 \end{align*}
 
 It follows that $\gamma_0$ and $\gamma_1$ are not homotopic.
 \end{example}
 
-\begin{proof}
+\begin{proof}[\ref{prop:hom-inv-int}]
 Let $F$ be a homotopy between $\gamma_0$ and $\gamma_1$ in $\om$. let $K = F([0,1] \times [a,b]) \subset \om$. $[0,1] \times [a,b]$ is compact and $F$ is continuous, so $K$ is compact.
 
 Since $K$ is compact and $\om$ is open, $\exists \varepsilon > 0$ such that $\forall z \in K, \, D_{3\varepsilon}(z) \subset \om$ (ie thickening $K$ by $3 \varepsilon$ still lies in $\om$). Also, since $F$ is continuous and $[0,1] \times [a,b]$ is compact, then $F$ is uniformly continuous on $[0,1] \times [a,b]$. Thus $\exists \delta >0$ s.t. for any $s_1, s_2 \in [0,1]$ with $\abs{s_1-s_2} < \delta$ we have $\sup_{t \in [a,b]} \abs{\gamma_{s_1}(t) - \gamma_{s_2}(t)} < \varepsilon $.
@@ -564,58 +612,261 @@ Since $K$ is compact and $\om$ is open, $\exists \varepsilon > 0$ such that $\fo
 This means that $\gamma_{s_1}$ and $\gamma_{s_2}$ lie within distance epsilon of each other (for $s_1,s_2$ sufficiently small):
 
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark = between positions 0 and 1 step 0.11 with {\draw[fill] circle (0.02); \draw circle (0.7);},
+    mark=at position 0.330 with {\draw (0,0) -- (110:0.35) node[right] {$\varepsilon$} -- (110:0.7);},
+    }
+    ]
+    \node (a3) at (0,0) {};
+    \node (b3) at (10,0) {};
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[postaction={decorate}][thick] (a3) to[out=20,in=180]node[]{} (b3);
+    % \foreach \o/\i in {40/160,30/170,20/180,10/190,-10/200}
+       % \draw (a3) to[out=\o,in=\i]  (b3);
+    \draw[thick] (a3) to[out=10,in=190]node[]{} (b3);
+    \draw (45:1.8) node {$\gamma_{s_1}$};
+    \draw (-15:1.8) node {$\gamma_{s_2}$};
+\end{tikzpicture}
+\end{center}
 
 
 Fix any such $s_1, s_2$. We choose disks of radius $2 \varepsilon$: $D_0, \cdots ,D_n$, $n$ large, which cover $\gamma_{s_1} \cup \gamma_{s_2}$:
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}
+    
+    \node (z0) at (0,0) {};
+    \node (z1) at (10,0) {};
+    \draw[fill] (z0) circle (0.08);
+    \draw[fill] (z1) circle (0.08);
+    
+    \draw[postaction=
+        {decoration={markings,
+        mark=at position 0.1 with {\draw node (a1) {};},
+        mark=at position 0.2 with {\draw node (a2) {};},
+        mark=at position 0.3 with {\draw node (a3) {};},
+        mark=at position 0.4 with {\draw node (a4) {};},
+        mark=at position 0.5 with {\draw node (a5) {};},
+        mark=at position 0.6 with {\draw node (a6) {};},
+        mark=at position 0.7 with {\draw node (a7) {};},
+        mark=at position 0.8 with {\draw node (a8) {};},
+        mark=at position 0.9 with {\draw node (a9) {};},
+        },
+        decorate}][thick] 
+        (z0) to[out=20,in=180]node[]{} (z1);
+        
+    \draw[postaction=
+        {decoration={markings,
+        mark=at position 0.1 with {\draw node (b1) {};},
+        mark=at position 0.2 with {\draw node (b2) {};},
+        mark=at position 0.3 with {\draw node (b3) {};},
+        mark=at position 0.4 with {\draw node (b4) {};},
+        mark=at position 0.5 with {\draw node (b5) {};},
+        mark=at position 0.6 with {\draw node (b6) {};},
+        mark=at position 0.7 with {\draw node (b7) {};},
+        mark=at position 0.8 with {\draw node (b8) {};},
+        mark=at position 0.9 with {\draw node (b9) {};},
+        },
+        decorate}][thick] 
+        (z0) to[out=10,in=190]node[]{} (z1);
+
+    \node (c1) at ($(a1)!0.5!(b1)$) {};
+    \node (c2) at ($(a2)!0.5!(b2)$) {};
+    \node (c3) at ($(a3)!0.5!(b3)$) {};
+    \node (c4) at ($(a4)!0.5!(b4)$) {};
+    \node (c5) at ($(a5)!0.5!(b5)$) {};
+    \node (c6) at ($(a6)!0.5!(b6)$) {};
+    \node (c7) at ($(a7)!0.5!(b7)$) {};
+    \node (c8) at ($(a8)!0.5!(b8)$) {};
+    \node (c9) at ($(a9)!0.5!(b9)$) {};
+
+    \def\r{1.4};
+    \def\rs{0.08};
+    \def\d{0.25};
+    \draw[thick] (z0) circle (\r);
+        \draw (z0)+(100:\r+0.25) node {$D_0$};
+        % \draw (z0)+(0,\d) node {$z_0$};
+        % \draw (z0)+(0,-\d) node {$w_0$};
+        % \draw[fill] (a1) circle (\rs);
+        % \draw (a1)+(0,\d) node {$z_1$};
+        % \draw[fill] (b1) circle (\rs);
+        % \draw (b1)+(0,-\d) node {$w_1$};
+    \draw[thick] (c2) circle (\r);
+        \draw (c2)+(100:\r+0.25) node {$D_1$};
+        % \draw[fill] (a3) circle (\rs);
+        % \draw (a3)+(0,\d) node {$z_2$};
+        % \draw[fill] (b3) circle (\rs);
+        % \draw (b3)+(0,-\d) node {$w_2$};
+    \draw[thick] (c4) circle (\r);
+        % \draw[fill] (a5) circle (\rs);
+        % \draw (a5)+(0,\d) node {$a$};
+        % \draw[fill] (b5) circle (\rs);
+        % \draw (b5)+(0,-\d) node {$a$};
+    \draw[thick] (c6) circle (\r);
+        % \draw[fill] (a7) circle (\rs);
+        % \draw (a7)+(0,\d) node {$a$};
+        % \draw[fill] (b7) circle (\rs);
+        % \draw (b7)+(0,-\d) node {$a$};
+    \draw[thick] (c8) circle (\r);
+        % \draw[fill] (a9) circle (\rs);
+        % \draw (a9)+(0,\d) node {$z_n$};
+        % \draw[fill] (b9) circle (\rs);  
+        % \draw (b9)+(0,-\d) node {$w_n$}; 
+    \draw[thick] (z1) circle (\r);
+        \draw (z1)+(100:\r+0.25) node {$D_n$};
+    % \draw (z1)+(0,\d) node {$z_{n+1}$};
+    % \draw (z1)+(0,-\d) node {$w_{n+1}$};
+    
+    \draw (22:2.0) node {$\gamma_{s_1}$};
+    \draw (-2:2.0) node {$\gamma_{s_2}$};
+    \draw (0,0) -- (25:-0.7) node[above left] {$2\varepsilon$} -- (25:-1.4);
+\end{tikzpicture}
+\end{center}
 
 
 
 
 We choose consecutive points on each curve:
-
 \begin{align*}
-    \set{z_0 = \gamma_{s_1}(a), z_1, \cdots, z_{n+1} = \gamma_{s_1}(b)  } &\text{ on } \gamma_{s_1}\\
-    \set{w_0 = \gamma_{s_2}(a), w_1, \cdots, w_{n+1} = \gamma_{s_2}(b)  } &\text{ on } \gamma_{s_2}\\
+    \set{z_0 = \gamma_{s_1}(a), z_1, \cdots, z_{n+1} = \gamma_{s_1}(b)  } &\text{ on } \gamma_{s_1},\\
+    \set{w_0 = \gamma_{s_2}(a), w_1, \cdots, w_{n+1} = \gamma_{s_2}(b)  } &\text{ on } \gamma_{s_2},\\
 \end{align*}
-
 such that $z_i, \, z_{i+1}, \, w_i, \, w_{i+1} \in D_i, \, i \in \set{0, \cdots , n}$.
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}
+    
+    \node (z0) at (0,0) {};
+    \node (z1) at (10,0) {};
+    \draw[fill] (z0) circle (0.08);
+    \draw[fill] (z1) circle (0.08);
+    
+    \draw[postaction=
+        {decoration={markings,
+        mark=at position 0.1 with {\draw node (a1) {};},
+        mark=at position 0.2 with {\draw node (a2) {};},
+        mark=at position 0.3 with {\draw node (a3) {};},
+        mark=at position 0.4 with {\draw node (a4) {};},
+        mark=at position 0.5 with {\draw node (a5) {};},
+        mark=at position 0.6 with {\draw node (a6) {};},
+        mark=at position 0.7 with {\draw node (a7) {};},
+        mark=at position 0.8 with {\draw node (a8) {};},
+        mark=at position 0.9 with {\draw node (a9) {};},
+        },
+        decorate}][thick] 
+        (z0) to[out=20,in=180]node[]{} (z1);
+        
+    \draw[postaction=
+        {decoration={markings,
+        mark=at position 0.1 with {\draw node (b1) {};},
+        mark=at position 0.2 with {\draw node (b2) {};},
+        mark=at position 0.3 with {\draw node (b3) {};},
+        mark=at position 0.4 with {\draw node (b4) {};},
+        mark=at position 0.5 with {\draw node (b5) {};},
+        mark=at position 0.6 with {\draw node (b6) {};},
+        mark=at position 0.7 with {\draw node (b7) {};},
+        mark=at position 0.8 with {\draw node (b8) {};},
+        mark=at position 0.9 with {\draw node (b9) {};},
+        },
+        decorate}][thick] 
+        (z0) to[out=10,in=190]node[]{} (z1);
+
+    \node (c1) at ($(a1)!0.5!(b1)$) {};
+    \node (c2) at ($(a2)!0.5!(b2)$) {};
+    \node (c3) at ($(a3)!0.5!(b3)$) {};
+    \node (c4) at ($(a4)!0.5!(b4)$) {};
+    \node (c5) at ($(a5)!0.5!(b5)$) {};
+    \node (c6) at ($(a6)!0.5!(b6)$) {};
+    \node (c7) at ($(a7)!0.5!(b7)$) {};
+    \node (c8) at ($(a8)!0.5!(b8)$) {};
+    \node (c9) at ($(a9)!0.5!(b9)$) {};
+
+    \def\r{1.4};
+    \def\rs{0.08};
+    \def\d{0.25};
+    \draw[thick] (z0) circle (\r);
+        \draw (z0)+(100:\r+0.25) node {$D_0$};
+        \draw (z0)+(0,\d) node {$z_0$};
+        \draw (z0)+(0,-\d) node {$w_0$};
+        \draw[fill] (a1) circle (\rs);
+        \draw (a1)+(0,\d) node {$z_1$};
+        \draw[fill] (b1) circle (\rs);
+        \draw (b1)+(0,-\d) node {$w_1$};
+    \draw[thick] (c2) circle (\r);
+        \draw (c2)+(100:\r+0.25) node {$D_1$};
+        \draw[fill] (a3) circle (\rs);
+        \draw (a3)+(0,\d) node {$z_2$};
+        \draw[fill] (b3) circle (\rs);
+        \draw (b3)+(0,-\d) node {$w_2$};
+    \draw[thick] (c4) circle (\r);
+        \draw[fill] (a5) circle (\rs);
+        % \draw (a5)+(0,\d) node {$a$};
+        \draw[fill] (b5) circle (\rs);
+        % \draw (b5)+(0,-\d) node {$a$};
+    \draw[thick] (c6) circle (\r);
+        \draw[fill] (a7) circle (\rs);
+        % \draw (a7)+(0,\d) node {$a$};
+        \draw[fill] (b7) circle (\rs);
+        % \draw (b7)+(0,-\d) node {$a$};
+    \draw[thick] (c8) circle (\r);
+        \draw[fill] (a9) circle (\rs);
+        \draw (a9)+(0,\d) node {$z_n$};
+        \draw[fill] (b9) circle (\rs);  
+        \draw (b9)+(0,-\d) node {$w_n$}; 
+    \draw[thick] (z1) circle (\r);
+        \draw (z1)+(100:\r+0.25) node {$D_n$};
+    \draw (z1)+(0,\d) node {$z_{n+1}$};
+    \draw (z1)+(0,-\d) node {$w_{n+1}$};
+    
+    \draw (22:2.0) node {$\gamma_{s_1}$};
+    \draw (-2:2.0) node {$\gamma_{s_2}$};
+    \draw (0,0) -- (25:-0.7) node[above left] {$2\varepsilon$} -- (25:-1.4);
+\end{tikzpicture}
+\end{center}
 
 On each disk $D_i$ let $F_i$ be an antiderivative of $f$. Then on $D_i \cap D_{i+1}$ we have $F_i$ and $F_{i+1}$ as antiderivatives of $f$. These must differ from each other by a constant ie. $F_{i+1} = F_i + c_i$ on $D_i \cap D_{i+1}$ for some $c_i \in \C$. Thus:
-
 \begin{align*}
-    F_{i+1} (z_{i+1} ) - F_i ( z_{i+1}) &= F_{i+1} (w_{i+1}) - F_i ( w_{i+1}) = 0\\
+    F_{i+1} (z_{i+1} ) - F_i ( z_{i+1}) &= F_{i+1} (w_{i+1}) - F_i ( w_{i+1}) = 0.\\
     &\Downarrow\\
-     F_{i+1} (z_{i+1} ) -  F_{i+1} (w_{i+1}) &= F_i ( z_{i+1}) - F_i ( w_{i+1})
+     F_{i+1} (z_{i+1} ) -  F_{i+1} (w_{i+1}) &= F_i ( z_{i+1}) - F_i ( w_{i+1}).
 \end{align*}
  
  
 Thus:
-
 \begin{align*}
     \int_{\gamma_{s_1}} f(z) \dif z - \int_{\gamma_{s_2}} f(z) \dif z & \overset{    \scalebox{0.35}{FTC}   }{=} \sum_{i=0}^n \left[ F_i (z_{i+1} ) - F_i (z_{i} )\right] - \sum_{i=0}^n \left[ F_i (w_{i+1} ) - F_i (w_{i} )\right]\\
     &= \sum_{i=0}^n \left[ \big( F_i (z_{i+1}) - F_i (w_{i+1} ) \big) - \big( F_i (z_{i}) - F_i (w_{i} ) \big) \right]\\
     &= \sum_{i=0}^n \left[ \big( F_{i+1} (z_{i+1}) - F_{i+1} (w_{i+1} ) \big) - \big( F_i (z_{i}) - F_i (w_{i} ) \big) \right]\\
     \text{(telescopic sum) } &= \big( F_n (z_{n+1}) - F_n ( w_{n+1} ) \big) - \big( F_0 (z_{0}) - F_0 ( w_{0} ) \big)\\
     &= 0 - 0\\
-    &= 0
+    &= 0.
 \end{align*}
  
 Thus we have proved that with $s_1, s_2 \in [0,1]$ and $\abs{s_1 - s_2} < \delta$:
-
 \begin{align*}
-\int_{\gamma_{s_1}} f(z) \dif z = \int_{\gamma_{s_2}} f(z) \dif z
+\int_{\gamma_{s_1}} f(z) \dif z = \int_{\gamma_{s_2}} f(z) \dif z.
 \end{align*}
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \node[label={[above left] $z_0$}] (a3) at (0,0) {};
+    \node[label={[above right]$z_1$}] (b3) at (10,0) {};
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[] (a3) to[out=50,in=150]node[above]{$\gamma_1$} (b3);
+    \foreach \o/\i in {40/160,30/170,20/180,10/190,-10/200}
+       \draw (a3) to[out=\o,in=\i]  (b3);
+    \draw[] (a3) to[out=-20,in=-130]node[below]{$\gamma_0$} (b3);
+\end{tikzpicture}
+\end{center}
 
 Let then $s_1 =0$, $s_2$ small, then repeat finitely many times (around $\frac{1}{\delta}$ times) until you get to $s_2 = 1$.
-
-
 
 \end{proof}
 
@@ -625,33 +876,42 @@ $\oic$ open subset shall be called \textbf{simply connected} if $\om$ is connect
 \end{definition}
 
 
-\begin{corollary}
-$\foc$ holomorphic and $\om$ simply connected. Then $\forall 
-,\gamma$ piecewise smooth closed curve in $\om$:
-
+\begin{corollary}\label{cor:simp-conn-int-to-zero}
+$\foc$ holomorphic and $\om$ simply connected. Then $\forall ,\gamma$ piecewise smooth closed curve in $\om$:
 \begin{align*}
-    \int_{\gamma} f(z) \dif z = 0
+    \int_{\gamma} f(z) \dif z = 0.
 \end{align*}
 \end{corollary}
 
 \begin{proof}
 
 Pick any point on the curve $\gamma(c)$, with $c \in (a,b)$. Let:
-
 \begin{align*}
     \gamma_1 &= \gamma\mid_{[0,c]}\\
     -\gamma_2 &= \gamma\mid_{[c,b]}\\
-    \Rightarrow \;\; \gamma &= \gamma_1 \cup (-\gamma_2)
+    \Rightarrow \;\; \gamma &= \gamma_1 \cup (-\gamma_2).
 \end{align*}
 
 Where $- \gamma_2 $ is just a reverse orientation.
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}}
+    ]
+    \node[] (a3) at (0,0) {};
+    \node[] (b3) at (10,0) {};
+    \draw[fill] (a3) circle (0.08);
+    \draw[fill] (b3) circle (0.08);
+    \draw[postaction={decorate}][thick] (a3) to[out=50,in=150]node[above]{$\gamma_2$} (b3);
+]
+    \draw[postaction={decorate}][thick] (a3) to[out=-20,in=-130]node[below]{$\gamma_1$} (b3);
+\end{tikzpicture}
+\end{center}
 
 Then:
-
 \begin{align*}
-    \int_\gamma f(z) \dif z = \int_{\gamma_1} f(z) \dif z - \int_{\gamma_2} f(z) \dif z = 0
+    \int_\gamma f(z) \dif z = \int_{\gamma_1} f(z) \dif z - \int_{\gamma_2} f(z) \dif z = 0.
 \end{align*}
 \end{proof}
 
