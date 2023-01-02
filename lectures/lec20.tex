@@ -168,7 +168,7 @@ The Gamma function is usually studied in real analysis, but we will generalize i
 
 \begin{definition}[Positive Gamma Function]
 
-Let $s \in (0,\infty) \subset \R$. Then we define:
+Let $s \in (0,\infty) \subset \R$. Then we define the \textbf{positive gamma function} as:
 \begin{align*}
     \Gamma(s) \defas \int_0^\infty e^{-t} t^{s-1} \dif t.
 \end{align*}
@@ -176,7 +176,7 @@ Let $s \in (0,\infty) \subset \R$. Then we define:
 \end{definition}
 
 \begin{remark}
-This integral is improper. To check for convergence we note that:
+This integral is improper. To check for convergence we note that: 
 \begin{itemize}
     \item Near $\infty$, the integrand $\leq C e^{\frac{-t}{2}}$ (since $e^{-t}$ shrinks fast), thus it converges at $\infty$.
     \item Near $0$,  the integrand $\leq t^{s-1}$ (which converges for $s>0$), thus it converges at $0$.

@@ -79,24 +79,29 @@ Recalling that $\Re(s) > 0$, and thus that $\Re(\tfrac{s}{2}) > 0$, then the cla
 
 
 
-\section{Functional Equation part 2}
+\section{Functional Equation 2}
 Recall the functional equation for the Riemann Zeta Function:
 \begin{align*}
     \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s).
 \end{align*}
+
+
+\subsection{The Xi Function}
 
 We will find a second formulation of this. First we define the Riemann Xi Function.
 
 
 
 
-\begin{definition}
-We define the \textbf{Riemann Xi Function $\xi(s)$} as
+\begin{definition}[Riemann Xi Function]
+We define the \textbf{Riemann Xi Function $\xi(s)$} as:
 \begin{align*}
     \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s).
 \end{align*}
 This is clearly meromorphic in $\C$.
 \end{definition}
+
+\isubsection{THM: Xi Functional Equation}
 
 \begin{theorem}
 $\xi$ only has simple poles at $s= 0$ and $s=1$, and theorem (\ref{thm:r-func-eq}) is equivalent to:
@@ -208,6 +213,10 @@ We can thus conclude that $\zeta$ has only the trivial zeroes on the left of the
 \end{center}
 
 In fact there are infinite zeroes in the critical strip (a non-obvious fact). The relationship between $\zeta(s)$ and $\zeta(1-s)$ in the functional equation, a reflection across the line $\Re(s) = \frac{1}{2}$, prompted Riemann to conjecture that every zero of $\zeta$ lies on the line $\Re(s) = \frac{1}{2}$.
+
+\subsection{The Riemann Hypothesis}
+
+One of the best-known conjectures is the Riemann Hypothesis.
 
 \begin{hypothesis}[Riemann]
 All zeroes of $\zeta$ in the critical strip $\set{ s\in \C \mid 0 \leq \Re(s) \leq 1}$ lie on the line $\set{ s\in \C \mid \Re(s) = \frac{1}{2}}$.

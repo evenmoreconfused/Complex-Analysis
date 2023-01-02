@@ -11,6 +11,7 @@
 
 Now we go into more detail on the Gamma function.
 
+\section{Gamma Function Properties}
 
 \begin{proposition}\label{prop:g-factorial}
 For every $s \in \C$ with $\Re (s) >0$ we have that:
@@ -148,7 +149,7 @@ We now want to prove that $\Gamma$ does not vanish. We begin with a preparatory 
 \begin{lemma}\label{lem:g-integral-calc-lemma}
 For $a \in (0,1)$, we have:
 \begin{align*}
-    \int_0^\infty \frac{x^{a-1}}{1+x}\dif x = \frac{\pi}{\sin(\pi a)}
+    \int_0^\infty \frac{x^{a-1}}{1+x}\dif x = \frac{\pi}{\sin(\pi a)}.
 \end{align*}
 \end{lemma}
 
@@ -169,7 +170,9 @@ Then:
 \end{align*}
 \end{proof}
 
-\begin{theorem}\label{thm:g-f-eq}
+\isubsection{THM: Gamma Functional Equation}
+
+\begin{theorem}[Gamma Functional Equation]\label{thm:g-f-eq}
 $\forall s \in \C$: 
 \begin{align*}
 \Gamma(s) \cdot \Gamma(1-s) = \frac{\pi}{\sin(\pi s)}.

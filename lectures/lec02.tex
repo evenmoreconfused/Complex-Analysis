@@ -209,7 +209,7 @@ A contour integral is an integral of a function along a curve.
 Consider a function $\gamma:[a,b] \rightarrow \mathbb{C}$ with $[a,b] \subset \mathbb{R}$. We assume that $\gamma(t)$ is at least piece-wise smooth. We often write $\gamma(t)=z(t)$ with $t\in [a,b]$.
 
 
-\begin{definition}
+\begin{definition}[Piece-Wise Smooth]
 A function $\gamma [a,b] \rightarrow \mathbb{C}$ is called \textbf{piece-wise smooth} if $\exists a=a_0<a_1< \cdots < a_N = b$ such that $\gamma(t)$ is continuous on $[a,b]$, and that $\gamma(t)$ restricted to $[a_j,a_{j+1}]$ is infinitely differentiable with $\gamma'(t)\neq 0$ $\forall t\in [a_j,a_{j+1}]$.
 \end{definition}
 
@@ -242,7 +242,7 @@ Let $z(t) = z_0+e^{it}$. This traces a circle in $\mathbb{C}$.
 
 \subsection{Reparameterization of Curves}
 
-\begin{definition}
+\begin{definition}[Reparameterization]
 A \textbf{reparameterization} of a curve $\gamma(t)$ is a function $\Tilde{\gamma}(s) = \gamma(t(s))$ where $s\in[c,d]$ and the map  $s \mapsto t(s)$ is a smooth and strictly increasing bijection $[c,d] \rightarrow [a,b]$. The map $s \mapsto t(s)$ is called the change of parameter from the interval [c,d] to [a,b]. 
 \end{definition}
 

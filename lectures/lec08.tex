@@ -78,7 +78,7 @@ Let $f_n: \om \to \C$ holomorphic functions, $n \in \mathbb{N}$. Suppose that th
 
 
 \begin{definition}[Normal Family]
-A set of functions is called a \textbf{normal family} if $\exists $ subsequence $n_j \to \infty$ and $ \exists \foc  $ holomorphic s.t. $f_{n_j} \xrightarrow[]{u} f$ on compact subsets of $\om$ and $f_{n_j}^{(k)} \xrightarrow[]{u} f^{(k)}$ on compact subsets of $\om , \, \forall k \geq 0$.\\
+A set of functions is called a \textbf{normal family} if $\exists $ subsequence $n_j \to \infty$ and $ \exists \foc  $ holomorphic s.t. $f_{n_j} \xrightarrow[]{u} f$ on compact subsets of $\om$ and $f_{n_j}^{(k)} \xrightarrow[]{u} f^{(k)}$ on compact subsets of $\om , \, \forall k \geq 0$.
 
 Note that the case where $k=0$ is simply the first sentence, and that if the $k=0$ case holds the $k>0$ case is implied. Thus, it is sufficient to ignore the $k>0$ case when writing the definition.
 \end{definition}
@@ -176,7 +176,6 @@ This shows that the family $\set{ f_n } $ is equicontinuous and uniformly bounde
 We must now show that $f_n \tou f$ on all compact subsets (now we have proved that for any compact set, there is some subsequence that converges on that compact set) and that the derivatives converge.
 
 We apply a diagonal argument. We can find an exhaustion $\set{ K_i }$ of $\om$ by compact subsets:
-
 \begin{align*}
     K_1 \subset K_2 \subset \cdots \subset K_j \subset K_{j+1} \subset \cdots \subset \om
 \end{align*}
@@ -275,11 +274,9 @@ Say now that instead of a zero we have a singularity, $z_0 \in \om , \, f: \om \
 
 \begin{definition}[Poles]
 We say that $f$ has a \textbf{pole} at $z_0$ if $\exists \, D = D_r(z_0) \subset \om$ for some $r>0$ s.t. $f(z) \neq 0 \, \forall z \in D \setminus \{ z_0 \}$ and the function:
-
 \begin{align*}
     \Tilde{f}(z) \vcentcolon = \begin{cases} \frac{1}{f(z)} & z \in D \setminus \{ z_0 \} \\ 0 & z = z_0  \end{cases}
 \end{align*}
-
 is holomorphic on $D$.
 
 \end{definition}

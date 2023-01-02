@@ -10,6 +10,8 @@
 
 We now finally prove the functional equation for $\xi$. First we start with several preliminary results.
 
+\section{Functional Equation 3}
+
 Let $f: \R \to \C$ a smooth function that decays at least quadratically at $\infty$, so that $\sum_{n=-\infty}^{\infty} f(\theta+n)$ converges $\forall \theta \in \R$. Then recall that the Fourier transform of this function, for all $\xi \in \R$, is:
 \begin{align*}
     \hat{f}(\xi) \defas \int_{-\infty}^\infty e^{-2 \pi i x \xi} f(x) \dif x.
@@ -39,8 +41,10 @@ Thus we have that:
 And we are done.
 \end{proof}
 
+\subsection{The Theta Function}
+
 \begin{definition}[Theta Function]
-We define, for $u \in (0,\infty) \subset \R$, the \textbf{theta function}:
+We define, for $u \in (0,\infty) \subset \R$, the \textbf{theta function} as:
 \begin{align*}
     \theta(u) = \sum_{n=-\infty}^{+\infty} e^{- \pi n^2 u}.
 \end{align*}
@@ -83,6 +87,8 @@ Then summing $\sum_{n=1}^\infty$ yields:
 \end{align*}
 And we are done.
 \end{proof}
+
+\isubsection{PROP: Theta Functional Equation}
 
 \begin{proposition}\label{prop:theta-func-eq}
 For all $u > 0$ we have
@@ -175,6 +181,8 @@ Clearly $\frac{1}{s-1} - \frac{1}{s}$ is meromorphic with simple poles at $s=0$ 
 Hence we have found the meromorphic extension of $\xi$ on $\C$ (with simple poles at $0,1$). Furthermore, the RHS of this formula is symmetric under $(s \leftrightarrow 1-s)$. Thus $\xi(s) = \xi(1-s)$, and we have proven that the functional equation for $\xi$ holds.
 
 \end{proof}
+
+\subsection{Locations of zeroes of Riemann Zeta}
 
 We finish by proving the non-vanishing of $\zeta$ on the boundary of the critical strip $\set{z \in \C \mid 0 \leq \Re(z) \leq 1}$.
 
