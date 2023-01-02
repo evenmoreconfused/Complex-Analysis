@@ -52,7 +52,7 @@ $f,g$ holomorphic. Thus $\frac{f(z)}{g(z)}$ is holomorphic at all $z$ s.t. $g(z)
     
     \item \fbox{$f(z_0) = 0$ with order $M<N$}:
     
-    Then we write $f(z) = h_1(z) \cdot (z-z_0)^M$ and $f(z) = h_2(z) \cdot (z-z_0)^N$ near $z_0$ with $h_1,h_2$ holomorphic on $D_r(z_0)$. Then $\frac{f(z)}{g(z)} = \frac{h_1(z) \cdot (z-z_0)^M}{h_2(z) \cdot (z-z_0)^N} = \frac{h_1(z)}{h_2(z)} \cdot \frac{1}{(z-z_0)^{N-M}}$, which is a pole of order $N-M$.
+    Then we write $f(z) = h_1(z) \cdot (z-z_0)^M$ and $g(z) = h_2(z) \cdot (z-z_0)^N$ near $z_0$ with $h_1,h_2$ holomorphic on $D_r(z_0)$. Then $\frac{f(z)}{g(z)} = \frac{h_1(z) \cdot (z-z_0)^M}{h_2(z) \cdot (z-z_0)^N} = \frac{h_1(z)}{h_2(z)} \cdot \frac{1}{(z-z_0)^{N-M}}$, which is a pole of order $N-M$.
     
     \item \fbox{$f(z_0) = 0$ with order $M\geq N$}:
     
@@ -61,12 +61,16 @@ $f,g$ holomorphic. Thus $\frac{f(z)}{g(z)}$ is holomorphic at all $z$ s.t. $g(z)
 \end{enumerate}
 
 
-Thus $\frac{f(z)}{g(z)}$ is meromorphic with every pole being a zero of $g(z)$. This is the most general formulation of a meromorphic function.
+Thus $\frac{f(z)}{g(z)}$ is meromorphic with every pole being a zero of $g(z)$.
 \end{proof}
+
+\begin{note}
+    This is the most general formulation of a meromorphic function.
+\end{note}
 
 \section{Point at Infinity}
 
-Consider $\C$. $\C$ is not compact, but we can add a single point (our so called "$\infty$") and define a topology on $\C \cup \{ \infty \}$ such that it is compact.
+Consider $\C$. $\C$ is not compact, but we can add a single point (our so called ``$\infty$") and define a topology on $\C \cup \set{ \infty }$ such that it is compact.
 
 
 \begin{definition}[Neighborhood of $\infty$]
@@ -172,31 +176,29 @@ If $f:U \to \C$ holomorphic where U is a neighborhood of $\infty$, we can consid
 
 \begin{definition}
 Consider a function $f(z)$ and the function $F(z) = f(\frac{1}{z})$. We say that:
-
 \begin{itemize}
-    \item $f$ is \textbf{holomorphic at $\infty$} if $F$ has a removable singularity at $0$
-    \item $f$ has a \textbf{pole of order $N$ at $\infty$} if $F$ has a pole at $0$ of order $N$ 
-    \item $f$ has an \textbf{essential singularity at $\infty$} if $F$ has an essential singularity at $0$
-    \item $f$ meromorphic on $U$ is \textbf{meromorphic at $\infty$} if $f$ does not have an essential singularity at $\infty$
+    \item $f$ is \textbf{holomorphic at $\infty$} if $F$ has a removable singularity at $0$.
+    \item $f$ has a \textbf{pole of order $N$ at $\infty$} if $F$ has a pole at $0$ of order $N$.
+    \item $f$ has an \textbf{essential singularity at $\infty$} if $F$ has an essential singularity at $0$.
+    \item $f$ meromorphic on $U$ is \textbf{meromorphic at $\infty$} if $f$ does not have an essential singularity at $\infty$.
 \end{itemize}
 \end{definition}
 
 
 \begin{example}
 It is easy to get lost in the definition of $F$; take care not to.
-
 \begin{itemize}
-    \item $e^{\frac{1}{z}}$, which has an essential singularity at $0$, is holomorphic at $\infty$. This is because $F(z) = e^z$ is holomorphic at $0$
+    \item $e^{\frac{1}{z}}$, which has an essential singularity at $0$, is holomorphic at $\infty$. This is because $F(z) = e^z$ is holomorphic at $0$.
     
-    \item $z^2$, and entire holomorphic function, has a pole at $\infty$ of order 2. This is because $F(z) = \frac{1}{z^2}$ has a pole of order $2$ at $0$
+    \item $z^2$, and entire holomorphic function, has a pole at $\infty$ of order 2. This is because $F(z) = \frac{1}{z^2}$ has a pole of order $2$ at $0$.
     
-    \item $e^z$ has an essential singularity at $\infty$
+    \item $e^z$ has an essential singularity at $\infty$.
 \end{itemize}
 \end{example}
 
 \isubsection{THM:Characterization of Rational Functions}
 
-\begin{theorem}[Characterization of Rational Functions]
+\begin{theorem}[Characterization of Rational Functions]\label{thm:char-rat}
 
 Suppose $f $ meromorphic on $\C$ and $f $ meromorphic at $\infty$. 
 Then $f$ is a rational function ($f(z) = \frac{P(z)}{Q(z)}, \, P,Q \in \C [z], \, Q \nequiv 0$).
@@ -206,35 +208,30 @@ Then $f$ is a rational function ($f(z) = \frac{P(z)}{Q(z)}, \, P,Q \in \C [z], \
 This theorem means that we can classify meromorphic functions as rational iff they are meromorphic at $\infty$. This is significant since the set of polynomials is much smaller than the set of all meromorphic functions. This also implies that almost all meromorphic functions will have an essential singularity at $\infty$ (since few are rational, and all others must have an essential singularity at $\infty$).
 \end{note}
 
-\begin{proof}
+\begin{proof}[\ref{thm:char-rat}]
 Let $f$ meromorphic on $\C$. Then the poles of $f$ do not accumulate in $\C$. The poles of $f$ cannot accumulate at $\infty$ since $f$ is meromorphic at $\infty$ (since $f(\frac{1}{z})$ has a pole or removable singularity at $0$, it will be holomorphic and non-zero in $\DrP{r}{0}$ for some $r>0$, so $f$ has no poles in some punctured neighborhood of $\infty$). 
 
 It follows that since they cannot accumulate anywhere, $f$ has finite poles $\set{z_1, \cdots ,z_n}$ (and possibly $\infty$). Let $z_k$ be a pole in $\C$. Write for $z$ near $z_k$:
-
 \begin{align*}
     f(z) = \underbrace{f_k(z)}_{principal} + \underbrace{g_k(z)}_{hol'c}
 \end{align*}
-
 with $g_k(z)$ a polynomial in $\frac{1}{z-z_k}$. We do the same at $\infty$:
-
 \begin{align*}
-    f \left( \frac{1}{z} \right) = \underbrace{\Tilde{f}_\infty(z)}_{principal} + \underbrace{\Tilde{g}_\infty(z)}_{hol'c}
+    f \left( \frac{1}{z} \right) = \underbrace{\Tilde{f}_\infty(z)}_{principal} + \underbrace{\Tilde{g}_\infty(z)}_{hol'c}.
 \end{align*}
 
-Note that $\Tilde{f}_\infty(z)$ could be equal to $0$ if there is no pole at $\infty$. Note that $\Tilde{g}_\infty(z)$ is holomorphic in a neighborhood of $0$.
+Note that $\Tilde{f}_\infty(z)$ could be equal to $0$ if there is no pole at $\infty$. Note further that $\Tilde{g}_\infty(z)$ is holomorphic in a neighborhood of $0$.
 
-Let $f_\infty(z) = \Tilde{f}_\infty\left( \frac{1}{z} \right)$. Since $\Tilde{f}_\infty$ is a polynomial in $\frac{1}{z}$, $f_\infty$ is a polynomial in $z$.
-
-Let $H(z) = f(z) - f_\infty(z) - \sum_{k=1}^n f_k(z)$. $H$ is a holomorphic function on $\C \setminus \bigcup_{k=1}^n \{z_k \}$. Near $z_k$ we have that $f_\infty$ is bounded (as it is a polynomial), that $f-f_k$ is bounded (since it is equal to $g_k$, a holomorphic function), and that $f_i \, (i \neq k)$ is bounded. Thus $H$ is bounded near $z_k$. Near $\infty$: 
-
+Let $f_\infty(z) = \Tilde{f}_\infty\left( \frac{1}{z} \right)$. Since $\Tilde{f}_\infty$ is a polynomial in $\frac{1}{z}$, $f_\infty$ is a polynomial in $z$. Let:
+\begin{align*}
+    H(z) = f(z) - f_\infty(z) - \sum_{k=1}^n f_k(z).
+\end{align*}
+ $H$ is a holomorphic function on $\C \setminus \bigcup_{k=1}^n \{z_k \}$. Near $z_k$ we have that $f_\infty$ is bounded (as it is a polynomial), that $f-f_k$ is bounded (since it is equal to $g_k$, a holomorphic function), and that $f_i$ (for $i \neq k$) is bounded. Thus $H$ is bounded near $z_k$. Near $\infty$ we have: 
 \begin{align*}
 H\left( \frac{1}{z} \right) &= f\left( \frac{1}{z} \right) - f_\infty\left( \frac{1}{z} \right) - \sum_{k=1}^n f_k\left( \frac{1}{z} \right)\\
-\text{($P(x) \vcentcolon = $ "a polynomial in x") } &=\underbrace{f\left( \frac{1}{z} \right) - \Tilde{f}_\infty\left( z \right)}_{\Tilde{g}_\infty (z)} - \sum_{k=1}^n P_k\left( \frac{1}{\frac{1}{z} - z_k} \right)\\
+\text{($P(x) \vcentcolon = $ ``a polynomial in x") } &=\underbrace{f\left( \frac{1}{z} \right) - \Tilde{f}_\infty\left( z \right)}_{\Tilde{g}_\infty (z)} - \sum_{k=1}^n P_k\left( \frac{1}{\frac{1}{z} - z_k} \right).
 \end{align*}
-
-
-Both of these are bounded since $\Tilde{g}_\infty$ is bounded for $z$ close to $0$ and $\left( \frac{1}{\frac{1}{z} - z_k} \right) \xrightarrow[]{z \to 0} 0$ (hence the rightmost sum of polynomials is bounded). Thus $H$ is bounded in a neighborhood of $\infty$ and bounded in some union of neighborhoods $\bigcup_{j=1}^n \DrP{r}{z_j}$. But $H$ is holomorphic (and thus bounded) on the complement of these neighborhoods (since $H$ is meromorphic with all possible poles caught by our neighborhoods). $H$ is thus bounded on $\C$. By corollary (7.5), $H(z) = c \in \C$ is constant. Thus:
-
+Both of these are bounded since $\Tilde{g}_\infty$ is bounded for $z$ close to $0$ and $\left( \frac{1}{\frac{1}{z} - z_k} \right) \xrightarrow[]{z \to 0} 0$ (hence the rightmost sum of polynomials is bounded). Thus $H$ is bounded in a neighborhood of $\infty$ and bounded in some union of neighborhoods $\bigcup_{j=1}^n \DrP{r}{z_j}$. But $H$ is holomorphic (and thus bounded) on the complement of these neighborhoods (since $H$ is meromorphic with all possible poles caught by our neighborhoods). $H$ is thus bounded on $\C$. By corollary (\ref{cor:liouville}), $H(z) = c \in \C$ is constant. Thus:
 \begin{align*}
     f = \underbrace{\sum_{k=1}^n f_k}_{rational} + \underbrace{f_\infty +c}_{polynomial}
 \end{align*}
@@ -249,19 +246,18 @@ The main usefulness of meromorphic functions is their applicability to this foll
 
 \isubsection{THM: Argument Principle}
 
-\begin{theorem}[Argument Principle]
+\begin{theorem}[Argument Principle]\label{thm:arg-princ}
 
 $f$ meromorphic on $\oic$ open, $\om ' \ssubset \om$ open subset with piecewise smooth boundary. Suppose that $f$ has no zeroes and no poles on $\partial \om '$. Then:
-
 \begin{align*}
     \frac{1}{2 \pi i} \int_{\partial \om '} \frac{f'(z)}{f(z)} \dif z \;\; = \;\;\; & \# \set{\text{zeroes of $f$ in $\om '$ (with multiplicities)  } }\\
-    -  &\# \set{ \text{ poles of $f$ in $\om '$ (with multiplicities) } }
+    -  &\# \set{ \text{ poles of $f$ in $\om '$ (with multiplicities) } }.
 \end{align*}
 
 \end{theorem}
 
 \begin{note}
-$\left( \frac{f'}{f} \right)$ is called the logarithmic derivative, naively "$(log(f))'$" . "With multiplicities" means that a zero/pole of order $N$ counts like $N$.
+$\left( \frac{f'}{f} \right)$ is called the logarithmic derivative, naively ``$(log(f))'$" . ``With multiplicities" means that a zero/pole of order $N$ counts like $N$.
 \end{note}
 
 \begin{center}
@@ -282,23 +278,18 @@ $\left( \frac{f'}{f} \right)$ is called the logarithmic derivative, naively "$(l
 
 
 
-\begin{proof} Let us investigate the behaviour of $\left( \frac{f'}{f} \right)$.
-
-Let $z_0$ be either a zero of order $N$ or a pole of order $-N$ of $f$ inside $\om '$. We want to expand in a Laurent series; $f(z) = \sum_{n=N}^\infty a_n (z-z_0)^n$ with $a_N,N \neq 0$.\\
+\begin{proof}[\ref{thm:arg-princ}] Let us investigate the behaviour of $\left( \frac{f'}{f} \right)$. Let $z_0$ be either a zero of order $N$ or a pole of order $-N$ of $f$ inside $\om '$. We want to expand in a Laurent series; $f(z) = \sum_{n=N}^\infty a_n (z-z_0)^n$ with $a_N,N \neq 0$.
 
 We can write $f(z)  = (z-z_0)^N \cdot g(z)$ for $z$ near $z_0$ where $g$ is holomorphic and non-zero in a neighborhood of $z_0$. Thus on $\DrP{r}{z_0}$:
-
 \begin{align*}
 \frac{f'(z)}{f(z)} &= \frac{N(z-z_0)^{N-1} g(z) + (z-z_0)^N g'(z)}{(z-z_0)^N g(z)}\\
-&= \frac{N}{z-z_0}+ \frac{g'(z)}{g(z)}
+&= \frac{N}{z-z_0}+ \frac{g'(z)}{g(z)}.
 \end{align*}
 
-The second term is holomorphic. The first term is a simple pole with residue $N$. Thus $\res{z_0}{\frac{f'}{f}} = N$. The same computation yields a similar equation, but with $N=0$, indicating that there are no poles along the boundary. Applying the Residue Formula gives us:
-
+The second term is holomorphic. The first term is a simple pole with residue $N$. Thus $\res{z_0}{\frac{f'}{f}} = N$. The same computation on $\frac{g'(z)}{g(z)}$ yields a similar equation, but with $N=0$, indicating that there are no poles along the boundary. Applying theorem (\ref{thm:residue-formula}) gives us:
 \begin{align*}
-    \frac{1}{2 \pi i} \int_{\partial \om '} \frac{f'(z)}{f(z)} \dif z = \sum_{z_i \in S} \res{z_0}{\frac{f'}{f}} = \sum_{zeroes} 1 - \sum_{poles} 1
+    \frac{1}{2 \pi i} \int_{\partial \om '} \frac{f'(z)}{f(z)} \dif z = \sum_{z_i \in S} \res{z_0}{\frac{f'}{f}} = \sum_{zeroes} 1 - \sum_{poles} 1.
 \end{align*}
-
 where $S$ is the set of all poles of $\frac{f'}{f}$ in $\om '$. This is the same as the set of all zeroes and poles of $f$.
 
 \end{proof}
@@ -306,7 +297,7 @@ where $S$ is the set of all poles of $\frac{f'}{f}$ in $\om '$. This is the same
 
 \isubsection{THM: Rouché}
 
-\begin{theorem}[Rouché]
+\begin{theorem}[Rouché]\label{thm:rouche}
 
 $f,g$ holomorphic on $\om$, $\om' \ssubset \om$, $\om ' $ piecewise smooth boundary. Suppose that $\abs{f(z)} > \abs{g(z)} \, \forall z \in \partial \om '$. Then $f $ and $f+g$ have the same number of zeroes in $\om ' $ (counted with multiplicities).
 
@@ -318,20 +309,18 @@ The logic of this theorem is that $g$ is some kind of perturbation such that on 
 
 \end{note}
 
-\begin{proof} Use a "homotopy argument".
+\begin{proof}[\ref{thm:rouche}] Use a ``homotopy argument".
 
-Connect $f$ and $f+g$ via $f_t(z) = f(z) + tg(z), \, t \in [0,1]$. Then $f_t$ holomorphic on $\om \, \forall t$. Let $n_t = \# \set{ \text{zeroes of $f_t$ inside $\om '$  }}$ (want to show that $n_0 = n_1$). We shall show that $n_t$ is constant in t by applying the Argument Principle. To apply it, we must have that $f $ has no zeroes on the boundary (it has no poles since it is holomorphic). Then for $z \in \partial \om '$:
-
+Connect $f$ and $f+g$ via $f_t(z) = f(z) + tg(z), \, t \in [0,1]$. Then $f_t$ holomorphic on $\om \, \forall t$. Let $n_t = \# \set{ \text{zeroes of $f_t$ inside $\om '$  }}$ (we want to show that $n_0 = n_1$). We shall show that $n_t$ is constant in $t$ by applying theorem (\ref{thm:arg-princ}). To apply it, we must have that $f $ has no zeroes on the boundary (it has no poles since it is holomorphic). Then for $z \in \partial \om '$:
 \begin{align*}
     \abs{f_t(z)} = \abs{f(z) + tg(z)} &\geq \abs{f(z)} - t\abs{g(z)}\\
-    \text{($t\in [0,1] $) }&\geq \abs{f(z)} - \abs{g(z)}\\
-    \text{(apply assumption) }&> 0
+    \text{(since $t\in [0,1] $) }&\geq \abs{f(z)} - \abs{g(z)}\\
+    \text{(apply assumption) }&> 0.
 \end{align*}
 
 Thus $f_t$ has no zeroes on the boundary, so:
-
 \begin{align*}
-    n_t = \frac{1}{2 \pi i} \int_{\partial \om '} \frac{f'(z)}{f(z)} \dif z
+    n_t = \frac{1}{2 \pi i} \int_{\partial \om '} \frac{f'(z)}{f(z)} \dif z.
 \end{align*}
 
 Now note that $f_t$ is a $C^0$ function in both $z$ and $t$. Thus the contour integral in $z$ is a $C^0 $ function of $t$. It follows that the map $[0,1] \to \mathbb{Z}, \, t \mapsto n_t$ is continuous. Since $\mathbb{Z}$ is disconnected, $n_t$ must be constant.

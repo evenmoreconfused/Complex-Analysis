@@ -10,29 +10,30 @@
 \section{Duplication Formula}
 
 We begin by introducing a theorem.
-\begin{theorem}[Legendre Duplication Formula]
+\begin{theorem}[Legendre Duplication Formula]\label{thm:z-duplication}
 For all $s \in \C$, we have that:
 \begin{align*}
-    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s)
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s).
 \end{align*}
 \end{theorem}
 
 \begin{proof}
 Let $a,b \in \C$ with $\Re(a) > 0$ and $\Re(b) > 0$. Let
 \begin{align*}
-    B(a,b) = \int_0^1t^{a-1} (1-t)^{b-1} \dif t
+    B(a,b) = \int_0^1t^{a-1} (1-t)^{b-1} \dif t.
 \end{align*}
-As an aside this is known as the Beta function. This is sometimes an improper integral (when $a$ or $b$ are close to $0$), but this is prevented by the condition on $\Re(a)$ and $\Re(b)$.\\
+As an aside this is known as the Beta function. This is sometimes an improper integral (when $a$ or $b$ are close to $0$), but this is prevented by the condition on $\Re(a)$ and $\Re(b)$.
 
-\begin{lemma}$ \forall x,y \in \C$ with $\Re(x) > 0$ and $\Re(y) > 0$, we have that:
+\begin{lemma}\label{lem:z-duplication-lemma}
+$ \forall x,y \in \C$ with $\Re(x) > 0$ and $\Re(y) > 0$, we have that:
 \begin{align*}
     \Gamma(x) \cdot \Gamma(y) = \Gamma(x+y) \cdot B(x,y)
 \end{align*}
 \end{lemma}
-\begin{proof}[of lemma]
+\begin{proof}[\ref{lem:z-duplication-lemma}]
 Indeed, using change of variables in double integrals, we have:
 \begin{align*}
-    \Gamma(x) \cdot \Gamma(y) &= \int_0^\infty \int_0^\infty t_1^{x-1}t_2^{y-1}  e^{-t_1-t_2} \dif t_1 \dif t_2\\
+    \Gamma(x) \cdot \Gamma(y) &= \int_0^\infty \int_0^\infty t_1^{x-1}t_2^{y-1}  e^{-t_1-t_2} \dif t_1 \dif t_2.
 \end{align*}
 Now let $t_1 = ut$, $t_2 = u(1-t)$ such that $(t_1, t_2) \leadsto (u,t)$. $t_1, t_2 \in [0,\infty)$, so $u \in [0,\infty), \, t \in [0,1]$. Calculating the determinant of the Jacobian we have:
 \begin{align*}
@@ -43,14 +44,14 @@ Now let $t_1 = ut$, $t_2 = u(1-t)$ such that $(t_1, t_2) \leadsto (u,t)$. $t_1, 
 \begin{vmatrix}
 t & u\\
 1-t & -u
-\end{vmatrix} = -u
+\end{vmatrix} = -u.
 \end{align*}
 Then using the fact that $\dif t_1 \dif t_2 = \abs{det(Jac)} \dif u \dif t$ we have that:
 
 \begin{align*}
     \Gamma(x) \cdot \Gamma(y) &= \int_0^\infty \int_0^1 u^{x-1+y-1} e^{-u} t^{x-1} (1-t)^{y-1} \cdot u \dif u \dif t\\
     &= \br{\int_0^\infty u^{x+y-1} e^{-u} \dif u } \cdot \br{\int_0^1 t^{x-1} (1-t)^{y-1} \dif t}\\
-    &= \Gamma(x+y) \cdot B(x,y)
+    &= \Gamma(x+y) \cdot B(x,y).
 \end{align*}
 \end{proof}
 
@@ -63,16 +64,16 @@ Now let $\Re(s) > 0$. Then:
     \text{(even function) } &= 2 \cdot 2^{1-s} \int_{0}^1 (1-x^2)^{s-1} \dif x \nonumber \\
     \text{(sub $t = x^2$) } &= 2^{1-2s} \int_0^1 (1-t)^{s-1} t^{-\frac{1}{2}} \dif t \nonumber \\
     &= 2^{1-2s} \cdot B \br{\tfrac{1}{2}, s} \nonumber \\
-    &= 2^{1-2s} \cdot \frac{\Gamma\br{\tfrac{1}{2}} \cdot \Gamma(s)}{\Gamma\br{s+\tfrac{1}{2}}} \nonumber \\
+    &= 2^{1-2s} \cdot \frac{\Gamma\br{\tfrac{1}{2}} \cdot \Gamma(s)}{\Gamma\br{s+\tfrac{1}{2}}}. \nonumber \\
     &\Downarrow \nonumber \\
-    \Gamma(s) \cdot \Gamma\br{s+\tfrac{1}{2}} {} &= 2^{1-2s} \cdot \Gamma\br{\tfrac{1}{2}} \cdot  \Gamma(2s)
+    \Gamma(s) \cdot \Gamma\br{s+\tfrac{1}{2}} {} &= 2^{1-2s} \cdot \Gamma\br{\tfrac{1}{2}} \cdot  \Gamma(2s) \label{eq:z-duplication-eq}.
 \end{align}
-Using the fact that $\Gamma(s) \cdot \Gamma(1-s) = \tfrac{\pi}{ \sin(\pi s)}$ (this is theorem (21.4)), we have that, by letting $s = \tfrac{1}{2}$, $(\Gamma(\tfrac{1}{2}))^2 = \pi \implies \Gamma(\tfrac{1}{2}) = \sqrt{\pi}$. Thus, letting $s= \frac{s}{2}$ in (25.1), we have that:
+Using theorem (\ref{thm:g-f-eq}), we have that, by letting $s = \tfrac{1}{2}$, $(\Gamma(\tfrac{1}{2}))^2 = \pi \implies \Gamma(\tfrac{1}{2}) = \sqrt{\pi}$. Thus, letting $s= \frac{s}{2}$ in (\ref{eq:z-duplication-eq}), we have that:
 \begin{align*}
-    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s)
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{\frac{s+1}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{1-s} \cdot \Gamma(s).
 \end{align*}
 Recalling that $\Re(s) > 0$, and thus that $\Re(\tfrac{s}{2}) > 0$, then the claim is proven.
-\end{proof}\\\\
+\end{proof}
 
 
 
@@ -81,7 +82,7 @@ Recalling that $\Re(s) > 0$, and thus that $\Re(\tfrac{s}{2}) > 0$, then the cla
 \section{Functional Equation part 2}
 Recall the functional equation for the Riemann Zeta Function:
 \begin{align*}
-    \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s)
+    \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s).
 \end{align*}
 
 We will find a second formulation of this. First we define the Riemann Xi Function.
@@ -90,46 +91,46 @@ We will find a second formulation of this. First we define the Riemann Xi Functi
 
 
 \begin{definition}
-We define the Riemann Xi Function $\xi(s)$ as
+We define the \textbf{Riemann Xi Function $\xi(s)$} as
 \begin{align*}
-    \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+    \xi(s) \defas \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s).
 \end{align*}
 This is clearly meromorphic in $\C$.
 \end{definition}
 
 \begin{theorem}
-$\xi$ only has simple poles at $s= 0$ and $s=1$, and the functional equation for $\zeta$ is equivalent to:
+$\xi$ only has simple poles at $s= 0$ and $s=1$, and theorem (\ref{thm:r-func-eq}) is equivalent to:
 \begin{align*}
-    \xi(s) = \xi(1-s) \;\;\;\; \forall s \in \C
+    \xi(s) = \xi(1-s) \;\;\;\; \forall s \in \C.
 \end{align*}
 \end{theorem}
 
-To prove this we apply the Duplication Formula.
+To prove this we apply theorem (\ref{thm:z-duplication}).
 
 \begin{proof}
 Note that:
 \begin{align*}
-    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s)
+    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s),
 \end{align*}
 and that
 \begin{align*}
-    \xi(1-s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s)
+    \xi(1-s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s).
 \end{align*}
-Then we want to see if equality of these two statements is equivalent to the Functional Equation. Thus we let $\xi(s) = \xi(1-s)$. Noting that:
+Then we want to see if equality of these two statements is equivalent to theorem (\ref{thm:r-func-eq}). Thus we let $\xi(s) = \xi(1-s)$. Noting that:
 \begin{align*}
-    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{1- \frac{s}{2}} &= \frac{\pi}{ \sin\br{\frac{\pi s}{2}} }\\
+    \Gamma\br{\frac{s}{2}} \cdot \Gamma\br{1- \frac{s}{2}} &= \frac{\pi}{ \sin\br{\frac{\pi s}{2}} }.\\
     &\Downarrow\\
-    \frac{1}{\Gamma\br{\frac{s}{2}}} &= \frac{\Gamma\br{1- \frac{s}{2}} \cdot \sin\br{\frac{\pi s}{2}} }{\pi}
+    \frac{1}{\Gamma\br{\frac{s}{2}}} &= \frac{\Gamma\br{1- \frac{s}{2}} \cdot \sin\br{\frac{\pi s}{2}} }{\pi}.
 \end{align*}
-And that, letting $s = 1-s$ in the Duplication Formula, we have:
+And that, letting $s = 1-s$ in theorem (\ref{thm:z-duplication}), we have:
 \begin{align*}
-     \Gamma\br{\frac{1-s}{2}} \cdot \Gamma\br{1-\frac{s}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{s} \cdot \Gamma(1-s)
+     \Gamma\br{\frac{1-s}{2}} \cdot \Gamma\br{1-\frac{s}{2}} = \pi ^{\frac{1}{2}} \cdot 2^{s} \cdot \Gamma(1-s).
 \end{align*}
 Then we have that:
 \begin{align*}
     \zeta(s) &= \pi^{s - \frac{1}{2}} \cdot \frac{\Gamma(\frac{1-s}{2})}{\Gamma(\frac{s}{2})} \cdot \zeta(1-s)\\
     &= \pi^{s - \frac{3}{2}}\cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \Gamma\br{1- \frac{s}{2}} \cdot    \zeta(1-s)\\
-    &= \pi^{s - 1} \cdot 2^s \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma\br{1-s}  \cdot    \zeta(1-s)
+    &= \pi^{s - 1} \cdot 2^s \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma\br{1-s}  \cdot    \zeta(1-s).
 \end{align*}
 Which is the Functional Equation for the Riemann Zeta Function. Thus:
 \begin{align*}
@@ -143,16 +144,16 @@ And the claim has been proven.
 \end{proof}
 
 \begin{corollary}
-The only zeroes of $\zeta$ outside of the "critical strip" $\set{ 0 \leq \Re(s) \leq 1}$ are simple zeroes at $s \in \set{-2, -4, -6, \cdots}$.
+The only zeroes of $\zeta$ outside of the ``critical strip" $\set{ 0 \leq \Re(s) \leq 1}$ are simple zeroes at $s \in \set{-2, -4, -6, \cdots}$.
 \end{corollary}
 
 
 \begin{proof}
-By corollary (23.3) we have that $\zeta(s) \neq 0 $ for $\Re(s) > 1$. We now  need to check only on the other side of this strip.\\
+By corollary (\ref{cor:r-pos-strip-non-zero}) we have that $\zeta(s) \neq 0 $ for $\Re(s) > 1$. We now  need to check only on the other side of this strip.
 
 Assume that $\Re(s) < 0$. We use the functional equation for $\xi$. Then:
 \begin{align*}
-    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s) = \xi(1-s)
+    \xi(s) = \pi^{-\frac{s}{2}} \cdot \Gamma\br{\frac{s}{2}} \cdot \zeta(s) = \pi^{\frac{-1+s}{2}} \cdot \Gamma\br{\frac{1-s}{2}} \cdot \zeta(1-s) = \xi(1-s).
 \end{align*}
 
 Then for each term:
@@ -174,7 +175,37 @@ And thus the claim is proven.
 
 We can thus conclude that $\zeta$ has only the trivial zeroes on the left of the critical strip, none on the right of it, and a mysterious amount in the critical strip.
 
-INSERT TIKZ
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (-7,0) -- (3,0);
+        \draw[->] (0,-3.5) -- (0,3.5);
+        \draw (0.5,-3.25) -- (0.5,3.25);
+        
+        \fill (-2,0) circle (0.1);
+        \fill (-4,0) circle (0.1);
+        \fill (-6,0) circle (0.1);
+
+        \fill (0.5,0) circle (0.1);
+        % \fill (0.5,0.5) circle (0.1);
+        \fill (0.5,1) circle (0.1);
+        % \fill (0.5,1.5) circle (0.1);
+        \fill (0.5,2) circle (0.1);
+        % \fill (0.5,2.5) circle (0.1);
+        % \fill (0.5,-0.5) circle (0.1);
+        \fill (0.5,-1) circle (0.1);
+        % \fill (0.5,-1.5) circle (0.1);
+        \fill (0.5,-2) circle (0.1);
+        % \fill (0.5,-2.5) circle (0.1);
+
+        \draw[very thick] (0,-3) -- (0,3);
+        \draw[very thick] (1,-3) -- (1,3);
+        \fill[pattern=north west lines] (0,-3) rectangle (1,3);
+        \draw[below] node at (-2,-0.2) {$-2$};
+        \draw[below] node at (-4,-0.2) {$-4$};
+        \draw[below] node at (-6,-0.2) {$-6$};
+        \draw[below right] node at (0.5,-3.25) {$\frac{1}{2}$};
+    \end{tikzpicture}
+\end{center}
 
 In fact there are infinite zeroes in the critical strip (a non-obvious fact). The relationship between $\zeta(s)$ and $\zeta(1-s)$ in the functional equation, a reflection across the line $\Re(s) = \frac{1}{2}$, prompted Riemann to conjecture that every zero of $\zeta$ lies on the line $\Re(s) = \frac{1}{2}$.
 

@@ -12,65 +12,99 @@ Recall the discussion of the complex logarithm from last lecture.
 \section{Complex Logarithm Continued}
 
 \begin{remark}
-In the theorem about the existence of the logarithm function for $\om $ simply connected (15.11) from last time, note that we did not actually need simply connected. All we needed was the existence of an antiderivative. It thus suffices to assume (15.9.1), (15.9.2), or (15.9.3). That is to say, it suffices to assume the existence of an antiderivative $F$ of $f$ holomorphic on $\om$.
+In theorem (\ref{thm:complex-log}) from last time, note that we did not actually need simply connected. All we needed was the existence of an antiderivative. It thus suffices to assume any of items 1,2,3 in theorem (\ref{thm:char-simp-conn}). That is to say, it suffices to assume the existence of an antiderivative $F$ of $f$ holomorphic on $\om$.
 
 \end{remark}
 
 Assume now that $0 \not\in \om$ simply connected, $1 \in \om$. Let $\log(z)$ be the principal branch of $\log$, ie $\log(1) = 0$. Then, consider $r \in \R$, $r$ close to $1$ (suffices that the segment from $1$ to $r$ is contained in $\om$):
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}
+    \draw[scale =0.25,xshift = 325]
+        plot [smooth cycle] coordinates {(-10,0) (-7,3.5) (0,5)  (4,2.5) (7,0)  (5,-7) (2,-6)  (-5,-5) };
+
+\def\r{1};
+\def\h{0.1};
+\draw[->] (0,-1) -- (0,1.5);
+\draw[->] (-1,0) -- (3,0);
+\draw (1,\h) -- (1,-\h);
+\draw (1+\r,\h) -- (1+\r,-\h);
+\draw (1,0)+(0.1,0.3) node {$1$};
+\draw (1+\r,0)+(0.1,0.3) node {$r$};
+
+\draw node at (5,-1) {$\om$};
+
+
+\end{tikzpicture}
+
+    
+\end{center}
+
 
 Then take $\gamma = [1,r]$ (or $[r,1]$ if $r< 1$). Then:
-
 \begin{align*}
     \underbrace{\log(r)}_{complex} = \int_1^r \frac{\dif x}{x} = \underbrace{\ln(r)}_{real}
 \end{align*}
 
 Thus the principal branch agrees with the usual natural logarithm on the real axis close to $1$. Additionally, we can write down the power series of $\log(1+z)$ for $z \in \om$ close to $0$ as:
-
 \begin{align*}
-    \log(1+z) = \sum_{n=1}^\infty (-1)^{n+1} \frac{z^n}{n}
+    \log(1+z) = \sum_{n=1}^\infty (-1)^{n+1} \frac{z^n}{n}.
 \end{align*}
-
 Indeed, this power series has a radius of convergence of $1$. Thus the power series:
-
 \begin{align*}
     G(z) = \sum_{n=1}^\infty (-1)^{n+1} \frac{z^n}{n}
 \end{align*}
-
 defines a holomorphic function on $D_1(0)$, with
 \begin{align*}
-   G(0)&=0\\
-   G'(z) &= \sum_{n=1}^\infty (-1)^{n+1} z^{n-1} = \sum_{n=0}^\infty (-1)^n z^n= \frac{1}{1+z}
+   G(0)&=0,\\
+   G'(z) &= \sum_{n=1}^\infty (-1)^{n+1} z^{n-1} = \sum_{n=0}^\infty (-1)^n z^n= \frac{1}{1+z}.
 \end{align*}
 
 Thus $G$ is also a branch of $\log(1+z)$ and they agree at $z=0$, so they are equal by the uniqueness of $\log$.
 
 
 \begin{example}
-Let $\om = \C \setminus \set{(-\infty, o ] }$. Then $0 \not\in \om, \, 1 \in \om$, and $\om$ is simply connected. Thus there is a principal branch of $\log(z)$ on $\om$. To find $\log(z)$, we take any path $\gamma$ from $1$ to $z$ inside $\om$ and let $\log(z) = \int_\gamma \frac{1}{w} \dif w$. This satisfies $\log(1) = 0$.
+Let $\om = \C \setminus \set{(-\infty, 0 ] }$. Then $0 \not\in \om, \, 1 \in \om$, and $\om$ is simply connected. Thus there is a principal branch of $\log(z)$ on $\om$. To find $\log(z)$, we take any path $\gamma$ from $1$ to $z$ inside $\om$ and let $\log(z) = \int_\gamma \frac{1}{w} \dif w$. This satisfies $\log(1) = 0$. We construct $\gamma$ by drawing a path $\gamma_1$ from $1$ to $\abs{z}$ and letting $\gamma_2$ be the arc of radius $\abs{z}$ centered around the origin that connects $\abs{z}$ and $z$. We parameterize $\gamma_2$ by $\gamma_2(t) = \abs{z} e^{it}, \, t \in [0,\arg(z)]$, with $\abs{\arg(z)} < \pi$:
 
-We construct $\gamma$ by drawing a path $\gamma_1$ from $1$ to $\abs{z}$ and letting $\gamma_2$ be the arc of radius $\abs{z}$ centered around the origin that connects $\abs{z}$ and $z$. We parameterize $\gamma_2$ by $\gamma_2(t) = \abs{z} e^{it}, \, t \in [0,\arg(z)]$, with $\abs{\arg(z)} < \pi$:
+\begin{center}
+\begin{tikzpicture}[decoration={
+    markings,
+    mark=at position 0.6 with {\arrow{>}}},
+    ]
+    \def\r{2.5};
+    \draw[very thick] (-2,0) -- (0,0);
+    \draw (0,0) -- (3,0);
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[postaction={decorate},very thick] (1,0) -- (\r,0);
+    \draw [postaction={decorate},very thick,domain=0:60] plot ({\r * cos(\x)}, {\r * sin(\x)});
+    \draw[fill] (1,0) circle (0.08);
+    \draw[fill] (50:\r) circle (0.08);
+    \draw[fill] (0:\r) circle (0.08);
 
-INSERT TIKZ
+    \draw (1,0)+(0.1,-0.3) node {$1$};
+    \draw (\r,0)+(0.1,-0.3) node {$r = \abs{z} >0$};
+    \draw (50:\r)+(0.1,0.3) node {$z$};
+    \draw[thick] (-0.1,0.1) -- (0.1,-0.1) (-0.1,-0.1) --(0.1,0.1);
+    \draw (10:\r)+(0.15,0.3) node {$\gamma$};
+    
+    % \draw[postaction={decorate}][rotate = 200] [blue,line width=1.5pt] (0,0) circle [radius=\r];
+\end{tikzpicture}
+\end{center}
 
 Then:
-
 \begin{align*}
     \int_{\gamma} \frac{1}{w} \dif w &= \int_{\gamma_1} \frac{\dif w}{w}  + \int_{\gamma_2} \frac{\dif w}{w}\\
     &= \int_1^{\abs{z}} \frac{\dif x}{x} + \int_{\gamma_2} \frac{\dif w}{w}\\
     &= \log( \, \abs{z}) + \int_0^{\arg(z)} \frac{i \abs{z} e^{it}}{\abs{z} e^{it}} \dif t\\
-    &= \log( \, \abs{z}) + i \cdot {\arg(z)}\\
+    &= \log( \, \abs{z}) + i \cdot {\arg(z)}.\\
 \end{align*}
 
 It follows that the principal branch on the slit plane is:
-
 \begin{align*}
-    \log(z) = \log( \, \abs{z} ) + i \cdot {\arg(z)}
+    \log(z) = \log( \, \abs{z} ) + i \cdot {\arg(z)}.
 \end{align*}
 
-Note however that unlike the real equivalent, $\log(z_1 z_2) \neq \log(z_1) \log(z_2)$. This can be seen by letting $z_1 = z_2 = e^{\frac{2 \pi i}{3}}$. Then $z_1 z_2 = e^{\frac{4 \pi i}{3}}$. However, it is a condition that $\abs{ \arg (z)} < \pi$, thus we must pick $z_1 z_2 = e^{\frac{-2 \pi i}{3}}$. Then:
-
+Note however that unlike the real equivalent, $\log(z_1 z_2) \neq \log(z_1) + \log(z_2)$. This can be seen by letting $z_1 = z_2 = e^{\frac{2 \pi i}{3}}$. Then $z_1 z_2 = e^{\frac{4 \pi i}{3}}$. However, it is a condition that $\abs{ \arg (z)} < \pi$, thus we must pick $z_1 z_2 = e^{\frac{-2 \pi i}{3}}$. Then:
 \begin{align*}
     \frac{2 \pi i }{3} \cdot \frac{2 \pi i }{3} = \log(z_1) \log ( z_2 ) \neq \log ( z_1 z_2 ) = \log \left( e^{ - \frac{2 \pi i}{3}} \right) = \frac{- 2 \pi i}{3}
 \end{align*}
@@ -81,102 +115,90 @@ Note however that unlike the real equivalent, $\log(z_1 z_2) \neq \log(z_1) \log
 
 We can further generalize the $\log$ function to be able to take the logarithm of functions, not just complex numbers.
 
-\begin{theorem}
+\begin{theorem}\label{thm:complex-log-super}
 Let $\om$ be simply connected, $\foc$ holomorphic and $f(z) \neq 0, \, \forall z \in \om$. Then $\exists g: \om \to \C$ holomorphic s.t. $e^{g(z)} = f(z), \, \forall z \in \om$. This $g$ is unique up to adding $2 \pi i k, \, k \in \mathbb{Z}$.
 \end{theorem}
 
 \begin{proof}
-Proof is left largely as an exercise to the reader.\\
-
-The idea of the proof is to replace $\int_\gamma \frac{1}{z} \dif z$ with $\int_\gamma \frac{f'(z)}{f(z)} \dif z$.
+Proof is left largely as an exercise to the reader. The idea of the proof is to replace $\int_\gamma \frac{1}{z} \dif z$ with $\int_\gamma \frac{f'(z)}{f(z)} \dif z$.
 \end{proof}
 
 \section{Mean Value Property}
 
 First we formally present a preliminary result:
 
-\begin{proposition}
+\begin{proposition}\label{prop:prelim-mvp}
 $f: D_R(z_0) \to \C$ holomorphic, $R> 0, \, z_0 \in \C$, with
-
 \begin{align*}
-    f(z) = \sum_{n=0}^ \infty a_n (z-z_0)^n
+    f(z) = \sum_{n=0}^ \infty a_n (z-z_0)^n.
 \end{align*}
+
 Then $\forall \, 0 < r< R$, $\forall \, n \geq 0$:
-
 \begin{align*}
-    a_n = \frac{1}{2 \pi r^n} \int_0^{2 \pi} f ( z_0 + re^{i \theta} ) e^{-i n \theta } \dif \theta
+    a_n = \frac{1}{2 \pi r^n} \int_0^{2 \pi} f ( z_0 + re^{i \theta} ) e^{-i n \theta } \dif \theta,
 \end{align*}
-
-and $\forall \, 0 < r< R$, $\forall \, n < 0$
-
+and $\forall \, 0 < r< R$, $\forall \, n < 0$:
 \begin{align*}
-    \frac{1}{2 \pi r^n} \int_0^{2 \pi} f ( z_0 + re^{i \theta} ) e^{-i n \theta } \dif \theta = 0 
+    \frac{1}{2 \pi r^n} \int_0^{2 \pi} f ( z_0 + re^{i \theta} ) e^{-i n \theta } \dif \theta = 0 .
 \end{align*}
 \end{proposition}
 
 
 \begin{proof}
-This is an easy consequence of the Cauchy Integral Formula:
-
+This is an easy consequence of equation (\ref{eq:cauchy-int-fla}):
 \begin{align*}
-    a_n = \frac{1}{2 \pi i} \int_{\partial D_r(z_0)} \frac{f(w)}{(w-z_0)^{n+1}} \dif w 
+    a_n = \frac{1}{2 \pi i} \int_{\partial D_r(z_0)} \frac{f(w)}{(w-z_0)^{n+1}} \dif w.
 \end{align*}
 
 Parameterizing $\partial D_r(z_0)$ as $w(\theta) = z_0 + re^{i \theta}, \, 0 \leq \theta \leq 2 \pi$:
-
 \begin{align*}
     a_n &= \frac{1}{2 \pi i} \int_0^{2 \pi}  \frac{f(z_0+re^{i \theta  })}{(re^{i \theta})^{n+1}  } r i e^{i\theta} \dif \theta\\
-    &= \frac{1}{2 \pi r^n} \int_0^{2 \pi} f(z_0+re^{i \theta} ) e^{-i n \theta} \dif \theta
+    &= \frac{1}{2 \pi r^n} \int_0^{2 \pi} f(z_0+re^{i \theta} ) e^{-i n \theta} \dif \theta.
 \end{align*}
 
-
-
 Then let $n<0 \Leftrightarrow n \leq 1$. Then $f(w)(w-z_0)^{-(n+1)}$ is holomorphic since $f$ is holomorphic in the whole disk. Thus:
-
 \begin{align*}
     a_n &= \frac{1}{2 \pi r^n} \int_0^{2 \pi} f(z_0+re^{i \theta} ) e^{-i n \theta} \dif \theta\\ &= \frac{1}{2 \pi i} \int_{\partial D_r(z_0)} \frac{f(w)}{(w-z_0)^{n+1}} \dif w\\
-    &= 0
+    &= 0.
 \end{align*}
 
 
 \end{proof}
 
 \begin{note}
-If we let $r=1$, then $f(z_0 + e^{i \theta}$ is $f$ restricted to $S^1 = D_1(0)$, and $an = \frac{1}{2 \pi } \int_0^{2 \pi} f(z_0+e^{i \theta} ) e^{-i n \theta} \dif \theta$ is known as the $n$-th Fourier coefficient of $f$ restricted to $S^1$.
+If we let $r=1$, then $f(z_0 + e^{i \theta})$ is $f$ restricted to $S^1 = D_1(0)$, and $_an = \frac{1}{2 \pi } \int_0^{2 \pi} f(z_0+e^{i \theta} ) e^{-i n \theta} \dif \theta$ is known as the $n$-th Fourier coefficient of $f$ restricted to $S^1$.
 \end{note}
 
 \isubsection{COR: Mean Value Property}
-\begin{corollary}[Mean Value Property]
+\begin{corollary}[Mean Value Property]\label{cor:mean-val-prop}
 
 Let $f=u+iv$ holomorphic on $D_R(z_0)$. Then $\forall \, 0 < r < R$, we have:
-
 \begin{align*}
-    f(z_0) &= \frac{1}{2 \pi} \int_0^{2 \pi} f( z_0 + r e^{i \theta} ) \dif \theta\\
+    f(z_0) &= \frac{1}{2 \pi} \int_0^{2 \pi} f( z_0 + r e^{i \theta} ) \dif \theta.
 \end{align*}
+
 Furthermore, for the harmonic function $u = \Re (f)$:
-
-
 \begin{align*}
-    u(z_0) &= \frac{1}{2 \pi} \int_0^{2 \pi} u( z_0 + r e^{i \theta} ) \dif \theta\\
+    u(z_0) &= \frac{1}{2 \pi} \int_0^{2 \pi} u( z_0 + r e^{i \theta} ) \dif \theta.
 \end{align*}
+
 That is to say that the value of $f$ at the center of any disk (on which $f$ is holomorphic up to the boundary) is equal to the average value of $f$ restricted to the boundary of the same disk.
 \end{corollary}
 
 \begin{proof}
-In the above proposition (16.4) let $z=z_0$. Then $f(z_0) = a_0 = \frac{1}{2 \pi} \int_0^{2 \pi} f( z_0 + r e^{i \theta} ) \dif \theta$. The second statement follows by taking the real part of each side of the first equation.
+In proposition (\ref{prop:prelim-mvp}) let $z=z_0$. Then $f(z_0) = a_0 = \frac{1}{2 \pi} \int_0^{2 \pi} f( z_0 + r e^{i \theta} ) \dif \theta$. The second statement follows by taking the real part of each side of the first equation.
 \end{proof}
-
 
 \begin{remark}
 It turns out that for any harmonic function on a disk, it is the real part of some holomorphic function on the disk. Thus this corollary holds for every harmonic function, not just the real parts of holomorphic functions.
 \end{remark}
 
-We now begin a separate section, with the ultimate goal of proving the Riemann Mapping Theorem.
+We now begin a separate section, with the ultimate goal of proving theorem (\ref{thm:r-map-thm}).
 
 \section{Upper Half Plane}
 
 \begin{definition}
-We define the upper half plane $\mathbb{H} \defas \set{z \in \C \mid \Im (z) > 0}$.
+We define the \textbf{upper half plane} to be $\mathbb{H} \defas \set{z \in \C \mid \Im (z) > 0}$.
 
 \end{definition}
 
@@ -187,49 +209,65 @@ Let $f: \om_1 \to \om_2$, $\om_1, \om_2$ open, be a holomorphic and bijective ma
 
 \begin{proposition}
 There is a biholomorphic map $F: \mathbb{H} \to D = D_1 (0)$. In fact:
-
 \begin{align*}
-    F(z) &= \frac{i-z}{i+z}\\
-    F^{-1}(z) &= i \cdot \frac{1-z}{1+z}
+    F(z) &= \frac{i-z}{i+z},\\
+    F^{-1}(z) &= i \cdot \frac{1-z}{1+z}.
 \end{align*}
 \end{proposition}
 
-INSERT TIKZ
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}[xshift = -3.5cm,yshift = -0.5cm]
+    \draw [] (-1,0)--(2,0);
+    \draw [] (0,-0.5)--(0,2);
+    \fill [pattern=north west lines] (-2,0) rectangle (2,2);
+    \draw [very thick] (-2,0) -- (0,0) -- (2,0);
+    \end{scope}
+    \begin{scope}
+        \draw[->] (-1,0.5) to[out=45,in=135] (1,0.5);
+        \draw[->] (1,-0.5) to[out=225,in=335] (-1,-0.5);
+        \draw (0,0.5) node {$F$};
+        \draw (0,-0.5) node {$F^{-1}$};
+    \end{scope}
+    \begin{scope}[xshift = 2.5cm]
+        \draw (0,0) circle (1);
+        \fill [pattern = north west lines] (0,0) circle (1);
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
 
 
 \begin{proof}
 $F: \HH \to \C$ holomorphic is clear, since the denominator is never $0$ (since we are restricted to the upper half plane). Then write $z = x + iy, \, y >0$. Then note that:
-
 \begin{align*}
     \abs{1-z } &= \abs{x + i(y-1)}\\
     &= \sqrt{x^2 +(y-1)^2}\\
-    &= \sqrt{x^2 + y^2 - 2y +1}\\\\
+    &= \sqrt{x^2 + y^2 - 2y +1},\\
     \abs{i+z} &= \abs{x+ i (y+1)}\\
-    &= \sqrt{z^2 + y^2 +2y +1}\\
+    &= \sqrt{z^2 + y^2 +2y +1}.\\
     \Downarrow\\
-    \abs{1-z } &< \abs{i+z}
+    \abs{1-z } &< \abs{i+z}.
 \end{align*}
 
-It follows that $\abs{F(z)} <1$, so $F : \HH \to D$. To check that $F$ is holomorphic, we check that $F^{-1}$ is holomorphic and in fact the inverse of $F$.\\
+It follows that $\abs{F(z)} <1$, so $F : \HH \to D$. To check that $F$ is holomorphic, we check that $F^{-1}$ is holomorphic and in fact the inverse of $F$.
 
 $F^{-1}:D \to C$ holomorphic is clear. Let $z = x+iy, \, z \in D \Leftrightarrow \, x^2+y^2 = 1$. Then we examine $\Im (F^{-1} )$ (if this is positive, $F^{-1}:D \to \HH$):
-
 \begin{align*}
     \Im \left( F^{-1}(z) \right) &= \Im \left( i \cdot \frac{1-z}{1+z} \right)\\ &= \Re \left( \frac{1-z}{1+z} \right)\\
     &= \Re \left( \frac{1-x-iy}{1+x+iy} \right)\\
    \text{(mult. and div. by conj.) } &= \Re \left( \frac{(1-x-iy)(1+x-iy)}{(1+x)^2+y^2} \right)\\
    &= \Re \left( \frac{1-x^2-y^2-2iy}{(1+x)^2+y^2} \right)\\
-   &= \frac{1-x^2-y^2}{(1+x)^2+y^2} > 0
+   &= \frac{1-x^2-y^2}{(1+x)^2+y^2} > 0.
 \end{align*}
  
 Thus $F^{-1}$ maps to $\HH$. Then (with some short yet tiresome arithmetic) one can show that: 
-
 \begin{align*}
-    F\left( F^{-1} (z) \right) = F^{-1}\left( F (z) \right) = z
+    F\left( F^{-1} (z) \right) = F^{-1}\left( F (z) \right) = z.
 \end{align*}
 
 It follows that $F$ is bijective.
-\end{proof}\\
+\end{proof}
 
 
 
@@ -247,9 +285,8 @@ We present an important example of fractional linear transformations:
 \begin{definition}
 
 Let $D = D_1(0)$, $\alpha \in D$. Define, with $z \in D$:
-
 \begin{align*}
-    \psi_\alpha (z) \defas \frac{\alpha -z}{1 - \overline{\alpha} z}
+    \psi_\alpha (z) \defas \frac{\alpha -z}{1 - \overline{\alpha} z}.
 \end{align*}
 
 These are collectively called \textbf{M{\"o}bius Transformations}.
@@ -260,44 +297,38 @@ Let $ \alpha \in D$. Then $\psi_\alpha \in Aut (D)$. That is to say that $\psi_\
 
 \begin{proof}
 Since $\abs{\alpha} <1$, if $\abs{z} \leq 1$ then:
-
 \begin{align*}
-    \abs{1- \overline{\alpha } z} \geq 1 - \abs{\overline{\alpha } z } > 0
+    \abs{1- \overline{\alpha } z} \geq 1 - \abs{\overline{\alpha } z } > 0.
 \end{align*}
 Thus the denominator of $\psi_\alpha$ does not vanish on $\overline{D}$, thus $\psi_\alpha$ is holomorphic on $\overline{D}$, $\psi_\alpha : D \to \C$.
 
 Observe that:
-
 \begin{align*}
-    \psi_\alpha(0) &= \alpha\\
-    \psi_\alpha(\alpha) &= 0\\
+    \psi_\alpha(0) &= \alpha,
+    \psi_\alpha(\alpha) &= 0.
 \end{align*}
 
-Consider $z \in \partial D$ (so $\abs{z} = 1$) -- $z = e^{i\theta}$:
-
+Consider $z \in \partial D$ (so $\abs{z} = 1$). Then $z = e^{i\theta}$:
 \begin{align*}
     \abs{\psi_\alpha(e^{i \theta} )} &= \abs{\frac{\alpha - e^{i \theta}}{1 - \overline{\alpha} e^{i \theta}}}\\
     &= \abs{ \frac{\alpha - e^{i\theta}}{ e^{i \theta} ( e^{ - i \theta} - \overline{\alpha}}}\\
-    &= \abs{\frac{\alpha - e^{i \theta}}{\overline{\alpha} - e^{- i \theta}}}\\ &= \frac{ \abs{\alpha - e^{i \theta}}  } { \abs{\overline{\alpha - e^{ i \theta}}}} = 1
+    &= \abs{\frac{\alpha - e^{i \theta}}{\overline{\alpha} - e^{- i \theta}}}\\ &= \frac{ \abs{\alpha - e^{i \theta}}  } { \abs{\overline{\alpha - e^{ i \theta}}}} = 1.
 \end{align*}
 
 Thus:
-
 \begin{itemize}
-    \item $\psi_\alpha$ maps $\partial D$ into $\partial D$ (ie $\abs{\psi_\alpha(z)} = 1$ whenever $\abs{z} = 1$)
-    \item $\psi_\alpha : D \to \C$ holomorphic
-    \item $\psi_\alpha$ is non-constant
+    \item $\psi_\alpha$ maps $\partial D$ into $\partial D$ (ie $\abs{\psi_\alpha(z)} = 1$ whenever $\abs{z} = 1$),
+    \item $\psi_\alpha : D \to \C$ holomorphic,
+    \item $\psi_\alpha$ is non-constant.
 \end{itemize}
 
-We can thus apply example (13.2) to get that $\psi_\alpha (D) \subset D$. We now want to show that $\psi_\alpha$ is bijective by finding an inverse. Since $\psi_\alpha$ maps $0$ to $\alpha$ and $\alpha$ to $0$, our natural guess is that $\psi_\alpha^{-1} = \psi_\alpha$. Checking this:
-
+We can thus apply example (\ref{ex:automorphism-mmp}) to get that $\psi_\alpha (D) \subset D$. We now want to show that $\psi_\alpha$ is bijective by finding an inverse. Since $\psi_\alpha$ maps $0$ to $\alpha$ and $\alpha$ to $0$, our natural guess is that $\psi_\alpha^{-1} = \psi_\alpha$. Checking this:
 \begin{align*}
 \psi_\alpha \left( \psi_\alpha(z) \right) &= \frac{\alpha - \frac{\alpha - z}{1- \overline{\alpha } z} }{1 - \overline{\alpha} \frac{\alpha - z}{1 - \overline{\alpha} z}}\\
-&= \frac{z ( 1- \abs{\alpha} ^2) }{ 1- \abs{\alpha} ^2 } = z
+&= \frac{z ( 1- \abs{\alpha} ^2) }{ 1- \abs{\alpha} ^2 } = z.
 \end{align*}
-    
-    
-    Thus $\psi_\alpha$ is its own inverse, hence $\psi_\alpha$ is bijective. Thus $\psi_\alpha \in Aut(D)$
+
+Thus $\psi_\alpha$ is its own inverse, hence $\psi_\alpha$ is bijective. Thus $\psi_\alpha \in Aut(D)$
 \end{proof}
 
 

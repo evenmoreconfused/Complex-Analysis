@@ -10,16 +10,16 @@
 \section{Functional Equation for Riemann Zeta Function}
 
 
-\begin{theorem}[Functional Equation]
+\begin{theorem}[Functional Equation]\label{thm:r-func-eq}
 $\forall s \in \C$, we have that:
 \begin{align*}
-    \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s)
+    \zeta(s) = 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s).
 \end{align*}
 
 \end{theorem}
 
 \begin{note}
-This relation compares the value of $\zeta(s) $ with $\zeta (1-s)$. These are not equal, but they are instead related through a "nice" multiplication factor.
+This relation compares the value of $\zeta(s) $ with $\zeta (1-s)$. These are not equal, but they are instead related through a ``nice" multiplication factor.
 \end{note}
 
 \begin{proof}
@@ -39,79 +39,79 @@ Before the proof, we derive several consequences of this theorem. We begin with 
 % asdf
 % \end{proof}
 
-\begin{proposition}[Lindel{\"o}f]
+\begin{proposition}[Lindel{\"o}f]\label{prop:lindelof}
 For all $z \not\in \Z$, we have that:
 \begin{align*}
-    \pi \cot(\pi z) = \frac{1}{z} + \sum_{n=1}^\infty \frac{2 z }{z^2-n^2}
+    \pi \cot(\pi z) = \frac{1}{z} + \sum_{n=1}^\infty \frac{2 z }{z^2-n^2}.
 \end{align*}
 \end{proposition}
 \begin{proof}
 Define $f(z) \defas \pi \cot(\pi z)$. First we notice that $\frac{1}{z+n} + \frac{1}{z-n} = \frac{2z}{z^2 - n^2}$. Thus:
 \begin{align*}
-    \frac{1}{z} + \sum_{n=1}^\infty \frac{2 z }{z^2-n^2} &= \frac{1}{z} + \sum_{n=1}^\infty \br{\frac{1}{z+n} + \frac{1}{z-n}}
+    \frac{1}{z} + \sum_{n=1}^\infty \frac{2 z }{z^2-n^2} &= \frac{1}{z} + \sum_{n=1}^\infty \br{\frac{1}{z+n} + \frac{1}{z-n}}.
 \end{align*}
 While it is tempting to write $\sum_{n=-\infty}^\infty \frac{1}{z+n}$, we cannot manipulate the sum casually since it is very nearly divergent (since $\sum_{n=1}^\infty \frac{1}{z+n}$ is divergent). We can however apply a limit. Then we have that:
 \begin{align*}
-    \frac{1}{z} + \sum_{n=1}^\infty \br{\frac{1}{z+n} + \frac{1}{z-n}} = \lim_{N \to \infty}\sum_{\abs{n} \leq N} \frac{1}{z+n} = \vcentcolon g(z)
+    \frac{1}{z} + \sum_{n=1}^\infty \br{\frac{1}{z+n} + \frac{1}{z-n}} = \lim_{N \to \infty}\sum_{\abs{n} \leq N} \frac{1}{z+n} = \vcentcolon g(z).
 \end{align*}
-The we want to compare $f(z)$ and $g(z)$. Both functions are meromorphic in $\C$. Both have simple poles precisely at $z \in \Z$. Note also that $\res{0}{f} = \res{0}{g} = 1$. Furthermore they are "periodic" with period $1$, namely that $\forall z \not\in \Z$, $f(z+1) = f(z)$ and $g(z+1) = g(z)$. This is clear for $f$ by the definition of $\cos$ and $\sin$. This follows for $g$ as:
+The we want to compare $f(z)$ and $g(z)$. Both functions are meromorphic in $\C$. Both have simple poles precisely at $z \in \Z$. Note also that $\res{0}{f} = \res{0}{g} = 1$. Furthermore they are ``periodic" with period $1$, namely that $\forall z \not\in \Z$, $f(z+1) = f(z)$ and $g(z+1) = g(z)$. This is clear for $f$ by the definition of $\cos$ and $\sin$. This follows for $g$ as:
 \begin{align*}
     g(z+1) = \lim_{N \to \infty}\sum_{\abs{n} \leq N} \frac{1}{z+1+n} &= \lim_{N \to \infty} \br{ \frac{1}{z+1+N} - \frac{1}{z-N} + \sum_{\abs{n} \leq N} \frac{1}{z+n}}\\
     &= 0 - 0 + \lim_{N \to \infty}\sum_{\abs{n} \leq N} \frac{1}{z+n}\\
-    &= g(z)
+    &= g(z).
 \end{align*}
 
-It follows that $f(z) - g(z)$ is also periodic with period $1$. Since $f$ and $g$ both have a simple pole at $z=0$ with residue $1$, then $f-g$ has a removable singularity at $z=0$. By periodicity it follows that all singularities of $f-g$ are removable. Thus $f-g$ is entire holomorphic and $1$-periodic (periodic with period $1$).\\
+It follows that $f(z) - g(z)$ is also periodic with period $1$. Since $f$ and $g$ both have a simple pole at $z=0$ with residue $1$, then $f-g$ has a removable singularity at $z=0$. By periodicity it follows that all singularities of $f-g$ are removable. Thus $f-g$ is entire holomorphic and $1$-periodic (periodic with period $1$).
 
 
 
-We now show that $f-g$ is bounded in $\C$. Since $f-g$ is $1$-periodic, $f-g$ is uniquely determined by its restriction to the strip $S \defas \set{z \in \C \mid \, \abs{\Re(z)} \leq \frac{1}{2}}$ ie $\forall z \in \C \, \, \exists z_0 \in S$ s.t. $(f-g)(z) = (f-g)(z_0)$ with $z = z_0 + k$ for some $k \in \Z$. Thus it suffices to show that $\sup_{S} \abs{f-g} \leq C $ for some $C$. It further suffices to show that $\sup_{\Tilde{S}} \abs{f-g} \leq C $ for some $C$ where $\Tilde{S} \defas \set{z \in \C \mid \, \abs{\Re(z)} \leq \frac{1}{2}, \, \abs{\Im (z)} >1 }$ (since $\Tilde{S} \setminus S$ is relatively compact, and thus $f-g$ is bounded on it). We will show that $\sup_{\Tilde{S}} \abs{f} \leq C $ and $\sup_{\Tilde{S}} \abs{g} \leq C $ for some $C$.\\
+We now show that $f-g$ is bounded in $\C$. Since $f-g$ is $1$-periodic, $f-g$ is uniquely determined by its restriction to the strip $S \defas \set{z \in \C \mid \, \abs{\Re(z)} \leq \frac{1}{2}}$ ie $\forall z \in \C \, \, \exists z_0 \in S$ s.t. $(f-g)(z) = (f-g)(z_0)$ with $z = z_0 + k$ for some $k \in \Z$. Thus it suffices to show that $\sup_{S} \abs{f-g} \leq C $ for some $C$. It further suffices to show that $\sup_{\Tilde{S}} \abs{f-g} \leq C $ for some $C$ where $\Tilde{S} \defas \set{z \in \C \mid \, \abs{\Re(z)} \leq \frac{1}{2}, \, \abs{\Im (z)} >1 }$ (since $\Tilde{S} \setminus S$ is relatively compact, and thus $f-g$ is bounded on it). We will show that $\sup_{\Tilde{S}} \abs{f} \leq C $ and $\sup_{\Tilde{S}} \abs{g} \leq C $ for some $C$.
 
 \begin{enumerate}
     \item[$f$:] It suffices to show that $\sup_{\Tilde{S}} \abs{\cot(\pi z)} \leq C $. Let $z = x+iy \in \Tilde{S}$. Then $\abs{x} \leq \frac{1}{2}$ and $\abs{y} > 1$. Note that:
     \begin{align*}
-        \abs{e^{-2 \pi y} + e^{-2 \pi i x}} &\leq \abs{e^{-2 \pi y} } + \abs{ e^{-2 \pi i x}} = 1+e^{-2 \pi y} \\
-        \text{and that } \;\; \abs{e^{-2 \pi y} - e^{-2 \pi i x}} &\geq \abs{e^{-2\pi y} -1}
+        \abs{e^{-2 \pi y} + e^{-2 \pi i x}} &\leq \abs{e^{-2 \pi y} } + \abs{ e^{-2 \pi i x}} = 1+e^{-2 \pi y}, \\
+        \text{and that } \;\; \abs{e^{-2 \pi y} - e^{-2 \pi i x}} &\geq \abs{e^{-2\pi y} -1}.
     \end{align*}
     We have that:
     \begin{align*}
         \abs{\cot(\pi z)} &= \abs{i \cdot  \frac{e^{i \pi z} + e^{-i \pi z}}{e^{i \pi z} - e^{-i \pi z}}}\\
         &= \abs{\frac{e^{i \pi x} e^{- \pi y} + e^{-i \pi x} e^{\pi y}}{e^{i \pi x}e^{-\pi y} - e^{-i \pi x} e^{\pi y}}}\\
         &= \abs{ \frac{ e^{-2 \pi y} + e^{-2 \pi i x} }{ e^{-2 \pi y} - e^{ - 2 \pi i x}}}\\
-        &\leq \frac{1+e^{-2 \pi y}}{\abs{e^{-2\pi y} -1}}
+        &\leq \frac{1+e^{-2 \pi y}}{\abs{e^{-2\pi y} -1}}.
     \end{align*}
     If $y>1$ we have that $e^{-2 \pi y} < \frac{1}{2}$. Thus $e^{-2\pi y} -1 < 0$ and thus:
     \begin{align*}
-        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{1-e^{-2\pi y}} \leq \frac{\br{1+\frac{1}{2} }}{\br{\frac{1}{2}}} = 3
+        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{1-e^{-2\pi y}} \leq \frac{\br{1+\frac{1}{2} }}{\br{\frac{1}{2}}} = 3.
     \end{align*}
     If $y<-1$ we have that $e^{-2 \pi y} > 1$. Thus $e^{-2\pi y} -1 > 0$ and thus:
     \begin{align*}
-        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{e^{-2\pi y} - 1} 
+        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{e^{-2\pi y} - 1}. 
     \end{align*}
     These two exponential terms may blow up if $y$ is very small. Thus we need to fiddle around a little more. Note that in fact if $y<-1$ then $e^{-2 \pi y} > 2$. Then $\frac{1}{2} e^{-2 \pi y} > 1$. Then:
     \begin{align*}
         e^{-2 \pi y} -1 &> e^{-2 \pi y} - \frac{1}{2} e^{-2 \pi y}\\
-        &= \frac{1}{2} e^{-2 \pi y}
+        &= \frac{1}{2} e^{-2 \pi y}.
     \end{align*}
     Thus we have, for $y<-1$, that:
     \begin{align*}
-        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{e^{-2\pi y} - 1} \leq \frac{\frac{1}{2} e^{-2\pi y} +e^{-2 \pi y}}{e^{-2 \pi y} - \frac{1}{2}e^{-2 \pi y}} = 3
+        \abs{\cot(\pi z)} \leq \frac{1+e^{-2 \pi y}}{e^{-2\pi y} - 1} \leq \frac{\frac{1}{2} e^{-2\pi y} +e^{-2 \pi y}}{e^{-2 \pi y} - \frac{1}{2}e^{-2 \pi y}} = 3.
     \end{align*}
     Thus $f$ is always bounded.
     \item[$g$:] We must show that $\sup_{\Tilde{S}} \abs{g} \leq C $ for some $C$. Note that $z \in \Tilde{S}$ means that $z$ is not an integer. Let $z = x+iy \in \Tilde{S}$. Then $\abs{x} \leq \frac{1}{2}$ and $\abs{y} > 1$. Note that:
     \begin{align*}
-        \abs{z} = \sqrt{x^2 + y^2} \leq \abs{x} + \abs{y} \leq \frac{1}{2}\abs{y} + \abs{y} = \frac{3}{2} \abs{y}
+        \abs{z} = \sqrt{x^2 + y^2} \leq \abs{x} + \abs{y} \leq \frac{1}{2}\abs{y} + \abs{y} = \frac{3}{2} \abs{y},
     \end{align*}
     and
     \begin{align*}
-        \abs{z} = \abs{x+iy} \geq \abs{y} - \abs{x} \geq \frac{1}{2}
+        \abs{z} = \abs{x+iy} \geq \abs{y} - \abs{x} \geq \frac{1}{2},
     \end{align*}
-    and, noting that $z^2-n^2 = (x+iy)^2 -n^2 = (x^2 - y^2 -n^2) + i(2 xy)$
+    and, noting that $z^2-n^2 = (x+iy)^2 -n^2 = (x^2 - y^2 -n^2) + i(2 xy)$:
     \begin{align*}
         \abs{z^2 - n^2} &= \sqrt{(x^2 - y^2 -n^2)^2 + 4 x^2y^2}\\ &\geq \sqrt{(x^2 - y^2 -n^2)^2}\\
         &= y^2 + n^2 - x^2\\
         \text{($x^2\leq \tfrac{1}{2}y^2$) } &\geq \frac{1}{2} y^2 + n^2\\
-        &\geq \frac{1}{2} \br{y^2 + n^2}
+        &\geq \frac{1}{2} \br{y^2 + n^2}.
     \end{align*}
     Then:
     \begin{align*}
@@ -119,23 +119,23 @@ We now show that $f-g$ is bounded in $\C$. Since $f-g$ is $1$-periodic, $f-g$ is
         &\leq \abs{\frac{1}{z}} + \sum_{n=1}^\infty \abs{\frac{2z}{z^2+n^2}}\\
         &\leq 2 + 2 \sum_{n=1}^\infty \frac{\abs{z}}{\abs{z^2 + n^2}}\\
         &\leq 2 + 2 \sum_{n=1}^\infty \frac{\frac{3}{2}\abs{y}}{\frac{1}{2} \br{y^2 + n^2}}\\
-        &= 2 + 6 \sum_{n=1}^\infty \frac{\abs{y}}{ \br{y^2 + n^2}}
+        &= 2 + 6 \sum_{n=1}^\infty \frac{\abs{y}}{ \br{y^2 + n^2}}.
     \end{align*}
 Now consider the case that $y>1$. We then have that:
 \begin{align*}
     \sum_{n=1}^\infty \frac{\abs{y}}{ \br{y^2 + n^2}} &= \sum_{n=1}^\infty \frac{y}{ \br{y^2 + n^2}}\\
     \text{(summand increasing in n) }&\leq \int_{0}^\infty \frac{y}{y^2+x^2} \dif x\\
-    &= \arctan\br{\frac{x}{y}}\bigg|_{x=0}^{x= \infty}\\ &= \frac{\pi}{2}
+    &= \arctan\br{\frac{x}{y}}\bigg|_{x=0}^{x= \infty}\\ &= \frac{\pi}{2}.
 \end{align*}
 Thus:
 \begin{align*}
-    \abs{g(z)} \leq 2 + 6 \sum_{n=1}^\infty \frac{\abs{y}}{ \br{y^2 + n^2}} \leq 2 + 3 \pi
+    \abs{g(z)} \leq 2 + 6 \sum_{n=1}^\infty \frac{\abs{y}}{ \br{y^2 + n^2}} \leq 2 + 3 \pi.
 \end{align*}
 
-Now consider the case that $y<-1$. We leave this as an exercise to the reader.
+Now we must consider the case where $y<-1$. We leave this as an exercise to the reader.
 \end{enumerate}
 
-Thus $f-g$ is bounded. By corollary (7.5) then $f-g$ is constant. Since $f-g$ is odd, it follows that $f-g \equiv 0$. Thus, $f=g$ and we are done.
+Thus $f-g$ is bounded. By corollary (\ref{cor:liouville}) then $f-g$ is constant. Since $f-g$ is odd, it follows that $f-g \equiv 0$. Thus, $f=g$ and we are done.
 
 
 
@@ -170,76 +170,76 @@ Thus $f-g$ is bounded. By corollary (7.5) then $f-g$ is constant. Since $f-g$ is
 % HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 
-\begin{corollary}
-$\zeta(0) = - \frac{1}{2}$
+\begin{corollary}\label{cor:z-zero}
+$\zeta(0) = - \frac{1}{2}$.
 \end{corollary}
 
 \begin{proof}
 First we use the functional equation:
 \begin{align*}
-    \zeta(s) &= 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s)\\
+    \zeta(s) &= 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(1-s) \cdot \zeta(1-s).\\
     &\Downarrow \text{ (mult by $(1-s)$)}\\
     (1-s)\cdot \zeta(s) &= 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \underbrace{(1-s)\cdot \Gamma(1-s)}_{\text{done already}} \cdot \zeta(1-s)\\
-    \text{(proposition (21.1)) } &= 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(2-s) \cdot \zeta(1-s)
+    \text{(proposition (\ref{prop:g-factorial})) } &= 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(2-s) \cdot \zeta(1-s).
 \end{align*}
 Recall that $\zeta$ has a simple pole at $s=1$ with residue $1$. Thus $\lim_{s\to 1} (s-1)\cdot \zeta(s) = 1$. Then:
 \begin{align*}
     -1 = \lim_{s\to 1} (1-2)\cdot \zeta(s) &= \lim_{s\to 1} 2^s \cdot \pi^{s-1} \cdot \sin\br{\frac{\pi s}{2}} \cdot \Gamma(2-s) \cdot \zeta(1-s)\\
     & = 2^1 \cdot \pi^0 \cdot \sin\br{\frac{\pi}{2}} \cdot \Gamma(1) \cdot \zeta(0)\\
-    &= 2 \cdot  \zeta(0)\\
+    &= 2 \cdot  \zeta(0).\\
     &\Downarrow\\
-    \zeta(0) &= - \frac{1}{2}
+    \zeta(0) &= - \frac{1}{2}.
 \end{align*}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:z-even}
 $\zeta(2n) =(-1)^{n+1} \frac{(2\pi)^{2n}}{2 \cdot (2n)!} B_{2n}, \; n \geq 1$, with $B_n$ the Bernoulli numbers.
 \end{corollary}
 
 \begin{note}
-Finding $\zeta(2)$ was called the "Basel problem".
+Finding $\zeta(2)$ was called the ``Basel problem".
 \end{note}
 
-\begin{proof}
+\begin{proof}[\ref{cor:z-even}]
 We shall use the complex cotangent, defined as:
 \begin{align*}
-    \cot(z) \defas \frac{\cos(s)}{ \sin(z)} \; \; z \in \C
+    \cot(z) \defas \frac{\cos(s)}{ \sin(z)} \; \; z \in \C.
 \end{align*}
 Both $\cos$ and $\sin$ are entire holomorphic, and $\sin$ has simple zeroes at $z \in \set{\pi k \mid k \in \Z}$. Thus $\cot (z)$ is a meromorphic function with simple poles at $z \in \set{\pi k \mid k \in \Z}$. Considering $\cot(\pi z)$ we have a meromorphic function with simple poles at $z \in \Z$.
 
-Now we take $0<\abs{z} < 1$. Note that then $\big|\frac{z^2}{n^2} \big| < 1$. Then by proposition (24.4) we have:
+Now we take $0<\abs{z} < 1$. Note that then $\big|\frac{z^2}{n^2} \big| < 1$. Then by proposition (\ref{prop:lindelof}) we have:
 \begin{align*}
     \pi \cot(\pi z) &= \frac{1}{z} + \sum_{n=1}^\infty \frac{2 z }{z^2-n^2}\\
     &= \frac{1}{z} - 2 \sum_{n=1}^\infty \frac{z }{n^2} \cdot \underbrace{\frac{1}{1-\frac{z^2}{n^2}}}_{\text{\stackanchor{sum of}{geo. series}}}\\
     &= \frac{1}{z} - 2 \sum_{n=1}^\infty \frac{z }{n^2}  \sum_{k=1}^\infty \br{\frac{z^2}{n^2}}^{k-1}\\
     &= \frac{1}{z} - 2 \sum_{n=1}^\infty \sum_{k=1}^\infty \frac{z^{2k-1}}{n^{2k}}\\
     \text{(abs. conv.) }&= \frac{1}{z} - 2 \sum_{k=1}^\infty \sum_{n=1}^\infty \frac{z^{2k-1}}{n^{2k}}\\
-    &= \frac{1}{z} - 2 \sum_{k=1}^\infty z^{2k-1} \cdot \zeta(2k)
+    &= \frac{1}{z} - 2 \sum_{k=1}^\infty z^{2k-1} \cdot \zeta(2k).
 \end{align*}
 
 Further note that for $\abs{z} < 1$ (this time $0$ is included) we have:
 \begin{align*}
-    \pi z \cot(\pi z) = 1 - 2 \sum_{k=1}^\infty \zeta(2k) \cdot z^{2k}
+    \pi z \cot(\pi z) = 1 - 2 \sum_{k=1}^\infty \zeta(2k) \cdot z^{2k}.
 \end{align*}
 The RHS is a power series in $z$ with the coefficients being the values that we want to find. We thus expand the LHS as a power series and equate the terms to find $\zeta(2k)$.
 \begin{align*}
     \pi z \cot(\pi z) = \pi z \frac{\sin(z)}{\cos(z)} &= i \pi z \frac{e^{i \pi z} + e^{-i \pi z}}{e^{i \pi z} - e^{-i \pi z}}\\
     & = i \pi z \frac{e^{2 i \pi z} + 1}{e^{2 i \pi z} - 1}\\
     &= i \pi z \br{ 1 + \frac{2}{e^{2 i \pi z} - 1} }\\
-    &= i \pi z + \frac{2i \pi z}{e^{2 i \pi z} - 1}
+    &= i \pi z + \frac{2i \pi z}{e^{2 i \pi z} - 1}.
 \end{align*}\\
 We define the Bernoulli numbers $B_m \in \Q$ as the unique sequence satisfying (for $x \in \R$):
 \begin{align*}
-    \frac{x}{e^x - 1} = \sum_{m=0}^\infty \frac{B_m}{m!} x^m
+    \frac{x}{e^x - 1} = \sum_{m=0}^\infty \frac{B_m}{m!} x^m.
 \end{align*}
 Calculating these terms is computationally tedious. It is is true however that $m>1 \text{ odd } \implies B_m = 0$. This follows from the fact that $\frac{x}{e^x - 1} + \frac{x}{2}$ is an even function. Indeed:
 \begin{align*}\frac{x}{e^x - 1} + \frac{x}{2} &= \frac{x(1+e^x)}{2(e^x-1)} \\&= - \frac{x}{2} \cdot \frac{1+e^x}{1-e^x}\\
 &= - \frac{x}{2} \cdot \frac{e^{-x} + 1}{e^{-x} - 1}\\
 &= - \frac{x}{2} \cdot \frac{2+e^{-x} -1}{e^{-x} - 1}\\
 &= - \frac{x}{e^{-x}-1} - \frac{x}{2}\\
-&=  \frac{(-x)}{e^{(-x)}-1} + \frac{(-x)}{2}
+&=  \frac{(-x)}{e^{(-x)}-1} + \frac{(-x)}{2}.
 \end{align*}
-So this function is even.\\
+So this function is even.
 
 Now we continue from
 \begin{align*}
@@ -248,11 +248,11 @@ Now we continue from
     &= \cancel{i \pi z} + 1 - \frac{1}{2}\cancel{(2 \pi i z)} + \sum_{m=2}^\infty \frac{B_m}{m!} (2 \pi i z)^m\\
     \text{(odd $B_m$ vanish) } &= 1 + \sum_{m=1}^\infty \frac{B_{2m}}{(2m)!} (2 \pi i z)^{2m}\\
     &= 1 + (-2) \cdot \br{-\frac{1}{2}} \sum_{m=1}^\infty \frac{B_{2m}}{(2m)!} (2 \pi i z)^{2m}\\
-    &= 1 - 2\sum_{m=1}^\infty \frac{B_{2m}}{2 (2m)!} (2 \pi)^{2m} \cdot (-1)^{m+1} z^{2m}
+    &= 1 - 2\sum_{m=1}^\infty \frac{B_{2m}}{2 (2m)!} (2 \pi)^{2m} \cdot (-1)^{m+1} z^{2m}.
 \end{align*}
 These power series are equal, thus we can equate coefficients. Thus for all $m \geq 1$ we have that:
 \begin{align*}
-    \zeta(2m) = (-1)^{m+1} \frac{(2\pi)^{2m}}{2 \cdot (2m)!} B_{2m}
+    \zeta(2m) = (-1)^{m+1} \frac{(2\pi)^{2m}}{2 \cdot (2m)!} B_{2m}.
 \end{align*}
 
 \end{proof}
@@ -260,7 +260,7 @@ These power series are equal, thus we can equate coefficients. Thus for all $m \
 \begin{example} Noting that $B_2 = \frac{1}{6}$, we have that $\zeta(2) = \frac{(2\pi)^2}{2\cdot 2}\cdot B_2 = \pi ^ 2 \cdot \frac{1}{6} = \frac{\pi ^2 }{6}$.
 \end{example}
 
-\begin{corollary}
+\begin{corollary}\label{cor:z-neg-odd}
 $\zeta(-(2n+1))= - \frac{B_{2n+2}}{2n+2}, \; n \geq 1$, with $B_n$ the Bernoulli numbers.
 \end{corollary}
 
@@ -269,19 +269,19 @@ Note that if $n$ is a negative odd integer, then $1-n$ is a positive even intege
 \begin{align*}
     \zeta(-m) &= 2^{-m} \cdot \pi^{-m-1} \cdot \sin\br{\frac{- m \pi}{2}} \cdot \Gamma(1+m) \cdot \zeta(1+m)\\
     &= 2^{-(2n+1)} \cdot \pi^{-2n-2} \cdot (-1)^{n+1} \cdot (2n+1)! \cdot \zeta(2n+2)\\
-    \text{(corollary (24.6)) } &= 2^{-(2n+1)} \cdot \pi^{-2n-2} \cdot (-1)^{n+1} \cdot (2n+1)! \cdot \br{(-1)^n \cdot \frac{(2 \pi)^{2n+2}}{2 \cdot (2n+2)!} B_{2n+2} }\\
-    \text{(simplify) }&= - \frac{B_{2n+2}}{2n+2}
+    \text{(corollary (\ref{cor:z-even})) } &= 2^{-(2n+1)} \cdot \pi^{-2n-2} \cdot (-1)^{n+1} \cdot (2n+1)! \cdot \br{(-1)^n \cdot \frac{(2 \pi)^{2n+2}}{2 \cdot (2n+2)!} B_{2n+2} }\\
+    \text{(simplify) }&= - \frac{B_{2n+2}}{2n+2}.
 \end{align*}
 \end{proof}
 
 \begin{example}
-$\zeta(-1) = - \frac{B_{2}}{2} = - \frac{1}{12}$
+$\zeta(-1) = - \frac{B_{2}}{2} = - \frac{1}{12}$.
 \end{example}
 
 What is missing now for $\zeta(\Z)$?
 
 \begin{itemize}
-    \item $\zeta(1) = "\infty"$
-    \item $\zeta(-2n) = 0$ for $n \geq 1$ (this will be shown later)
-    \item $\zeta(2n+1) = ???$ for $n \geq 1$ (this is still a mystery)
+    \item $\zeta(1) = ``\infty"$.
+    \item $\zeta(-2n) = 0$ for $n \geq 1$ (this will be shown later).
+    \item $\zeta(2n+1) = \, ???$ for $n \geq 1$ (this is still a mystery).
 \end{itemize}
