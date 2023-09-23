@@ -15,11 +15,11 @@ We want to now pivot to a different representation of $\zeta$.
 Given $\{ a_n \}_{n=1}^\infty, \, a_n \in \C$, we shall say that their infinite product $\prod_{n=1}^\infty a_n$ converges if the sequence $A_N = \prod_{n=1}^N a_n \in \C$ converges to some $A\in \C$ as $N \to \infty$. In this case we will write $A= \prod_{n=1}^\infty a_n$.
 
 \begin{lemma}\label{lem:inf-prod-lemma}
-Suppose $\{ a_n \}_{n=1}^\infty, \, a_n \in \C$, such that $\sum_{n-1}^\infty \abs{a_n} < \infty$. Then $\prod_{n=1}^\infty \br{1+a_n}$ is convergent and $\prod_{n=1}^\infty \br{1+a_n}$ happens if and only if $\exists m \geq 1 $ s.t. $1+a_m = 0$.
+Suppose $\{ a_n \}_{n=1}^\infty, \, a_n \in \C$, such that $\sum_{n=1}^\infty \abs{a_n} < \infty$. Then $\prod_{n=1}^\infty \br{1+a_n}$ is convergent and $\prod_{n=1}^\infty \br{1+a_n} = 0$ happens if and only if $\exists m \geq 1 $ s.t. $1+a_m = 0$.
 \end{lemma}
 
 \begin{proof}
-Clearly if $\exists m \geq 1 $ s.t. $1+a_m = 0$ then $\prod_{n=1}^N(1+a_n) = 0 \, \, \forall N\geq m$. Thus the infinite product converges, and converges to $0$. Now assume that $1+a_n \neq 0 \, \forall n \geq 1$. Since $\sum_{n=1}^\infty \abs{a_n} < \infty$, then $\abs{a_n} \xrightarrow[]{n\to \infty } 0$. Thus for all $n$ sufficiently large, $\abs{a_n} < \frac{1}{2}\, \forall n \geq n_0$. We shall disregard the $a_n$'s for $n < n_0$ (this doesn't affect the convergence since there are finite of these terms). WLOG assume that $\abs{a_n} < \frac{1}{2} \, \forall n \geq 1$. Then $1+a_n \in D_\frac{1}{2}(1)$. Note that $0 \not\in D_\frac{1}{2}(1)$. We can thus use the principal branch of $\log$ on this disk. Then we can calculate $\log(1+a_n)$. This is well defined by the usual power series:
+Clearly if $\exists m \geq 1 $ s.t. $1+a_m = 0$ then $\prod_{n=1}^N(1+a_n) = 0 \, \, \forall N\geq m$. Thus the infinite product converges, and converges to $0$. Now assume that $1+a_n \neq 0 \, \forall n \geq 1$. Since $\sum_{n=1}^\infty \abs{a_n} < \infty$, then $\abs{a_n} \xrightarrow[]{n\to \infty } 0$. Thus for all $n$ sufficiently large, $\abs{a_n} < \frac{1}{2}\, \forall n \geq n_0$. We shall disregard the $a_n$'s for $n < n_0$ (this doesn't affect the convergence since there are a finite number of these terms). WLOG assume that $\abs{a_n} < \frac{1}{2} \, \forall n \geq 1$. Then $1+a_n \in D_\frac{1}{2}(1)$. Note that $0 \not\in D_\frac{1}{2}(1)$. We can thus use the principal branch of $\log$ on this disk. Then we can calculate $\log(1+a_n)$. This is well defined by the usual power series:
 \begin{align*}
     \log(1+z) = z - \frac{z^2}{2} + \frac{z^3}{3} - \cdots.
 \end{align*}
